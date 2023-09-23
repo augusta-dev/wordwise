@@ -2,7 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+@layer base{
+  @font-face {
+      font-family: "Squada One";
+      src: url('/src/Assets/Fonts/Squada_One/SquadaOne-Regular.ttf');
+  }
+  @font-face {
+      font-family: 'Signika Negative';
+      src: url('/src/Assets/Fonts/Signika_Negative/SignikaNegative-VariableFont_wght.ttf');
+  }
+  @font-face {
+      font-family: "Rubik";
+      src: url('/src/Assets/Fonts/Rubik/Rubik-VariableFont_wght.ttf');
+  }
+}
+body{
+  /* overflow: hidden; */
+}
+body::-webkit-scrollbar{
+  display: none;
+}
+
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -24,4 +45,4 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+} */

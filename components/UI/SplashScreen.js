@@ -1,7 +1,7 @@
-import SplashIllustration from "../Components/UI/SplashIllustration";
-import Authentication from "../Components/Authentication/Authentication";
+import SplashIllustration from "./SplashIllustration";
+import Authentication from "../authentication/Authentication";
 // import Typography from '@mui/material';
-import { Button, Typography, TextField, AppBar, Toolbar } from "@mui/material";
+import { Button, Typography, TextField, AppBar, Toolbar } from "../../node_modules/@mui/material";
 const SplashScreen = () => {
 	return (
 		<div className="w-[100vw] h-[100vh] flex justify-center items-center align-middle z-10 blur-0">

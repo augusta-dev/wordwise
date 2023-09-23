@@ -8,7 +8,7 @@ const Authentication = () => {
 		<div className="w-full flex flex-col">
 			<Button
 				variant="contained"
-				className="bg-purpleBody hover:bg-purpleBody rounded-3xl shadow mb-3 font-semibold font-rubik normal-case text-lg" onClick={revealSignIn}
+				className="bg-purpleBody hover:bg-purpleBody rounded-3xl shadow mb-3 font-semibold font-rubik normal-case text-lg" 
 			>
 				Sign in
 			</Button>
