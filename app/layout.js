@@ -1,10 +1,10 @@
-import './globals.css'
+import "./globals.css";
 import React from "react";
 // import ReactDOM from "react-dom/client";
 import { StyledEngineProvider } from "@mui/material";
-import 'tailwindcss/tailwind.css';
+import "tailwindcss/tailwind.css";
 
-import Background from '@/components/layout/Background';
+import Background from "@/components/layout/Background";
 // import { Inter } from 'next/font/google'
 
 // const inter = Inter({ subsets: ['latin'] })
@@ -15,14 +15,14 @@ import Background from '@/components/layout/Background';
 // }
 
 export default function RootLayout({ children }) {
-  return (
-  
-    // <React.StrictMode>
-		<StyledEngineProvider injectFirst>
-      <Background>
-			{children}
-      </Background>
-		</StyledEngineProvider>
-	// </React.StrictMode>
-  )
+	return (
+		// <React.StrictMode>
+		<div>
+			<StyledEngineProvider injectFirst>
+				<Background>{children}</Background>
+			</StyledEngineProvider>
+		</div>
+
+		// </React.StrictMode>
+	);
 }

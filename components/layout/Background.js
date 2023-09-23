@@ -1,11 +1,11 @@
 // import "./Background.css";
-const Background = () => {
+const Background = (props) => {
 	return (
         // <div id="background">
         //     Yesno
         // </div>
 		<div className="flex flex-col flex-wrap">
-			<div className="w-80 h-96 fixed">
+			<div className="w-80 h-96 fixed z-10">
 				<div className="w-48 h-48 left-0 top-0 fixed blur-[100px]">
 					<div className="w-48 h-48 -left-8 -top-8 absolute z-10 bg-blurBlue bg-opacity-100 rounded-full" />
 				</div>
@@ -27,7 +27,9 @@ const Background = () => {
 					<div className="w-48 h-48 left-32 -top-8 absolute z-10 bg-blurBlue bg-opacity-100 rounded-full" />
 				</div>
 			</div>
+			{props.children}
 		</div>
+		
 	);
 };
 export default Background;

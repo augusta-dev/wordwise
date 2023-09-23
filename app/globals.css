@@ -5,15 +5,16 @@
 @layer base{
   @font-face {
       font-family: "Squada One";
-      src: url('/src/Assets/Fonts/Squada_One/SquadaOne-Regular.ttf');
+      /* src: url('/assets/Fonts/Squada_One/SquadaOne-Regular.ttf'); */
+      src: url('/assets/Fonts/Squada_One/SquadaOne-Regular.ttf');
   }
   @font-face {
       font-family: 'Signika Negative';
-      src: url('/src/Assets/Fonts/Signika_Negative/SignikaNegative-VariableFont_wght.ttf');
+      src: url('/assets/Fonts/Signika_Negative/SignikaNegative-VariableFont_wght.ttf');
   }
   @font-face {
       font-family: "Rubik";
-      src: url('/src/Assets/Fonts/Rubik/Rubik-VariableFont_wght.ttf');
+      src: url('/assets/Fonts/Rubik/Rubik-VariableFont_wght.ttf');
   }
 }
 body{
