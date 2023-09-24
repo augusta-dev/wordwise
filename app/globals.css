@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
+/* @layer base{
   @font-face {
       font-family: "Squada One";
       /* src: url('/assets/Fonts/Squada_One/SquadaOne-Regular.ttf'); */
-      src: url('/assets/Fonts/Squada_One/SquadaOne-Regular.ttf');
+      /* src: url('/assets/Fonts/Squada_One/SquadaOne-Regular.ttf');
   }
   @font-face {
       font-family: 'Signika Negative';
@@ -15,8 +15,8 @@
   @font-face {
       font-family: "Rubik";
       src: url('/assets/Fonts/Rubik/Rubik-VariableFont_wght.ttf');
-  }
-}
+  } */
+/* } */
 body{
   /* overflow: hidden; */
 }

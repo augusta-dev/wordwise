@@ -21,9 +21,9 @@ module.exports = {
         red: "#FF0000",
       },
       fontFamily: {
-        rubik: "Rubik",
-        squada: "Squada One",
-        signika: "Signika Negative",
+        "rubik": "var(--font-rubik)",
+        "squada": "var(--font-squada-one)",
+        "signika": "var(--font-signika-negative)",
       }
     },
   },

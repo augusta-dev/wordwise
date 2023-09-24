@@ -1,8 +1,9 @@
 import SplashIllustration from "./SplashIllustration";
 import Authentication from "../authentication/Authentication";
 // import Typography from '@mui/material';
-import { Button, Typography, TextField, AppBar, Toolbar } from "@mui/material";
-import Background from "../layout/Background";
+// import { Button, Typography, TextField, AppBar, Toolbar } from "@mui/material";
+// import Typography from '@mui/base/Typography';
+
 const SplashScreen = () => {
 	return (
 		// Background
@@ -15,8 +16,8 @@ const SplashScreen = () => {
 				<h4 className="font-signika text-[1.71rem] text-lightPurple self-end leading-7 pb-6">
 					Vocabulary Virtuoso
 				</h4>
-				<Typography className="font-rubik font-semibold text-darkPurple text-justify leading-5 pb-5">
-					<p>
+				<div className="font-rubik font-semibold text-darkPurple text-justify leading-5 pb-5">
+					<p className="font-rubik"> 
 						&quot The crux is in absorbing, not just accessing, the
 						information at hand &quot is the motivation for and motto of
 						this app.
@@ -30,7 +31,7 @@ const SplashScreen = () => {
 						those words to help you remember them. You take one
 						everytime you open the app
 					</p>
-				</Typography>
+				</div>
 				<Authentication></Authentication>
 			</div>
 		</div>
