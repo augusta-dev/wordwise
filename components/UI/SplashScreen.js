@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/jsx-no-comment-textnodes */
 import SplashIllustration from "./SplashIllustration";
 import Authentication from "../authentication/Authentication";
 // import Typography from '@mui/material';
@@ -17,12 +19,13 @@ const SplashScreen = () => {
 					Vocabulary Virtuoso
 				</h4>
 				<div className="font-rubik font-semibold text-darkPurple text-justify leading-5 pb-5">
-					<p className="font-rubik"> 
-						&quot The crux is in absorbing, not just accessing, the
-						information at hand &quot is the motivation for and motto of
+					{/* // eslint-disable-next-line react/no-unescaped-entities */}
+					<p className="font-rubik pb-1">
+						"The crux is in absorbing, not just accessing, the
+						information at hand" is the motivation for and motto of
 						this app.
 					</p>
-					<p className="font-signika text-lg leading-4 pt-2">
+					<p className="font-signika text-lg leading-4 pt-2 pb-1">
 						How It Works:
 					</p>
 					<p className="text-lightPurple ">
