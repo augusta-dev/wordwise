@@ -1,5 +1,6 @@
-import SplashScreen from "@/components/UI/SplashScreen";
+// import SplashScreen from "@/components/UI/SplashScreen";
 import Background from "@/components/layout/Background";
+import SplashScreen from "./SplashScreen";
 // import Image from 'next/image'
 // import React from 'react';
 // import 'tailwindcss/tailwind.css';

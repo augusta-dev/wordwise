@@ -1,4 +1,4 @@
-import SplashIllustration from "../../assets/SplashIllustration";
+import SplashIllustration from "../assets/SplashIllustration";
 import Authentication from "../components/Authentication/Authentication";
 // import Typography from '@mui/material';
 import { Button, Typography, TextField, AppBar, Toolbar } from "@mui/material";
