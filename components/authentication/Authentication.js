@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import Button from "../UI/Button"; 
 const Authentication = () => {
     const revealSignIn = () => {
         alert("Yes");
@@ -8,13 +8,13 @@ const Authentication = () => {
 		<div className="w-full flex flex-col">
 			<Button
 				variant="contained"
-				className="bg-purpleBody hover:bg-purpleBody rounded-3xl shadow mb-3 font-semibold font-rubik normal-case text-lg" onClick={revealSignIn}
+				className="mt-4 mb-2" 
 			>
 				Sign in
 			</Button>
 			<Button
 				variant="contained"
-				className="bg-purpleBody hover:bg-purpleBody rounded-3xl shadow font-semibold font-rubik normal-case text-lg"
+				className="mt-1"
 			>
 				Sign up
 			</Button>

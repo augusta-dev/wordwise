@@ -1,3 +1,4 @@
+import Image from "next/image";
 import arrow from "../../assets/arrow.svg";
 import ReturnText from "../UI/ReturnText";
 
@@ -18,7 +19,7 @@ const IndividualWords = (props) => {
 				<p className="inline text-lightPurple">
 					{capitalizeInitial(props.translation[0])}
 				</p>
-				<img
+				<Image
 					src={arrow}
 					alt=""
 					onClick={() => props.toggleArrowState(props.id)}

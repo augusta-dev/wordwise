@@ -1,13 +1,17 @@
-// import SplashScreen from "@/components/UI/SplashScreen";
-import Background from "@/components/layout/Background";
 import SplashScreen from "./SplashScreen";
-// import Image from 'next/image'
-// import React from 'react';
-// import 'tailwindcss/tailwind.css';
+import HomePage from "./HomePage";
+import Quiz from "./Quiz";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+
 export default function Home() {
 	return (
 		<>
-			<SplashScreen></SplashScreen>
+			{/* <SplashScreen></SplashScreen>
+			<SignUp></SignUp>
+			<SignIn></SignIn>
+			<Quiz></Quiz> */}
+			<HomePage></HomePage>
 		</>
 	);
 }

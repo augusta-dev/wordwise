@@ -1,5 +1,5 @@
 import arrow from "../../assets/arrow.svg";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ReturnText from "../UI/ReturnText";
 import IndividualWords from "./IndividualWords";
 const WordList = (props) => {
@@ -58,6 +58,7 @@ const WordList = (props) => {
 
 	props.setLastWord(lastWord);
 	props.setLength(wordList.length);
+	console.log(wordList);
 
 	const toggleArrowState = (id) => {
 		// Create a new array with updated arrowUp property

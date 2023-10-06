@@ -1,14 +1,12 @@
 import SplashIllustration from "../../assets/SplashIllustration";
-import Authentication from "../components/Authentication/Authentication";
-// import Typography from '@mui/material';
-import { Button, Typography, TextField, AppBar, Toolbar } from "@mui/material";
+import Authentication from "../authentication/Authentication";
 import Logo from "../components/UI/Logo";
 const SplashScreen = () => {
 	return (
 		<>
 			<SplashIllustration />
 			<Logo />
-			<Typography className="font-rubik font-semibold text-darkPurple text-justify leading-5 pb-5">
+			<div className="font-rubik font-semibold text-darkPurple text-justify leading-5 pb-5">
 				<p>
 					"The crux is in absorbing, not just accessing, the
 					information at hand" is the motivation for and motto of this
@@ -23,7 +21,7 @@ const SplashScreen = () => {
 					those words to help you remember them. You take one
 					everytime you open the app
 				</p>
-			</Typography>
+			</div>
 			<Authentication></Authentication>
 		</>
 	);
