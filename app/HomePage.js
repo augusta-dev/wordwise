@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import DashBoardButtons from "../components/Dashboard/DashBoardButtons";
 import MostRecentWord from "../components/Dashboard/MostRecentWord";
-import WordList from "../components/Dashboard/WordList";
+import WordDisplay from "../components/Dashboard/WordDisplay";
 import { useEffect } from "react";
 
 const HomePage = () => {
@@ -23,10 +23,10 @@ const HomePage = () => {
 			</div>
 
 			<MostRecentWord word={lastWord}></MostRecentWord>
-			<WordList
+			<WordDisplay
 				setLastWord={setLastWord}
 				setLength={setLength}
-			></WordList>
+			></WordDisplay>
 		</div>
 	);
 };

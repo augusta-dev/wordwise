@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import arrow from "../../assets/arrow.svg";
 import ReturnText from "../UI/ReturnText";
@@ -19,14 +20,20 @@ const IndividualWords = (props) => {
 				<p className="inline text-lightPurple">
 					{capitalizeInitial(props.translation[0])}
 				</p>
-				<Image
-					src={arrow}
-					alt=""
-					onClick={() => props.toggleArrowState(props.id)}
-					className={`transform duration-150 ${
-						props.arrowUp ? "rotate-0" : "rotate-180"
-					}`}
-				/>
+				<button
+					onClick={() => {
+						alert("clickedddd");
+						// props.toggleArrowState(props.id);
+					}}
+				>
+					<Image
+						src={arrow}
+						alt=""
+						className={`transform duration-150 ${
+							props.arrowUp ? "rotate-0" : "rotate-180"
+						}`}
+					/>
+				</button>
 			</div>
 			<div
 				className={`transform delay-700 duration-700 ${
