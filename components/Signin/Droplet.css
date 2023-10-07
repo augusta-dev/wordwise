@@ -1,0 +1,31 @@
+.droplet {
+    position: relative;
+    left: 60px;
+    height: 50px;
+    width: 50px;
+    border-radius: 10% 10% 10% 10%;
+    opacity: 0.8;
+}
+    .droplet::before {
+    content: "";
+    position: absolute;
+    background: #C589E8;
+    height: 100%;
+    width: 100%;
+    border-radius: 51% 49% 48% 52% / 62% 44% 56% 38%;
+    box-shadow: -10px 15px 8px #ae75d2, -20px 30px 16px #c67fef,
+      inset -3px 3px 5px #c67fef, inset 1px 3px 5px #c67fef,
+      inset 5px -10px 11px white, inset 20px -20px 22px #dbb1f4;
+}
+    .droplet::after {
+    content: "";
+    position: absolute;
+    background: #e6fdfb;
+    height: 20px;
+    width: 20px;
+    border-radius: 44% 56% 46% 54% / 36% 50% 50% 64%;
+    left: 65px;
+    top: 20px;
+    box-shadow: 8px 20px 0 -5px white;
+    opacity: 0.8;
+}

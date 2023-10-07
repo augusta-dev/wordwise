@@ -4,10 +4,10 @@ const Authentication = () => {
 	
 	return (
 		<div className="w-full flex flex-col">
-			<Link href="/homepage">
+			<Link href="/signin">
 				<Button
 					variant="contained"
-					className="mt-0 mb-4"
+					className="!mt-4 mb-2"
 				>
 					Sign in
 				</Button>

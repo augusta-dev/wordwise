@@ -3,14 +3,16 @@ import Button from "../../components/UI/Button";
 import Raindrops from "../../components/Signin/Raindrops";
 import "../../components/Signin/Raindrops.css";
 import Input from "../../components/UI/Input";
+import Droplet from "@/components/Signin/Droplet";
 const SignIn = () => {
 	return (
 		<div className="flex justify-between h-screen flex-col font-rubik pb-14">
 			<Logo></Logo>
 			<div className="flex flex-wrap flex-col text-center justify-center align-middle items-center">
-				<p className="font-semibold text-darkPurple text-2xl leading-3">
+				<p className="font-semibold text-darkPurple text-2xl leading-3 relative">
 					Continue the journey!
 				</p>
+				{/* <Droplet></Droplet> */}
 				<div className="h-48 w-60 grid grid-cols-6 justify-evenly pl-3">
 					<Raindrops className="duration-1" />
 					<Raindrops className="duration-2" />

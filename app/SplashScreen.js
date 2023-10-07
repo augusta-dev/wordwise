@@ -7,7 +7,7 @@ const SplashScreen = () => {
 		<>
 			<SplashIllustration />
 			<Logo />
-			<div className="font-rubik font-semibold text-darkPurple text-justify leading-5 pb-5">
+			<div className="font-rubik font-semibold text-darkPurple text-justify leading-5 pb-4">
 				<p>
 					"The crux is in absorbing, not just accessing, the
 					information at hand" is the motivation for and motto of this
