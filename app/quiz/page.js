@@ -1,6 +1,6 @@
-import QuizIllustration from "../assets/QuizIllustration";
-import QuizOption from "../components/Quiz/QuizOption";
-import LightBulb from "../assets/LightBulb";
+import QuizIllustration from "../../assets/QuizIllustration";
+import QuizOption from "../../components/Quiz/QuizOption";
+import LightBulb from "../../assets/LightBulb";
 const Quiz = () => {
     return (
         <div className="flex justify-between h-screen flex-col font-signika pb-10 pt-8 text-darkPurple">
@@ -19,7 +19,7 @@ const Quiz = () => {
                 <QuizOption></QuizOption>
             </div>
             <div className="flex flex-row align-middle text-center justify-center">
-               <LightBulb /> <p className="inline text-lg pl-2">It's okay to make mistakes</p>
+               <LightBulb /> <p className="inline text-lg pl-2"> It`&apos`s okay to make mistakes</p>
             </div>
         </div>
     )

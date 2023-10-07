@@ -1,8 +1,8 @@
 "use client"
 import React, { useState } from "react";
-import DashBoardButtons from "../components/Dashboard/DashBoardButtons";
-import MostRecentWord from "../components/Dashboard/MostRecentWord";
-import WordDisplay from "../components/Dashboard/WordDisplay";
+import DashBoardButtons from "../../components/Dashboard/DashBoardButtons";
+import MostRecentWord from "../../components/Dashboard/MostRecentWord";
+import WordDisplay from "../../components/Dashboard/WordDisplay";
 import { useEffect } from "react";
 
 const HomePage = () => {

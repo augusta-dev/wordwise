@@ -58,7 +58,7 @@ const defaultListState = {
 
 const listReducer = (state, action) => {
 	if (action.type === "ADD") {
-		let updatedWords = state.words;
+		let updatedWords = [...state.words];
 		updatedWords.unshift(action.word);
 		console.log(updatedWords);
 		return {
@@ -66,13 +66,17 @@ const listReducer = (state, action) => {
 		};
 	}
     if (action.type === "FLIP"){
-        let updatedWords = state.words.map((word) => {
-			console.log("clickedddd")
-            if (word.id === action.id) {
-                return {...word, arrowUp: !ownerDocument.arrowUp };
+        let updatedWords = [...state.words];
+		updatedWords = updatedWords.map((word) => {
+            if (action.id === word.id) {
+				console.log(action.id)
+                return {...word, arrowUp: !word.arrowUp};
             }
+
             return word;
         })
+		console.log("clickedddd");
+		console.log(updatedWords)
         return {
             words: updatedWords,
         }

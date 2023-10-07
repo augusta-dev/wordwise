@@ -1,8 +1,8 @@
-import Logo from "../components/UI/Logo";
-import Button from "../components/UI/Button";
-import Raindrops from "../components/Signin/Raindrops";
-import "../components/Signin/Raindrops.css";
-import Input from "../components/UI/Input";
+import Logo from "../../components/UI/Logo";
+import Button from "../../components/UI/Button";
+import Raindrops from "../../components/Signin/Raindrops";
+import "../../components/Signin/Raindrops.css";
+import Input from "../../components/UI/Input";
 const SignIn = () => {
 	return (
 		<div className="flex justify-between h-screen flex-col font-rubik pb-14">

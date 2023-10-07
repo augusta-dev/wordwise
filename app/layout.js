@@ -1,6 +1,6 @@
 import "./globals.css";
 import React from "react";
-import { StyledEngineProvider } from "@mui/material";
+// import { StyledEngineProvider } from "@mui/material";
 import "tailwindcss/tailwind.css";
 import localFont from "next/font/local";
 import Background from "@/components/layout/Background";
@@ -33,15 +33,21 @@ const squadaOne = localFont({
 export default function RootLayout({ children }) {
 	return (
 		// <React.StrictMode>
-		<div
-			className={`${rubik.variable} ${signikaNegative.variable} ${squadaOne.variable}`}
-		>
-			<StyledEngineProvider injectFirst>
-				<ListProvider>
-					<Background>{children}</Background>
-				</ListProvider>
-			</StyledEngineProvider>
-		</div>
+		<html lang="en">
+			<body>
+				<main>
+					<div
+						className={`${rubik.variable} ${signikaNegative.variable} ${squadaOne.variable}`}
+					>
+						{/* <StyledEngineProvider injectFirst> */}
+						<ListProvider>
+							<Background>{children}</Background>
+						</ListProvider>
+						{/* </StyledEngineProvider> */}
+					</div>
+				</main>
+			</body>
+		</html>
 
 		// </React.StrictMode>
 	);

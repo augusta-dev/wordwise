@@ -1,17 +1,27 @@
-"use client"
+ "use client"
+import React from 'react';
 import Image from "next/image";
 import arrow from "../../assets/arrow.svg";
 import ReturnText from "../UI/ReturnText";
+import Link from "next/link";
 
 const IndividualWords = (props) => {
 	const capitalizeInitial = (string) => {
-		return string;
+		return string[0].toUpperCase() + string.slice(1);
 	};
+	const clickHandler = (id) => {
+		props.toggleArrowState(id);
+		console.log("toggled");
+		console.log(props.arrowUp)
+	}
+	// useEffect(() => {
+	// 	props.arrowUp
+	// }, [propsm])
 
 	return (
 		<div
 			className="flex flex-warp flex-col justify-between text-xl pt-2 w-full"
-			key={props.id}
+			key={props.key}
 		>
 			<div className="flex flex-row justify-between w-full font-signika">
 				<p className="inline text-blue">
@@ -20,12 +30,7 @@ const IndividualWords = (props) => {
 				<p className="inline text-lightPurple">
 					{capitalizeInitial(props.translation[0])}
 				</p>
-				<button
-					onClick={() => {
-						alert("clickedddd");
-						// props.toggleArrowState(props.id);
-					}}
-				>
+				<button onClick={() => {clickHandler(props.id)}}>
 					<Image
 						src={arrow}
 						alt=""

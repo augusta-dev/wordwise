@@ -1,7 +1,7 @@
-import Logo from "../components/UI/Logo";
-import BeginIllustration from "../assets/BeginIllustration";
-import Input from "../components/UI/Input";
-import Button from "../components/UI/Button";
+import Logo from "../../components/UI/Logo";
+import BeginIllustration from "../../assets/BeginIllustration";
+import Input from "../../components/UI/Input";
+import Button from "../../components/UI/Button";
 const SignUp = () => {
 	return (
 		<div className="flex justify-between h-screen flex-col font-rubik pb-14">
