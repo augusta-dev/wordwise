@@ -3,6 +3,7 @@ import Button from "../../components/UI/Button";
 import Raindrops from "../../components/Signin/Raindrops";
 import "../../components/Signin/Raindrops.css";
 import Input from "../../components/UI/Input";
+import Link from "next/link";
 import Droplet from "@/components/Signin/Droplet";
 const SignIn = () => {
 	return (
@@ -35,10 +36,11 @@ const SignIn = () => {
 					type="password"
 					placeholder="Enter your password"
 				/>
-				<Button className="">
-					{" "}
-					Sign in
-				</Button>
+
+				<Button className="mb-2 mt-8"> Sign in</Button>
+				<Link href='/signup'>
+					<Button className="!mt-2"> Sign Up Instead</Button>
+				</Link>
 			</div>
 		</div>
 	);
