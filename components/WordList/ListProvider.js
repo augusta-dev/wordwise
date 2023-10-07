@@ -75,8 +75,6 @@ const listReducer = (state, action) => {
 
             return word;
         })
-		console.log("clickedddd");
-		console.log(updatedWords)
         return {
             words: updatedWords,
         }

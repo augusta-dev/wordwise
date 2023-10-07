@@ -1,10 +1,7 @@
 import Button from "../UI/Button";
 import Link from "next/link";
 const Authentication = () => {
-	const revealSignIn = () => {
-		alert("Yes");
-	};
-
+	
 	return (
 		<div className="w-full flex flex-col">
 			<Link href="/homepage">

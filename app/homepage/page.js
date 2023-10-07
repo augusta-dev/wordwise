@@ -1,8 +1,9 @@
 "use client"
 import React, { useState } from "react";
-import DashBoardButtons from "../../components/Dashboard/DashBoardButtons";
-import MostRecentWord from "../../components/Dashboard/MostRecentWord";
-import WordDisplay from "../../components/Dashboard/WordDisplay";
+import DashBoardButtons from "@/components/Dashboard/DashBoardButtons";
+import MostRecentWord from "@/components/Dashboard/MostRecentWord";
+import WordDisplay from "@/components/Dashboard/WordDisplay";
+import WordSearch from "@/components/Dashboard/WordSearch";
 import { useEffect } from "react";
 
 const HomePage = () => {
@@ -17,10 +18,9 @@ const HomePage = () => {
 				total={length}
 				first={lastWord.word}
 			></DashBoardButtons>
-			<div className="mt-4">
-				<p className="text-purpleBody text-center">+ Add Word</p>
-				<hr className="bg-purpleBody border-purpleBody" />
-			</div>
+			<WordSearch>
+				
+			</WordSearch>
 
 			<MostRecentWord word={lastWord}></MostRecentWord>
 			<WordDisplay

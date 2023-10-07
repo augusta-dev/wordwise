@@ -1,26 +1,27 @@
  "use client"
+ import { useContext } from "react";
+import ListContext from "../WordList/ListContext";
 import React from 'react';
 import Image from "next/image";
 import arrow from "../../assets/arrow.svg";
 import ReturnText from "../UI/ReturnText";
-import Link from "next/link";
 
 const IndividualWords = (props) => {
-	const capitalizeInitial = (string) => {
-		return string[0].toUpperCase() + string.slice(1);
-	};
+	const listCtx = useContext(ListContext);
+
 	const clickHandler = (id) => {
-		props.toggleArrowState(id);
+		listCtx.flipArrow(id);
 		console.log("toggled");
 		console.log(props.arrowUp)
 	}
-	// useEffect(() => {
-	// 	props.arrowUp
-	// }, [propsm])
+
+	const capitalizeInitial = (string) => {
+		return string[0].toUpperCase() + string.slice(1);
+	};
 
 	return (
 		<div
-			className="flex flex-warp flex-col justify-between text-xl pt-2 w-full"
+			className="flex flex-warp flex-col justify-between text-xl pt-2 w-full px-1"
 			key={props.key}
 		>
 			<div className="flex flex-row justify-between w-full font-signika">
