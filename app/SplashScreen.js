@@ -1,5 +1,5 @@
 import SplashIllustration from "../assets/SplashIllustration";
-import Authentication from "../components/Authentication/Authentication";
+import Authentication from "../components/authentication/Authentication";
 // import Typography from '@mui/material';
 import Logo from "../components/UI/Logo";
 const SplashScreen = () => {
@@ -9,8 +9,8 @@ const SplashScreen = () => {
 			<Logo />
 			<div className="font-rubik font-semibold text-darkPurple text-justify leading-5 pb-4">
 				<p>
-					"The crux is in absorbing, not just accessing, the
-					information at hand" is the motivation for and motto of this
+				&quot;The crux is in absorbing, not just accessing, the
+					information at hand&quot; is the motivation for and motto of this
 					app.
 				</p>
 				<p className="font-signika text-lg leading-4 pt-2">
