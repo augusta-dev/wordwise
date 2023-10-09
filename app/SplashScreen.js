@@ -1,6 +1,6 @@
 import SplashIllustration from "../assets/SplashIllustration";
-import Authentication from "../components/authentication/Authentication";
-// import Typography from '@mui/material';
+import Link from 'next/link';
+import Button from "../components/UI/Button";
 import Logo from "../components/UI/Logo";
 const SplashScreen = () => {
 	return (
@@ -23,7 +23,24 @@ const SplashScreen = () => {
 					everytime you open the app
 				</p>
 			</div>
-			<Authentication></Authentication>
+			<div className="w-full flex flex-col">
+			<Link href="/signin">
+				<Button
+					variant="contained"
+					className="!mt-4 mb-2"
+				>
+					Sign in
+				</Button>
+			</Link>
+			<Link href="/signup">
+				<Button
+					variant="contained"
+					className="mt-2"
+				>
+					Sign up
+				</Button>
+			</Link>
+		</div>
 		</>
 	);
 };

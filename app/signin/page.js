@@ -5,6 +5,8 @@ import "../../components/Signin/Raindrops.css";
 import Input from "../../components/UI/Input";
 import Link from "next/link";
 import Droplet from "@/components/Signin/Droplet";
+import Authentication from "../../components/authentication/Authentication";
+
 const SignIn = () => {
 	return (
 		<div className="flex justify-between h-screen flex-col font-rubik pb-14">
@@ -23,22 +25,21 @@ const SignIn = () => {
 					<Raindrops className="duration-6" />
 				</div>
 			</div>
-			<div className="pb-8">
-				<Input
-					className="text-lightPurple bg-white"
-					placeholder="Enter your email address"
-					type="email"
-				>
-					Enter your email address
-				</Input>
-				<Input
-					className="text-lightPurple bg-white"
-					type="password"
-					placeholder="Enter your password"
-				/>
 
-				<Button className="mb-2 mt-8"> Sign in</Button>
-				<Link href='/signup'>
+			<div className="pb-8">
+				<Form method="post">
+					<Authentication />
+
+					<Button
+						className="mb-2 mt-8"
+						type="submit"
+					>
+						{" "}
+						Sign in
+					</Button>
+				</Form>
+
+				<Link href="/signup">
 					<Button className="!mt-2"> Sign Up Instead</Button>
 				</Link>
 			</div>

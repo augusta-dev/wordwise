@@ -1,26 +1,23 @@
 import Button from "../UI/Button";
 import Link from "next/link";
+import Input from '../UI/Input'
+import Form from next
 const Authentication = () => {
-	
 	return (
-		<div className="w-full flex flex-col">
-			<Link href="/signin">
-				<Button
-					variant="contained"
-					className="!mt-4 mb-2"
-				>
-					Sign in
-				</Button>
-			</Link>
-			<Link href="/signup">
-				<Button
-					variant="contained"
-					className="mt-2"
-				>
-					Sign up
-				</Button>
-			</Link>
-		</div>
+		<Form>
+			<Input
+				className="text-lightPurple bg-white"
+				placeholder="Enter your email address"
+				type="email"
+			>
+				Enter your email address
+			</Input>
+			<Input
+				className="text-lightPurple bg-white"
+				type="password"
+				placeholder="Enter your password"
+			/>
+		</Form>
 	);
 };
 export default Authentication;
