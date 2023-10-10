@@ -42,7 +42,7 @@ router.post('/signup', async (req, res, next) => {
   }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/signin', async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 

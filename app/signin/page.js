@@ -5,7 +5,7 @@ import "../../components/Signin/Raindrops.css";
 import Input from "../../components/UI/Input";
 import Link from "next/link";
 import Droplet from "@/components/Signin/Droplet";
-import Authentication from "../../components/authentication/Authentication";
+import Authentication from "../../components/authentication/SinAuthentication";
 
 const SignIn = () => {
 	return (
@@ -27,17 +27,11 @@ const SignIn = () => {
 			</div>
 
 			<div className="pb-8">
-				<Form method="post">
+				<>
 					<Authentication />
 
-					<Button
-						className="mb-2 mt-8"
-						type="submit"
-					>
-						{" "}
-						Sign in
-					</Button>
-				</Form>
+					
+				</>
 
 				<Link href="/signup">
 					<Button className="!mt-2"> Sign Up Instead</Button>
