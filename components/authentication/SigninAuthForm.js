@@ -4,7 +4,7 @@ import Button from '../UI/Button'
 // import form from 'next/form'
 const SigninAuthForm = (props) => {
     return(
-        <form onSubmit={props.onSubmit}>
+        <form>
 			<Input
 				className="text-lightPurple bg-white"
 				placeholder="Enter your email address"
