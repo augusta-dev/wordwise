@@ -1,6 +1,3 @@
 const SignupAuthForm = () => {
-    return(
-
-        
-    )
+    return <></>
 }
