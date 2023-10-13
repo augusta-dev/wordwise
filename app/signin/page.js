@@ -5,7 +5,7 @@ import "../../components/Signin/Raindrops.css";
 import Input from "../../components/UI/Input";
 import Link from "next/link";
 import Droplet from "@/components/Signin/Droplet";
-import Authentication from "../../components/authentication/SinAuthentication";
+import SigninAuthForm from "../../components/authentication/SigninAuthForm";
 
 const SignIn = () => {
 	return (
@@ -27,11 +27,7 @@ const SignIn = () => {
 			</div>
 
 			<div className="pb-8">
-				<>
-					<Authentication />
-
-					
-				</>
+				<SigninAuthForm method='post' action='/api/signin/email' />
 
 				<Link href="/signup">
 					<Button className="!mt-2"> Sign Up Instead</Button>

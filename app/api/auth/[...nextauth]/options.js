@@ -1,5 +1,6 @@
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from "next-auth/providers/credentials";
+import { redirect } from 'next/navigation'
 export const options = {
 	providers: [
 		CredentialsProvider({
@@ -10,11 +11,11 @@ export const options = {
 					type: "text",
 					placeholder: "Enter your full name",
 				},
-				// email: {
-				//     label: 'email',
-				//     type: 'email',
-				//     placeholder: 'Enter your email address'
-				// },
+				email: {
+				    label: 'email',
+				    type: 'email',
+				    placeholder: 'Enter your email address'
+				},
 				password: {
 					label: "password",
 					type: "password",
@@ -30,9 +31,10 @@ export const options = {
 						password: "nextauth",
 					};
 					if (
-						credentials?.username === user.name &&
+						credentials?.email === user.email &&
 						credentials?.password === user.password
 					) {
+						redirect('/dashboard');
 						return user;
 					} else {
 						return null;
