@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from "react";
-
 import DashBoardButtons from "./DashBoardButtons";
 import MostRecentWord from "./MostRecentWord";
 import WordDisplay from "./WordDisplay";

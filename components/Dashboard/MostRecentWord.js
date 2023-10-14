@@ -6,7 +6,6 @@ const MostRecentWord = (props) => {
 	const wordList = listCtx.words;
 	const listLength = wordList.length;
 	const word = wordList[0];
-	console.log(word);
 	const capitalizeInitial = (string) => {
 		return string[0].toUpperCase() + string.slice(1);
 	};
