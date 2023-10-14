@@ -35,7 +35,6 @@ export const options = {
 						credentials.username === user.name &&
 						credentials.password === user.password
 					) {
-						console.log(user);
 						return user;
 					} else {
 						return null;
