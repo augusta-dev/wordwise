@@ -10,14 +10,12 @@ export default async function dashboard() {
     }
 	return (
 		<>
-			{session ? (
+
 				<Dashboard
 					user={session?.user}
 					pagetype={"dashboard"}
 				/>
-			) : (
-				<h1>Please reconnect</h1>
-			)}
+			
 		</>
 	);
 }

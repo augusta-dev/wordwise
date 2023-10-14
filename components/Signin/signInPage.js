@@ -8,9 +8,10 @@ import "./Raindrops.css";
 import Input from "../UI/Input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const SignInPage = (props) => {
-	// alert('yes');
+	const searchParams = useSearchParams();
 	const router = useRouter();
 	const userName = useRef("");
 	const pass = useRef("");
@@ -20,11 +21,13 @@ const SignInPage = (props) => {
 		const res = await signIn("credentials", {
 			username: userName.current,
 			password: pass.current,
-			redirect: true,
+			redirect: false,
 		});
-		if (!res?.error) {
-			router.push(props.callbackUrl ?? "http://localhost:3000/");
+		if (res?.error) {
+            console.log(res)
+			router.push("http://localhost:3000/dashboard");
 		}
+        console.log('done')
 	};
 	const showChange = (e) => {
 		userName.current = e.target.value;
@@ -34,7 +37,7 @@ const SignInPage = (props) => {
 	return (
 		<div className="flex justify-between h-screen flex-col font-rubik pb-14">
 			<Logo></Logo>
-			{!!props.error && <p>Authentication failed</p>}
+			{!!searchParams.error && <p>Authentication failed</p>}
 			<div className="flex flex-wrap flex-col text-center justify-center align-middle items-center">
 				<p className="font-semibold text-darkPurple text-2xl leading-3 relative">
 					Continue the journey!
@@ -51,7 +54,7 @@ const SignInPage = (props) => {
 			</div>
 
 			<div className="pb-8">
-				<form onSubmit={(e) => submitHandler(e)}>
+				<form onSubmit={(e) => submitHandler(e)} method="POST">
 					<Input
 						className="text-lightPurple bg-white"
 						placeholder="Enter your full name"

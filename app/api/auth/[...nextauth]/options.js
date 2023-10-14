@@ -16,19 +16,26 @@ export const options = {
 					type: "password",
 					placeholder: "Enter your password",
 				},
-				async authorize(credentials) {
+				async authorize (credentials, req) {
 					//retrieve user credential from database
 					//visit the docs at 'nextauth.js.org/configuration/providers/credentials
+					// const res = await fetch("http://localhost:3000/signin", {
+					// 	method: 'POST',
+					// 	body: JSON.stringify(credentials),
+					// 	headers: { "Content-Type": "application/json" }
+					//   })
+					//   const userMain = await res.json()
 					const user = {
-						name: "Augusta Nwosu",
+						name: "Augusta",
 						password: "nextauth",
 						id: "19",
 					};
 
 					if (
-						credentials?.username === user.name &&
-						credentials?.password === user.password
+						credentials.username === user.name &&
+						credentials.password === user.password
 					) {
+						console.log(user);
 						return user;
 					} else {
 						return null;
