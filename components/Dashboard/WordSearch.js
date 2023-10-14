@@ -1,5 +1,5 @@
 import Image from "next/image";
-import search from '@/assets/search.svg';
+import search from '../../assets/search.svg';
 import Input from "../UI/Input";
 
 const WordSearch = () => {

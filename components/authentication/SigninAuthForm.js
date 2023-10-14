@@ -8,9 +8,9 @@ const SigninAuthForm = (props) => {
 			<Input
 				className="text-lightPurple bg-white"
 				placeholder="Enter your email address"
-				type="email"
+				type="text"
 			>
-				Enter your email address
+				Enter your full name
 			</Input>
 			<Input
 				className="text-lightPurple bg-white"

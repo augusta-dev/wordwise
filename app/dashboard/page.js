@@ -1,11 +1,12 @@
-import { options } from "@/api/auth/[...nextauth]/options";
+import { options } from "../api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import Dashboard from "../../components/Dashboard/Dashboard";
+// import { redirect } from "next/dist/server/api-utils";
 
 export default async function dashboard() {
 	const session = await getServerSession(options);
 	if (!session) {
-        redirect('api/signin?callbackUrl=/dashboard')
+        // redirect('api/signin?callbackUrl=/dashboard')
     }
 	return (
 		<>

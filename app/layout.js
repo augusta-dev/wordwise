@@ -3,8 +3,9 @@ import React from "react";
 // import { StyledEngineProvider } from "@mui/material";
 import "tailwindcss/tailwind.css";
 import localFont from "next/font/local";
-import Background from "@/components/layout/Background";
-import ListProvider from "@/components/WordList/ListProvider";
+import Background from "../components/layout/Background";
+import ListProvider from "../components/WordList/ListProvider";
+import Providers from "./Providers";
 const rubik = localFont({
 	src: [
 		{
@@ -40,9 +41,11 @@ export default function RootLayout({ children }) {
 						className={`${rubik.variable} ${signikaNegative.variable} ${squadaOne.variable}`}
 					>
 						{/* <StyledEngineProvider injectFirst> */}
-						<ListProvider>
-							<Background>{children}</Background>
-						</ListProvider>
+						<Providers>
+							<ListProvider>
+								<Background>{children}</Background>
+							</ListProvider>
+						</Providers>
 						{/* </StyledEngineProvider> */}
 					</div>
 				</main>

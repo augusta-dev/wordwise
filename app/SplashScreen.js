@@ -1,7 +1,10 @@
+'use client'
 import SplashIllustration from "../assets/SplashIllustration";
 import Link from 'next/link';
 import Button from "../components/UI/Button";
 import Logo from "../components/UI/Logo";
+import { signIn } from 'next-auth/react';
+import React from 'react'
 const SplashScreen = () => {
 	return (
 		<>
@@ -24,7 +27,7 @@ const SplashScreen = () => {
 				</p>
 			</div>
 			<div className="w-full flex flex-col">
-			<Link href="/signin">
+			<Link href='/signin'>
 				<Button
 					variant="contained"
 					className="!mt-4 mb-2"
