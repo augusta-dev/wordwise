@@ -1,41 +1,47 @@
 "use client";
+import React from "react";
 import Image from "next/image";
-import search from "../../assets/search.svg";
-import Input from "../UI/Input";
 import { useContext, useRef } from "react";
 import ListContext from "../WordList/ListContext";
+import search from "../../assets/search.svg";
+import Input from "../UI/Input";
 
-const WordSearch = () => {
-	const word = useRef('')
+const WordSearch = (props) => {
+	const word = useRef("");
 	const listCtx = useContext(ListContext);
-	const addWordHandler = async () => {
+	const addWordHandler = async (word) => {
 		// const response = await fetch ('https://link-to-dictionary-api');
-	
-console.log(word.current)
-		const response = await fetch("/api/newWord", {
-			method: 'POST',
-			body: JSON.stringify(word.current),
-			//meaning, alternative meaning, synonym, translation
-			headers: {
-				'Content-Type': 'application/json'
-			}
+		// console.log('start')
+		try {
+			const response = await fetch("/api/new-word", {
+				method: "POST",
+				body: JSON.stringify(word.current),
+				//meaning, alternative meaning, synonym, translation
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
 
-		});
+			const data = await response.json();
 
-		const data = await response.json();
-
-		console.log(data);
-		listCtx.addWord(word.current);
+			console.log(data);
+		} catch (error) {
+			console.error(error);
+		}
 	};
+
 	return (
 		<div className="mt-4 shadow-main rounded-md h-8 flex flex-wrap">
 			<input
 				className="placeholder:text-purpleBody text-purpleBody text-center text-lg inline bg-transparent w-[87%] focus:outline-none"
 				placeholder="+ Add Word"
 				type="text"
-				onChange={(e) => word.current = e.target.value}
+				onChange={(e) => (word.current = e.target.value)}
 			/>
-			<button className="bg-lightPurple h-full w-[13%] align-middle flex px-3 rounded-md rounded-l-none" onClick={addWordHandler}> 
+			<button
+				className="bg-lightPurple h-full w-[13%] align-middle flex px-3 rounded-md rounded-l-none"
+				onClick={addWordHandler}
+			>
 				<Image
 					src={search}
 					className="flex-end self-center px-auto"
