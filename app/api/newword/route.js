@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
-import connect from "../../../db";
-import Topic from "../../../models/post";
+import connectMongo from "../../../libs/mongodb"
+import Word from "../../../models/words";
 
-export async function POST(req) {
+export async function POST(request) {
 	try {
-		const { title } = await req.json();
-		await connect();
+		const { title, description } = await request.json();
+		await connectMongo();
 		console.log(title);
-		await Topic.create({ title });
-		return NextResponse.json({ message: "Topic created" }, { status: 201 });
+		await Word.create({title, description});
+		return NextResponse.json({ message: "Word created" }, { status: 201 });
 	} catch (err) {
     console.log(err)
 		return NextResponse.json({ message: err.message }, { status: 501});

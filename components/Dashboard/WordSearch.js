@@ -10,13 +10,10 @@ const WordSearch = (props) => {
 	const word = useRef("");
 	const listCtx = useContext(ListContext);
 	const addWordHandler = async (word) => {
-		// const response = await fetch ('https://link-to-dictionary-api');
-		// console.log('start')
 		try {
 			const response = await fetch("/api/newword", {
 				method: "POST",
-				body: JSON.stringify(word.current),
-				//meaning, alternative meaning, synonym, translation
+				body: JSON.stringify({title: word.current}),
 				headers: {
 					"Content-Type": "application/json",
 				},
