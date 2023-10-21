@@ -13,7 +13,7 @@ const WordSearch = (props) => {
 		// const response = await fetch ('https://link-to-dictionary-api');
 		// console.log('start')
 		try {
-			const response = await fetch("/api/new-word", {
+			const response = await fetch("/api/newword", {
 				method: "POST",
 				body: JSON.stringify(word.current),
 				//meaning, alternative meaning, synonym, translation

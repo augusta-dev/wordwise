@@ -26,6 +26,8 @@ const SignInPage = (props) => {
 		if (res?.error) {
             console.log(res)
 			router.push("http://localhost:3000/dashboard");
+		}else{
+			console.log(res.error)
 		}
         console.log('done')
 	};
