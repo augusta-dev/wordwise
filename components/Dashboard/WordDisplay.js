@@ -20,7 +20,7 @@ const WordDisplay = (props) => {
 					<>
 						<IndividualWords
 							key={word.id}
-							id={word.id}
+							 id={word.id}
 							word={word.word}
 							translation={word.translation}
 							synonyms={word.synonyms}

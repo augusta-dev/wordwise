@@ -5,27 +5,52 @@ import { useContext, useRef } from "react";
 import ListContext from "../WordList/ListContext";
 import search from "../../assets/search.svg";
 import Input from "../UI/Input";
+import getServerSideProps from './getServerProps'
 
 const WordSearch = (props) => {
 	const word = useRef("");
 	const listCtx = useContext(ListContext);
-	const addWordHandler = async (word) => {
-		try {
-			const response = await fetch("/api/newword", {
-				method: "POST",
-				body: JSON.stringify({title: word.current}),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-
-			const data = await response.json();
-
-			console.log(data);
-		} catch (error) {
-			console.error(error);
+	const addWordHandler = async () => {
+		console.log(word.current);
+		let translation = [];
+		let trans = [];
+		const getTrans = async (enteredWord) => {
+			try {
+				console.log(enteredWord)
+				const response = await getServerSideProps(enteredWord);
+				translation = response.def[0].tr
+				translation.map((obj) => {
+					trans.push(obj.text)
+				})
+				console.log(translation)
+				console.log(trans)
+				console.log(response);
+			} catch (error) {
+				console.error(error);
+			}
 		}
+		getTrans(word.current);
+		// const sendWord = async (word) => {
+		// 	try {
+		// 		const response = await fetch("/api/newword", {
+		// 			method: "POST",
+		// 			body: JSON.stringify({title: word.current}),
+		// 			headers: {
+		// 				"Content-Type": "application/json",
+		// 			},
+		// 		});
+	
+		// 		const data = await response.json();
+	
+		// 		console.log(data);
+		// 	} catch (error) {
+		// 		console.error(error);
+		// 	}
+		// }
+		// sendWord(word)
+		
 	};
+	
 
 	return (
 		<div className="mt-4 shadow-main rounded-md h-8 flex flex-wrap">
