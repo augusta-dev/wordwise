@@ -3,7 +3,7 @@ const Raindrops = (props) => {
 	return (
 		<div className={`${props.className} rain relative rounded`}>
 			<div className="drop bg-lightPurple relative h-24 w-[5px] rounded-lg"></div>
-			<div class="waves">
+			<div className="waves">
 				<div className=""></div>
 				<div></div>
 			</div>

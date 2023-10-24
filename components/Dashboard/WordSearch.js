@@ -1,13 +1,14 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { useContext, useRef } from "react";
+import { useState, useContext, useRef } from "react";
 import ListContext from "../WordList/ListContext";
 import search from "../../assets/search.svg";
 import Input from "../UI/Input";
 import getServerSideProps from './getServerProps'
 
 const WordSearch = (props) => {
+	const [errorMessage, setErrorMessage] = useState("")
 	const word = useRef("");
 	const listCtx = useContext(ListContext);
 	const addWordHandler = async () => {
@@ -18,10 +19,18 @@ const WordSearch = (props) => {
 			try {
 				console.log(enteredWord)
 				const response = await getServerSideProps(enteredWord);
-				translation = response.def[0].tr
-				translation.map((obj) => {
-					trans.push(obj.text)
-				})
+				if (response == "error fetching"){
+					setErrorMessage("Please connect to the internet!")
+				}
+				 if (response.def[0]){
+					translation = response.def[0].tr;
+					translation.map((obj) => {
+						trans.push(obj.text)
+					})
+					setErrorMessage("")
+				 }else{
+					setErrorMessage("This word doesn't exist")
+				 }
 				console.log(translation)
 				console.log(trans)
 				console.log(response);
@@ -53,6 +62,7 @@ const WordSearch = (props) => {
 	
 
 	return (
+		<>
 		<div className="mt-4 shadow-main rounded-md h-8 flex flex-wrap">
 			<input
 				className="placeholder:text-purpleBody text-purpleBody text-center text-lg inline bg-transparent w-[87%] focus:outline-none"
@@ -70,7 +80,11 @@ const WordSearch = (props) => {
 					alt="search icon"
 				/>
 			</button>
+
 		</div>
+		<p className="text-base self-center text-orange pt-2 -mb-2">{errorMessage}</p>
+		</>
+		
 	);
 };
 export default WordSearch;
