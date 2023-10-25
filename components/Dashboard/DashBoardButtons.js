@@ -10,17 +10,20 @@ const DashBoardButtons = (props) => {
 	const listCtx = useContext(ListContext);
 	const wordList = listCtx.words;
 	const length = wordList.length;
-	let language = "English";
+	let [language, setLanguage] = useState("English");
+
 	const first = wordList[length - 1].word;
 	const [listVisibility, setListVisibility] = useState(false);
-	const changeDisplayLanguage = () => {
+	const changeDisplayLanguage = (language) => {
 		setListVisibility(!listVisibility);
+		setLanguage(language);
 	};
+	
 	// useEffect(lan)(language, listVisibility);
 	useEffect(() => {
-		console.log(lastWord);
-	}, [lastWord]);
-	console.log(language)
+		console.log(language);
+	}, [language]);
+	// console.log(language)
 	return (
 		<div className="flex flex-wrap justify-between text-left">
 			<DashBoardButton
@@ -33,15 +36,16 @@ const DashBoardButtons = (props) => {
 				icon={dictionary}
 				text={`Total Words Learned: ${length}`}
 			/>
-
+		<div></div>
 			<DashBoardButton
 				className="bg-purpleBody text-textPurple"
 				icon={day}
 				text={`Language: ${language}`}
-				onClick={changeDisplayLanguage}
+				onClick={() => setListVisibility(!listVisibility)}
 			/>
 			{listVisibility && (
-				<select onChange={(event) => (language = event.target.value)}>
+				<select className="bg-purpleBody float-right self-end" onChange={(event) => (changeDisplayLanguage(event.target.value))}>
+					<option value="" disabled selected></option>
 					<option>English</option>
 					<option>Turkish</option>
 				</select>
