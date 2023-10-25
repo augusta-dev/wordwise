@@ -65,20 +65,24 @@ const listReducer = (state, action) => {
 			words: updatedWords,
 		};
 	}
-    if (action.type === "FLIP"){
-        let updatedWords = [...state.words];
+	if (action.type === "FLIP") {
+		let updatedWords = [...state.words];
 		updatedWords = updatedWords.map((word) => {
-            if (action.id === word.id) {
-				console.log(action.id)
-                return {...word, arrowUp: !word.arrowUp};
-            }
+			if (action.id === word.id) {
+				console.log(action.id);
+				return { ...word, arrowUp: !word.arrowUp };
+			}
 
-            return word;
-        })
-        return {
-            words: updatedWords,
-        }
-    }
+			return word;
+		});
+		return {
+			words: updatedWords,
+		};
+	}
+	if (action.type === "LANGUAGE") {
+		console.log(action.language);
+		return { language: action.language };
+	}
 	return defaultListState;
 };
 
