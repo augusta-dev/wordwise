@@ -1,10 +1,9 @@
-import React from 'react';
+import React from "react";
 const ListContext = React.createContext({
-    words: [],
-    language: "",
-    addWord: (word) => {
-
-    },
-    flipArrow: (id) => {},
+	words: [],
+	language: "",
+	addWord: (word) => {},
+	flipArrow: (id) => {},
+	setLanguage: (language) => {},
 });
 export default ListContext;

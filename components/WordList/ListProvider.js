@@ -97,10 +97,15 @@ const ListProvider = (props) => {
 	const toggleArrowState = (id) => {
 		dispatchListAction({ type: "FLIP", id: id });
 	};
+	const changeLanguage= (language) => {
+		dispatchListAction({ type: "LANGUAGE", language: language });
+	};
 	const listContext = {
 		words: listState.words,
+		language: "english",
 		addWord: addWordHandler,
 		flipArrow: toggleArrowState,
+		setLanguage: changeLanguage,
 	};
 	return (
 		<ListContext.Provider value={listContext}>
