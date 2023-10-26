@@ -60,7 +60,7 @@ const listReducer = (state, action) => {
 	if (action.type === "ADD") {
 		let updatedWords = [...state.words];
 		updatedWords.unshift(action.word);
-		console.log(updatedWords);
+		// console.log(updatedWords);
 		return {
 			words: updatedWords,
 		};
@@ -69,7 +69,6 @@ const listReducer = (state, action) => {
 		let updatedWords = [...state.words];
 		updatedWords = updatedWords.map((word) => {
 			if (action.id === word.id) {
-				console.log(action.id);
 				return { ...word, arrowUp: !word.arrowUp };
 			}
 
@@ -80,8 +79,8 @@ const listReducer = (state, action) => {
 		};
 	}
 	if (action.type === "LANGUAGE") {
-		console.log(action.language);
-		return { language: action.language };
+		let words = [...state.words];
+		return { words: words, language: action.language };
 	}
 	return defaultListState;
 };
@@ -97,12 +96,12 @@ const ListProvider = (props) => {
 	const toggleArrowState = (id) => {
 		dispatchListAction({ type: "FLIP", id: id });
 	};
-	const changeLanguage= (language) => {
+	const changeLanguage = (language) => {
 		dispatchListAction({ type: "LANGUAGE", language: language });
 	};
 	const listContext = {
 		words: listState.words,
-		language: "english",
+		language: listState.language || "English",
 		addWord: addWordHandler,
 		flipArrow: toggleArrowState,
 		setLanguage: changeLanguage,

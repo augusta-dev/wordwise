@@ -11,47 +11,55 @@ const WordSearch = (props) => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const word = useRef("");
 	const listCtx = useContext(ListContext);
+	const language = listCtx.language;
 	const addWordHandler = async () => {
 		console.log(word.current);
 		let obj = {};
-		let definitions = 0;
+		let definitions = [];
+		let defs=[];
 		if (!word.current){
 			setErrorMessage("Please rewrite the word")
 		}else{
 			setErrorMessage("")
 		}
-		const getTrans = async (enteredWord) => {
+		const getTrans = async (enteredWord, language) => {
 			try {
 				console.log(enteredWord);
-				const response = await getServerSideProps(enteredWord);
+				const [response, wordDefinition] = await getServerSideProps(enteredWord, language);
 				if (response == "error fetching") {
 					setErrorMessage("Please connect to the internet!");
 				}
-				definitions = response.def;
-				
-				if (response.def[0]) {
-					definitions.map((def) => {
-						const pOS = JSON.stringify(def.pos);
-						// obj[pOS]=[]
-						let translation = [];
-						def.tr.map((obj) => {
-							translation.push(obj.text);
-						});
-						obj[pOS] = translation;
-						console.log(obj);
-						setErrorMessage("");
-						console.log(translation);
-					});
-				} else {
-					setErrorMessage("This word doesn't exist");
-				}
+				// defs = response.def;
+				console.log(response, wordDefinition)
+				// let meaning = wordDefinition.meanings;
+				// console.log(meaning)
+				// if (response.def[0]) {
+				// 	defs.map((def) => {
+				// 		const pOS = JSON.stringify(def.pos);
+				// 		// obj[pOS]=[]
+				// 		let translation = [];
+				// 		def.tr.map((obj) => {
+				// 			translation.push(obj.text);
+				// 		});
+				// 		obj[pOS] = translation;
+				// 		console.log(obj);
+				// 		setErrorMessage("");
+				// 		console.log(translation);
+				// 	});
+				// 	// meaning.map((mean) => {
+				// 	// 	definitions.push(mean.definitions.defnition)
+				// 	// 	console.log(definitions)
+				// 	// })
+				// } else {
+				// 	setErrorMessage(`This word doesn't exist in this ${language} dictionary`);
+				// }
 				
 				console.log(response);
 			} catch (error) {
 				console.error(error);
 			}
 		};
-		getTrans(word.current);
+		getTrans(word.current, language);
 		// const sendWord = async (word) => {
 		// 	try {
 		// 		const response = await fetch("/api/newword", {
