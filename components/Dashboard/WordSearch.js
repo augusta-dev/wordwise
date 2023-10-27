@@ -14,7 +14,7 @@ const WordSearch = (props) => {
 	const language = listCtx.language;
 	const addWordHandler = async () => {
 		console.log(word.current);
-		let obj = {};
+		let translations = {};
 		let definitions = [];
 		let defs=[];
 		if (!word.current){
@@ -29,32 +29,31 @@ const WordSearch = (props) => {
 				if (response == "error fetching") {
 					setErrorMessage("Please connect to the internet!");
 				}
-				// defs = response.def;
+				defs = response.def;
 				console.log(response, wordDefinition)
-				// let meaning = wordDefinition.meanings;
-				// console.log(meaning)
-				// if (response.def[0]) {
-				// 	defs.map((def) => {
-				// 		const pOS = JSON.stringify(def.pos);
-				// 		// obj[pOS]=[]
-				// 		let translation = [];
-				// 		def.tr.map((obj) => {
-				// 			translation.push(obj.text);
-				// 		});
-				// 		obj[pOS] = translation;
-				// 		console.log(obj);
-				// 		setErrorMessage("");
-				// 		console.log(translation);
-				// 	});
-				// 	// meaning.map((mean) => {
-				// 	// 	definitions.push(mean.definitions.defnition)
-				// 	// 	console.log(definitions)
-				// 	// })
-				// } else {
-				// 	setErrorMessage(`This word doesn't exist in this ${language} dictionary`);
-				// }
+				let meaning = wordDefinition.meanings;
+				console.log(response.def[0])
+				if (response.def) {
+					defs.map((def) => {
+						const pOS = JSON.stringify(def.pos);
+						// obj[pOS]=[]
+						let translation = [];
+						def.tr.map((obj) => {
+							translation.push(obj.text);
+						});
+						translations[pOS] = translation;
+						console.log(translations);
+						setErrorMessage("");
+						// console.log(translation);
+					});
+					// meaning.map((mean) => {
+					// 	definitions.push(mean.definitions.defnition)
+					// 	console.log(definitions)
+					// })
+				} else {
+					setErrorMessage(`This word doesn't exist in this ${language} dictionary`);
+				}
 				
-				console.log(response);
 			} catch (error) {
 				console.error(error);
 			}
