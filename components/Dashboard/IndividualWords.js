@@ -9,11 +9,11 @@ import ReturnText from "../UI/ReturnText";
 const IndividualWords = (props) => {
 	const listCtx = useContext(ListContext);
 	const [isEnglish, setIsEnglish] = useState(true);
-	if (props.language === "English") {
-		setIsEnglish(true);
-	} else {
-		setIsEnglish(false);
-	}
+	// if (props.language === "English") {
+	// 	setIsEnglish(true);
+	// } else {
+	// 	setIsEnglish(false);
+	// }
 	const clickHandler = (id) => {
 		listCtx.flipArrow(id);
 		console.log("toggled");
