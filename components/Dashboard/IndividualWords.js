@@ -1,19 +1,24 @@
- "use client"
- import { useContext } from "react";
+"use client";
+import { useContext, useState } from "react";
 import ListContext from "../WordList/ListContext";
-import React from 'react';
+import React from "react";
 import Image from "next/image";
 import arrow from "../../assets/arrow.svg";
 import ReturnText from "../UI/ReturnText";
 
 const IndividualWords = (props) => {
 	const listCtx = useContext(ListContext);
-
+	const [isEnglish, setIsEnglish] = useState(true);
+	if (props.language === "English") {
+		setIsEnglish(true);
+	} else {
+		setIsEnglish(false);
+	}
 	const clickHandler = (id) => {
 		listCtx.flipArrow(id);
 		console.log("toggled");
-		console.log(props.arrowUp)
-	}
+		console.log(props.arrowUp);
+	};
 
 	const capitalizeInitial = (string) => {
 		return string[0].toUpperCase() + string.slice(1);
@@ -28,10 +33,14 @@ const IndividualWords = (props) => {
 				<p className="inline text-blue">
 					{capitalizeInitial(props.word)}
 				</p>
-				<p className="inline text-lightPurple">
+				{isEnglish && <p className="inline text-lightPurple">
 					{capitalizeInitial(props.translation[0])}
-				</p>
-				<button onClick={() => {clickHandler(props.id)}}>
+				</p>}
+				<button
+					onClick={() => {
+						clickHandler(props.id);
+					}}
+				>
 					<Image
 						src={arrow}
 						alt=""

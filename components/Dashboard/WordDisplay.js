@@ -26,6 +26,8 @@ const WordDisplay = (props) => {
 							synonyms={word.synonyms}
 							meaning={word.meaning}
 							alternative={word.alternate}
+							examples={word.examples}
+							language={word.language}
 							arrowUp={word.arrowUp}
 						></IndividualWords>
 

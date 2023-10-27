@@ -8,8 +8,9 @@ const defaultListState = {
 		{
 			id: "w1",
 			word: "Lorem",
+			language: "English",
 			meaning: "lorem ipsum dolor sit amet, consectetur adip",
-			alternate: "lorem ipsum dolor sit amet, consectetur adip",
+			// alternate: "lorem ipsum dolor sit amet, consectetur adip",
 			synonyms: ["lorem", "ipsum", "dolor", "sit", "amet", "consectet"],
 			translation: [
 				"lorem",
@@ -21,38 +22,38 @@ const defaultListState = {
 			],
 			arrowUp: true,
 		},
-		{
-			id: "w2",
-			word: "Lorem",
-			meaning: "lorem ipsum dolor sit amet, consectetur adip",
-			alternate: "lorem ipsum dolor sit amet, consectetur adip",
-			synonyms: ["lorem", "ipsum", "dolor", "sit", "amet", "consectet"],
-			translation: [
-				"lorem",
-				"ipsum",
-				"dolor",
-				"sit",
-				"amet",
-				"consectet",
-			],
-			arrowUp: false,
-		},
-		{
-			id: "w3",
-			word: "Lorem",
-			meaning: "lorem ipsum dolor sit amet, consectetur adip",
-			alternate: "lorem ipsum dolor sit amet, consectetur adip",
-			synonyms: ["lorem", "ipsum", "dolor", "sit", "amet", "consectet"],
-			translation: [
-				"lorem",
-				"ipsum",
-				"dolor",
-				"sit",
-				"amet",
-				"consectet",
-			],
-			arrowUp: false,
-		},
+		// {
+		// 	id: "w2",
+		// 	word: "Lorem",
+		// 	meaning: "lorem ipsum dolor sit amet, consectetur adip",
+		// 	alternate: "lorem ipsum dolor sit amet, consectetur adip",
+		// 	synonyms: ["lorem", "ipsum", "dolor", "sit", "amet", "consectet"],
+		// 	translation: [
+		// 		"lorem",
+		// 		"ipsum",
+		// 		"dolor",
+		// 		"sit",
+		// 		"amet",
+		// 		"consectet",
+		// 	],
+		// 	arrowUp: false,
+		// },
+		// {
+		// 	id: "w3",
+		// 	word: "Lorem",
+		// 	meaning: "lorem ipsum dolor sit amet, consectetur adip",
+		// 	alternate: "lorem ipsum dolor sit amet, consectetur adip",
+		// 	synonyms: ["lorem", "ipsum", "dolor", "sit", "amet", "consectet"],
+		// 	translation: [
+		// 		"lorem",
+		// 		"ipsum",
+		// 		"dolor",
+		// 		"sit",
+		// 		"amet",
+		// 		"consectet",
+		// 	],
+		// 	arrowUp: false,
+		// },
 	],
 };
 
@@ -60,10 +61,12 @@ const listReducer = (state, action) => {
 	if (action.type === "ADD") {
 		let updatedWords = [...state.words];
 		updatedWords.unshift(action.word);
-		// console.log(updatedWords);
+		 console.log(updatedWords);
+		 
 		return {
 			words: updatedWords,
 		};
+
 	}
 	if (action.type === "FLIP") {
 		let updatedWords = [...state.words];

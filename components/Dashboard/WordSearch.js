@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState, useContext, useRef } from "react";
 import ListContext from "../WordList/ListContext";
 import search from "../../assets/search.svg";
+import returnFirstFive from "../UI/ReturnFirstFive";
+import returnFirstTwo from "../UI/ReturnFirstTwo";
 import Input from "../UI/Input";
 import getServerSideProps from "./getServerProps";
 
@@ -11,54 +13,113 @@ const WordSearch = (props) => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const word = useRef("");
 	const listCtx = useContext(ListContext);
+	const addWordToList = listCtx.addWord; 
 	const language = listCtx.language;
 	const addWordHandler = async () => {
-		console.log(word.current);
+		let wordAdded = {};
+
 		let translations = {};
-		let definitions = [];
-		let defs=[];
-		if (!word.current){
-			setErrorMessage("Please rewrite the word")
-		}else{
-			setErrorMessage("")
+		let definitions = {};
+		let synonyms = {};
+		let defs = [];
+		let examplesTr = [];
+		if (!word.current) {
+			setErrorMessage("Please rewrite the word");
+		} else {
+			setErrorMessage("");
 		}
 		const getTrans = async (enteredWord, language) => {
 			try {
-				console.log(enteredWord);
-				const [response, wordDefinition] = await getServerSideProps(enteredWord, language);
+				const [response, wordDefinition] = await getServerSideProps(
+					enteredWord,
+					language,
+				);
+				defs = response.def;
+				console.log(response, wordDefinition);
+
 				if (response == "error fetching") {
 					setErrorMessage("Please connect to the internet!");
-				}
-				defs = response.def;
-				console.log(response, wordDefinition)
-				let meaning = wordDefinition.meanings;
-				console.log(response.def[0])
-				if (response.def) {
-					defs.map((def) => {
-						const pOS = JSON.stringify(def.pos);
-						// obj[pOS]=[]
-						let translation = [];
-						def.tr.map((obj) => {
-							translation.push(obj.text);
-						});
-						translations[pOS] = translation;
-						console.log(translations);
-						setErrorMessage("");
-						// console.log(translation);
-					});
-					// meaning.map((mean) => {
-					// 	definitions.push(mean.definitions.defnition)
-					// 	console.log(definitions)
-					// })
 				} else {
-					setErrorMessage(`This word doesn't exist in this ${language} dictionary`);
+					if (response.def[0] || wordDefinition !== undefined) {
+						console.log("one");
+						if (response.def[0]) {
+							defs.map((def) => {
+								const pOS = JSON.stringify(def.pos);
+								// obj[pOS]=[]
+								let translation = [];
+								def.tr.map((obj) => {
+									translation.push(obj.text);
+								});
+								translations[pOS] =
+									returnFirstFive(translation);
+								console.log(translations);
+								setErrorMessage("");
+								// console.log(translation);
+							});
+						} else {
+							setErrorMessage("This word has no translation");
+						}
+
+						if (wordDefinition.meanings && language === "English") {
+							let meaning = wordDefinition.meanings;
+							meaning.map((mean) => {
+								let pOS = mean.partOfSpeech;
+								let synonym = [];
+								let defins = mean.definitions[0];
+								definitions[pOS] = defins.definition;
+								mean.synonyms.map((syn) => {
+									synonym.push(syn);
+								});
+								synonyms[pOS] = returnFirstFive(synonym);
+								console.log(synonyms);
+							});
+							wordAdded = {
+								id: Math.random().toString,
+								language: language,
+								word: enteredWord,
+								meaning: definitions,
+								synonyms: synonyms,
+								translation: translations,
+								arrowUp: true,
+							};
+						}
+						if (wordDefinition && language === "Turkish") {
+							let meaning = wordDefinition.means;
+							// console.log(meaning);
+							let defins = [];
+
+							meaning.map((mean) => {
+								let example = mean.orneklerListe[0].ornek;
+								examplesTr.push(example);
+								console.log(exTr);
+
+								defins.push(mean.anlam);
+							});
+							// console.log(defins)
+							definitions = returnFirstTwo(defins) || [];
+							wordAdded = {
+								id: Math.random().toString,
+								language: language,
+								word: enteredWord,
+								meaning: definitions,
+								examples: examplesTr,
+								translation: translations,
+								arrowUp: true
+							};
+							console.log(definitions);
+						}
+					} else {
+						setErrorMessage(
+							`${enteredWord} doesn't exist in this ${language} dictionary`,
+						);
+					}
 				}
-				
 			} catch (error) {
 				console.error(error);
 			}
 		};
 		getTrans(word.current, language);
+		// addWordToList(wordAdded)
 		// const sendWord = async (word) => {
 		// 	try {
 		// 		const response = await fetch("/api/newword", {
