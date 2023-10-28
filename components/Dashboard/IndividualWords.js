@@ -8,16 +8,11 @@ import ReturnText from "../UI/ReturnText";
 
 const IndividualWords = (props) => {
 	const listCtx = useContext(ListContext);
-	const [isEnglish, setIsEnglish] = useState(true);
-	// if (props.language === "English") {
-	// 	setIsEnglish(true);
-	// } else {
-	// 	setIsEnglish(false);
-	// }
+	let meaning = Object.entries(props.meaning);
+	let synonyms = Object.entries(props.synonyms);
+	let translations = Object.entries(props.translation);
 	const clickHandler = (id) => {
 		listCtx.flipArrow(id);
-		console.log("toggled");
-		console.log(props.arrowUp);
 	};
 
 	const capitalizeInitial = (string) => {
@@ -33,9 +28,11 @@ const IndividualWords = (props) => {
 				<p className="inline text-blue">
 					{capitalizeInitial(props.word)}
 				</p>
-				{isEnglish && <p className="inline text-lightPurple">
-					{capitalizeInitial(props.translation[0])}
-				</p>}
+				
+				<p className="inline text-lightPurple">
+					{capitalizeInitial(translations[0][1][0])}
+				</p>
+				
 				<button
 					onClick={() => {
 						clickHandler(props.id);
@@ -55,17 +52,50 @@ const IndividualWords = (props) => {
 					props.arrowUp ? "ease-in " : "ease-out hidden"
 				} flex flex-col w-full text-sm font-rubik first-letter:uppercase`}
 			>
-				<p>Meaning: {capitalizeInitial(props.meaning)}</p>
-				<p>
-					Alternative Meaning: {capitalizeInitial(props.alternative)}
-				</p>
-				<p className="text-purpleBody">
+				{meaning.map((mean) => (
+					<p
+						key={Math.random().toString()}
+						id="meaning"
+						className=""
+					>
+						Meaning({mean[0]}): {capitalizeInitial(mean[1])}
+					</p>
+				))}
+				{synonyms.map((syn) => {
+					if (syn[1].length !== 0) {
+						return (
+							<p
+								key={Math.random().toString()}
+								id="syn"
+								className="text-purpleBody"
+							>
+								Synonyns({syn[0]}): <ReturnText text={syn[1]} />
+							</p>
+						);
+					}
+				})}
+				{translations.map((translation) => {
+					if (translation[1].length !== 0) {
+						return (
+							<p
+								key={Math.random().toString()}
+								id="tran"
+								className="text-blue"
+							>
+								Translation(
+								{translation[0].replaceAll('"', "")}):{" "}
+								<ReturnText text={translation[1]} />
+							</p>
+						);
+					}
+				})}
+				{/* <p className="text-purpleBody">
 					Synonyms: <ReturnText text={props.synonyms}></ReturnText>
 				</p>
 				<p className="text-blue">
 					Translation:
 					<ReturnText text={props.translation}></ReturnText>
-				</p>
+				</p> */}
 			</div>
 		</div>
 	);

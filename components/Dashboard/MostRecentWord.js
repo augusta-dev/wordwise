@@ -6,10 +6,14 @@ const MostRecentWord = (props) => {
 	const wordList = listCtx.words;
 	const listLength = wordList.length;
 	const word = wordList[0];
+	let meaning = Object.entries(word.meaning);
+	let synonyms = Object.entries(word.synonyms);
+	let translations = Object.entries(word.translation);
+	console.log(translations)
 	const capitalizeInitial = (string) => {
 		return string[0].toUpperCase() + string.slice(1);
 	};
-	
+
 	if (word && Object.keys(word).length > 0) {
 		// const word = props.word;
 
@@ -23,21 +27,50 @@ const MostRecentWord = (props) => {
 						</span>
 						?
 					</h2>
-					<p className="pb-1">
-						Meaning: {capitalizeInitial(word.meaning)}.
-					</p>
-					<p className="pb-1">
-						Alternative meaning: {capitalizeInitial(word.alternate)}
-						.
-					</p>
-					<p className="text-purpleBody pb-1">
-						Synonyms:{" "}
-						<ReturnText text={word.synonyms}></ReturnText>
-					</p>
-					<p className="text-blue">
-						Translation:{" "}
-						<ReturnText text={word.translation}></ReturnText>
-					</p>
+					{word.language === "English" &&
+						meaning.map((mean) => (
+							<p
+								key={Math.random().toString()}
+								id="meaning"
+								className="pb-1"
+							>
+								Meaning({mean[0]}): {capitalizeInitial(mean[1])}
+							</p>
+						))}
+					{word.language === "English" &&
+						synonyms.map((syn) => {
+							if (syn[1].length !== 0) {
+								return (
+									<p
+										key={Math.random().toString()}
+										id="syn"
+										className="text-purpleBody pb-1"
+									>
+										Synonyns({syn[0]}):{" "}
+										<ReturnText text={syn[1]} />
+									</p>
+								);
+							}
+						})}
+					{word.language === "English" &&
+						translations.map((translation) => {
+							if (translation[1].length !== 0) {
+								return (
+									<p
+										key={Math.random().toString()}
+										id="tran"
+										className="text-blue"
+									>
+										Translation(
+										{translation[0].replaceAll(
+											'"',
+											"",
+										)}):{" "}
+										<ReturnText text={translation[1]} />
+									</p>
+								);
+							}
+						})}
 				</div>
 			</>
 		);

@@ -13,7 +13,7 @@ const WordSearch = (props) => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const word = useRef("");
 	const listCtx = useContext(ListContext);
-	const addWordToList = listCtx.addWord; 
+	const addWordToList = listCtx.addWord;
 	const language = listCtx.language;
 	const addWordHandler = async () => {
 		let wordAdded = {};
@@ -60,21 +60,40 @@ const WordSearch = (props) => {
 							setErrorMessage("This word has no translation");
 						}
 
-						if (wordDefinition.meanings && language === "English") {
+						if (wordDefinition && language === "English") {
 							let meaning = wordDefinition.meanings;
-							meaning.map((mean) => {
-								let pOS = mean.partOfSpeech;
+							if (meaning.length === 1) {
+								let pOS = meaning[0].partOfSpeech;
 								let synonym = [];
-								let defins = mean.definitions[0];
-								definitions[pOS] = defins.definition;
-								mean.synonyms.map((syn) => {
+								// definitions = []
+								definitions[pOS] =
+									meaning[0].definitions[0].definition;
+								for (let i = 1; i <= 3; i++) {
+									definitions[pOS] += ". ";
+									definitions[pOS] += 
+										meaning[0].definitions[i].definition;
+									// definitions.push(definition)
+								}
+								meaning[0].synonyms.map((syn) => {
 									synonym.push(syn);
 								});
 								synonyms[pOS] = returnFirstFive(synonym);
-								console.log(synonyms);
-							});
+							} else {
+								meaning.map((mean) => {
+									let pOS = mean.partOfSpeech;
+									let synonym = [];
+									let defins = mean.definitions[0];
+									definitions[pOS] = defins.definition;
+									mean.synonyms.map((syn) => {
+										synonym.push(syn);
+									});
+									synonyms[pOS] = returnFirstFive(synonym);
+									console.log(synonyms);
+								});
+							}
+
 							wordAdded = {
-								id: Math.random().toString,
+								id: Math.random().toString(),
 								language: language,
 								word: enteredWord,
 								meaning: definitions,
@@ -82,6 +101,18 @@ const WordSearch = (props) => {
 								translation: translations,
 								arrowUp: true,
 							};
+							addWordToList(wordAdded);
+						} else {
+							wordAdded = {
+								id: Math.random().toString(),
+								language: language,
+								word: enteredWord,
+								meaning: definitions,
+								synonyms: synonyms,
+								translation: translations,
+								arrowUp: true,
+							};
+							addWordToList(wordAdded);
 						}
 						if (wordDefinition && language === "Turkish") {
 							let meaning = wordDefinition.means;
@@ -98,15 +129,16 @@ const WordSearch = (props) => {
 							// console.log(defins)
 							definitions = returnFirstTwo(defins) || [];
 							wordAdded = {
-								id: Math.random().toString,
+								id: Math.random().toString(),
 								language: language,
 								word: enteredWord,
 								meaning: definitions,
 								examples: examplesTr,
 								translation: translations,
-								arrowUp: true
+								arrowUp: true,
 							};
 							console.log(definitions);
+							addWordToList(wordAdded);
 						}
 					} else {
 						setErrorMessage(
@@ -119,7 +151,7 @@ const WordSearch = (props) => {
 			}
 		};
 		getTrans(word.current, language);
-		// addWordToList(wordAdded)
+
 		// const sendWord = async (word) => {
 		// 	try {
 		// 		const response = await fetch("/api/newword", {

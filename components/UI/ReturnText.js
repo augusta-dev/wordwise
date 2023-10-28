@@ -4,7 +4,7 @@ const ReturnText = (props) => {
 		<span>
 			{text.map((txt) => {
 				return (
-					<span>
+					<span key={Math.random().toString()}>
 						<span> {capitalizeInitial(txt)}</span>
 						<span>
 							{text.length - (text.indexOf(txt) + 1) !== 0 && (

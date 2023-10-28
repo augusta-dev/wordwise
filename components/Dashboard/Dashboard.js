@@ -6,6 +6,8 @@ import WordDisplay from "./WordDisplay";
 import WordSearch from "./WordSearch";
 import { useEffect } from "react";
 
+import ArrayDissectioning from "./arrayDissectioning";
+
 const Dashboard = (props) => {
 	const [length, setLength] = useState(0);
 	const [lastWord, setLastWord] = useState({});
@@ -26,6 +28,7 @@ const Dashboard = (props) => {
 				setLastWord={setLastWord}
 				setLength={setLength}
 			></WordDisplay>
+			<ArrayDissectioning></ArrayDissectioning>
 		</div>
 	);
 };
