@@ -58,7 +58,7 @@ const IndividualWords = (props) => {
 						id="meaning"
 						className=""
 					>
-						Meaning({mean[0]}): {capitalizeInitial(mean[1])}
+						Meaning ({mean[0]}): {capitalizeInitial(mean[1])}
 					</p>
 				))}
 				{synonyms.map((syn) => {
@@ -69,7 +69,7 @@ const IndividualWords = (props) => {
 								id="syn"
 								className="text-purpleBody"
 							>
-								Synonyns({syn[0]}): <ReturnText text={syn[1]} />
+								Synonyns ({syn[0]}): <ReturnText text={syn[1]} />
 							</p>
 						);
 					}
@@ -82,20 +82,13 @@ const IndividualWords = (props) => {
 								id="tran"
 								className="text-blue"
 							>
-								Translation(
+								Translation (
 								{translation[0].replaceAll('"', "")}):{" "}
 								<ReturnText text={translation[1]} />
 							</p>
 						);
 					}
 				})}
-				{/* <p className="text-purpleBody">
-					Synonyms: <ReturnText text={props.synonyms}></ReturnText>
-				</p>
-				<p className="text-blue">
-					Translation:
-					<ReturnText text={props.translation}></ReturnText>
-				</p> */}
 			</div>
 		</div>
 	);

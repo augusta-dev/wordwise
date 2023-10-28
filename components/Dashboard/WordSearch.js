@@ -102,17 +102,6 @@ const WordSearch = (props) => {
 								arrowUp: true,
 							};
 							addWordToList(wordAdded);
-						} else {
-							wordAdded = {
-								id: Math.random().toString(),
-								language: language,
-								word: enteredWord,
-								meaning: definitions,
-								synonyms: synonyms,
-								translation: translations,
-								arrowUp: true,
-							};
-							addWordToList(wordAdded);
 						}
 						if (wordDefinition && language === "Turkish") {
 							let meaning = wordDefinition.means;
@@ -122,7 +111,7 @@ const WordSearch = (props) => {
 							meaning.map((mean) => {
 								let example = mean.orneklerListe[0].ornek;
 								examplesTr.push(example);
-								console.log(exTr);
+								console.log(examplesTr);
 
 								defins.push(mean.anlam);
 							});

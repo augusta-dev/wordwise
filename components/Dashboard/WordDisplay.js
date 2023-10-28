@@ -37,24 +37,25 @@ const WordDisplay = (props) => {
 									0 && <hr className="border-darkPurple" />}
 							</>
 						);
-					}
-					// else {
-					// 	<>
-					// 		<IndividualWordsTr
-					// 			key={word.id}
-					// 			id={word.id}
-					// 			word={word.word}
-					// 			translation={word.translation}
-					// 			meaning={word.meaning}
-					// 			alternative={word.alternate}
-					// 			examples={word.examples}
-					// 			arrowUp={word.arrowUp}
-					// 		></IndividualWordsTr>
+					} else {
+						return (
+							<>
+								<IndividualWordsTr
+									key={word.id}
+									id={word.id}
+									word={word.word}
+									translation={word.translation}
+									meaning={word.meaning}
+									examples={word.examples}
+									arrowUp={word.arrowUp}
+								></IndividualWordsTr>
 
-					// 		{wordList.length - (wordList.indexOf(word) + 1) !==
-					// 			0 && <hr className="border-darkPurple" />}
-					// 	</>;
-					// }
+								{wordList.length -
+									(wordList.indexOf(word) + 1) !==
+									0 && <hr className="border-darkPurple" />}
+							</>
+						);
+					}
 				})}
 			</div>
 		</>

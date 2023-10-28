@@ -11,6 +11,25 @@ const ArrayDissectioning = () => {
 
 	const listCtx = [
 		{
+			id: "0.9954920191771501",
+			language: "Turkish",
+			word: "merhaba",
+			meaning: [
+				"► selam",
+				"(me'rhaba:) \"Geniş ve mamur yere geldiniz, rahat ediniz, günaydın, hoş geldiniz\" anlamlarında bir esenleşme veya selamlaşma sözü"
+			],
+			examples: [
+				"Sıkı fıkı dostluklarını değil, şöyle uzaktan bile merhabalarını istemiyorum.",
+				"Merhaba, arkadaş! Hoş geldiniz."
+			],
+			translation: {
+				"\"noun\"": [
+					"hello"
+				]
+			},
+			arrowUp: true
+		}
+		,{
 			language: "English",
 			word: "red",
 			meaning: {
@@ -37,32 +56,27 @@ const ArrayDissectioning = () => {
 
 	const word = listCtx[0];
 	console.log(word);
-	let meaning = Object.entries(word.meaning);
-	let synonyms = Object.entries(word.synonyms);
+	let meaning = word.meaning;
+	let examples = word.examples;
     let translations = Object.entries(word.translation);
-	console.log(synonyms);
 	return (
-		<div className="bg-red h-15">
+		<div className=" h-15">
 			{meaning.map((mean) => (
 				<p
 					key={Math.random().toString()}
 					id="meaning"
 				>
-					Meaning({mean[0]}): {mean[1]}
+					Meaning: {mean}
 				</p>
 			))}
-			{/* {synonyms.forEach((synonym) => {
-				if (synonym[1]) <p>Synonyms({synonym[0]})</p>;
-			})} */}
-			{synonyms.map((syn) => {
-				if (syn[1].length !== 0) {
+			{examples.map((example) => {
+				if (example[1].length !== 0) {
 					return (
 						<p
                         key={Math.random().toString()}
-                        id="syn"
+                        id="syn" className="text-purpleBody"
 						>
-							Synonyns({syn[0]}):{" "}
-							<ReturnText text={syn[1]} />
+							Examples: {example}
 						</p>
 					);
 				}
@@ -72,16 +86,14 @@ const ArrayDissectioning = () => {
 					return (
 						<p
                         key={Math.random().toString()}
-                        id="syn"
+                        id="syn" className="text-blue"
 						>
-							Translation({translation[0].replaceAll('"', "")}):{" "}
+							Translation ({translation[0].replaceAll('"\"', "").replaceAll('"', "")}):{" "}
 							<ReturnText text={translation[1]} />
 						</p>
 					);
 				}
 			})}
-			<p>yesdjoso</p>
-			{console.log("in")}
 		</div>
 	);
 };
