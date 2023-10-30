@@ -19,7 +19,7 @@ const WordDisplay = (props) => {
 				{wordList.map((word) => {
 					if (word.language == "English") {
 						return (
-							<>
+							<div key={word.id}>
 								<IndividualWords
 									key={word.id}
 									id={word.id}
@@ -35,11 +35,11 @@ const WordDisplay = (props) => {
 								{wordList.length -
 									(wordList.indexOf(word) + 1) !==
 									0 && <hr className="border-darkPurple" />}
-							</>
+							</div>
 						);
 					} else {
 						return (
-							<>
+							<div key={word.id}>
 								<IndividualWordsTr
 									key={word.id}
 									id={word.id}
@@ -53,7 +53,7 @@ const WordDisplay = (props) => {
 								{wordList.length -
 									(wordList.indexOf(word) + 1) !==
 									0 && <hr className="border-darkPurple" />}
-							</>
+							</div>
 						);
 					}
 				})}

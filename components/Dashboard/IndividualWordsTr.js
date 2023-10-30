@@ -22,7 +22,7 @@ const IndividualWordsTr = (props) => {
 	return (
 		<div
 			className="flex flex-warp flex-col justify-between text-xl pt-2 w-full px-1"
-			key={props.key}
+			key={props.id}
 		>
 			<div className="flex flex-row justify-between w-full font-signika">
 				<p className="inline text-blue">

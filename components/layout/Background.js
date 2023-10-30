@@ -6,14 +6,14 @@ const Background = (props) => {
 		// </div>
 		<div className="flex flex-col flex-wrap">
 			<div className="w-80 h-96 fixed">
-				<div className="w-36 h-36 left-0 top-0 fixed blur-[100px]">
+				<div className="w-36 h-36 left-0 top-0 fixed blur-[60px]">
 					<div className="w-36 h-36 -left-8 -top-8 absolute z-10 bg-blurBlue bg-opacity-100 rounded-full" />
 				</div>
-				<div className="w-32 h-32 float-right -top-10 blur-[120px]">
-					<div className="w-32 h-32 -left-10 top-10 z-0 bg-red bg-opacity-90 rounded-full" />
+				<div className="w-32 h-32 float-right -top-10 -left-40 blur-[80px] -ml-0">
+					<div className="w-32 h-32 -left-40 top-10 z-0 bg-red bg-opacity-90 rounded-full -ml-10" />
 				</div>
-				<div className="w-36 h-36 relative blur-[100px]">
-					<div className="w-36 h-36 -left-10 top-32 absolute bg-purple-400 bg-opacity-90 rounded-full" />
+				<div className="w-36 h-36 relative blur-[50px]">
+					<div className="w-36 h-36 -left-10 top-24 absolute bg-purple-400 bg-opacity-90 rounded-full" />
 				</div>
 			</div>
 			<div className="w-80 h-96 top-[calc(100vh-220px)] left-[calc(100vw-240px)] fixed">
