@@ -18,7 +18,7 @@ const Dashboard = (props) => {
 			{word.language === "English" && <MostRecentWord />}
 			{word.language === "Turkish" && <MostRecentWordTr />}
 			<WordDisplay />
-			<ArrayDissectioning />
+			{/* <ArrayDissectioning /> */}
 		</div>
 	);
 };

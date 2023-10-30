@@ -6,7 +6,7 @@ export async function POST(request) {
 	try {
 		const { title, description } = await request.json();
 		await connectMongo();
-		console.log(title);
+		console.log(title, description);
 		await Word.create({title, description});
 		return NextResponse.json({ message: "Word created" }, { status: 201 });
 	} catch (err) {

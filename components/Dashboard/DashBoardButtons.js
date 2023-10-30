@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import DashBoardButton from "./DashBoardButton";
 import word from "../../assets/Word.svg";
 import dictionary from "../../assets/dictionary.svg";
-import day from "../../assets/day.svg";
+import day from "../../assets/language.svg";
 import ListContext from "../WordList/ListContext";
 
 const DashBoardButtons = (props) => {
@@ -18,13 +18,16 @@ const DashBoardButtons = (props) => {
 		setListVisibility(!listVisibility);
 		listCtx.setLanguage(language);
 	};
+	const capitalizeInitial = (string) => {
+		return string[0].toUpperCase() + string.slice(1);
+	};
 
 	return (
 		<div className="flex flex-wrap justify-between text-left">
 			<DashBoardButton
 				className="w-[32%] bg-bgOrange text-darkPurple"
 				icon={word}
-				text={`First Word Learned: ${first}`}
+				text={`First Word Learned: ${capitalizeInitial(first)}`}
 			/>
 			<DashBoardButton
 				className="w-[32%] bg-bgBlue text-darkPurple"

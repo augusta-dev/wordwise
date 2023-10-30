@@ -70,7 +70,7 @@ const WordSearch = (props) => {
 									meaning[0].definitions[0].definition;
 								for (let i = 1; i <= 3; i++) {
 									definitions[pOS] += ". ";
-									definitions[pOS] += 
+									definitions[pOS] +=
 										meaning[0].definitions[i].definition;
 									// definitions.push(definition)
 								}
@@ -109,9 +109,13 @@ const WordSearch = (props) => {
 							let defins = [];
 
 							meaning.map((mean) => {
-								let example = mean.orneklerListe[0].ornek;
-								examplesTr.push(example);
-								console.log(examplesTr);
+								if (mean.orneklerListe) {
+									let example = mean.orneklerListe[0].ornek;
+									examplesTr.push(example);
+
+									console.log(examplesTr);
+								}
+								examplesTr = returnFirstFive(examplesTr);
 
 								defins.push(mean.anlam);
 							});
@@ -129,6 +133,7 @@ const WordSearch = (props) => {
 							console.log(definitions);
 							addWordToList(wordAdded);
 						}
+						sendWord(word);
 					} else {
 						setErrorMessage(
 							`${enteredWord} doesn't exist in this ${language} dictionary`,
@@ -141,24 +146,26 @@ const WordSearch = (props) => {
 		};
 		getTrans(word.current, language);
 
-		// const sendWord = async (word) => {
-		// 	try {
-		// 		const response = await fetch("/api/newword", {
-		// 			method: "POST",
-		// 			body: JSON.stringify({title: word.current}),
-		// 			headers: {
-		// 				"Content-Type": "application/json",
-		// 			},
-		// 		});
+		const sendWord = async (word) => {
+			try {
+				const response = await fetch("/api/newword", {
+					method: "POST",
+					body: JSON.stringify({
+						title: word.current,
+						description: wordAdded,
+					}),
+					headers: {
+						"Content-Type": "application/json",
+					},
+				});
 
-		// 		const data = await response.json();
+				const data = await response.json();
 
-		// 		console.log(data);
-		// 	} catch (error) {
-		// 		console.error(error);
-		// 	}
-		// }
-		// sendWord(word)
+				console.log(data);
+			} catch (error) {
+				console.error(error);
+			}
+		};
 	};
 
 	return (

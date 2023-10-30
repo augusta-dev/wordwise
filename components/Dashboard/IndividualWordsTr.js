@@ -8,7 +8,6 @@ import ReturnText from "../UI/ReturnText";
 
 const IndividualWordsTr = (props) => {
 	const listCtx = useContext(ListContext);
-    console.log('individual')
 	let meaning = props.meaning;
 	let examples = props.examples;
 	let translations = Object.entries(props.translation);

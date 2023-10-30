@@ -5,7 +5,7 @@ const Logo = () => {
 				WordWise
 			</h2>
 			<h4 className="font-signika text-[1.71rem] text-lightPurple self-end leading-7">
-				Vocabulary Virtuoso
+				Your Personal Dictionary
 			</h4>
 		</div>
 	);

@@ -4,8 +4,8 @@ import React from "react";
 import "tailwindcss/tailwind.css";
 import localFont from "next/font/local";
 import Background from "../components/layout/Background";
-import ListProvider from "../components/WordList/ListProvider";
 import Providers from "./Providers";
+import getServerSideProps from "../components/WordList/listProps";
 const rubik = localFont({
 	src: [
 		{
@@ -31,6 +31,7 @@ const squadaOne = localFont({
 	variable: "--font-squada-one",
 });
 
+
 export default function RootLayout({ children }) {
 	return (
 		// <React.StrictMode>
@@ -42,9 +43,8 @@ export default function RootLayout({ children }) {
 					>
 						{/* <StyledEngineProvider injectFirst> */}
 						<Providers>
-							<ListProvider>
+							
 								<Background>{children}</Background>
-							</ListProvider>
 						</Providers>
 						{/* </StyledEngineProvider> */}
 					</div>
