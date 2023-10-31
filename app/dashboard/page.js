@@ -7,8 +7,13 @@ async function DashboardPage() {
 	const flipOrder = (list) => {
 		let list2 = [];
 		for (let i = 0; i < list.length; i++) {
-			list2.push(list[list.length - 1 - i]);
+			list2.push(list[(list.length - 1) - i]);
 		}
+		list2.map(item => {
+			item.arrowUp = false;
+		})
+		list2[0].arrowUp = true;
+		console.log(list, list2);
 		return list2;
 	};
 	data = flipOrder(data);

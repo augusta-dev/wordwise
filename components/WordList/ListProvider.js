@@ -53,7 +53,7 @@ const ListProvider = (props) => {
 	const getListHandler = (list) => {
 		dispatchListAction({ type: "GET", list: list });
 	};
-	console.log(listState.words[0].language);
+	console.log(listState.words)
 	const listContext = {
 		words: listState.words,
 		language:

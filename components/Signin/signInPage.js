@@ -1,8 +1,8 @@
 "use client";
 import { signIn } from "next-auth/react";
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import Logo from "../UI/Logo";
-import Button from "..//UI/Button";
+import Button from "../UI/Button";
 import Raindrops from "./Raindrops";
 import "./Raindrops.css";
 import Input from "../UI/Input";
@@ -11,35 +11,54 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
 const SignInPage = (props) => {
-	const searchParams = useSearchParams();
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
 	const router = useRouter();
-	const userName = useRef("");
-	const pass = useRef("");
 	const submitHandler = async (e) => {
 		e.preventDefault();
-		console.log(userName.current);
-		const res = await signIn("credentials", {
-			username: userName.current,
-			password: pass.current,
-			redirect: false,
-		});
-		if (res?.error) {
-            console.log(res)
-			router.push("http://localhost:3000/dashboard");
-		}else{
-			console.log(res.error)
+		try {
+			const res = await signIn("credentials", {
+				email, password, redirect: false
+			});
+			if(res.error){
+				setError("Invalid Credentials");
+				return;
+			}
+			router.replace("dashboard");
+		} catch (err) {
+			console.error(err);
 		}
-        console.log('done')
 	};
-	const showChange = (e) => {
-		userName.current = e.target.value;
-		console.log(e.target.value);
-	};
+	// const searchParams = useSearchParams();
+	// const router = useRouter();
+	// const userName = useRef("");
+	// const pass = useRef("");
+	// const submitHandler = async (e) => {
+	// 	e.preventDefault();
+	// 	console.log(userName.current);
+	// 	const res = await signIn("credentials", {
+	// 		username: userName.current,
+	// 		password: pass.current,
+	// 		redirect: false,
+	// 	});
+	// 	if (res?.error) {
+	//         console.log(res)
+	// 		router.push("http://localhost:3000/dashboard");
+	// 	}else{
+	// 		console.log(res.error)
+	// 	}
+	//     console.log('done')
+	// };
+	// const showChange = (e) => {
+	// 	userName.current = e.target.value;
+	// 	console.log(e.target.value);
+	// };
 
 	return (
 		<div className="flex justify-between h-screen flex-col font-rubik pb-14">
 			<Logo></Logo>
-			{!!searchParams.error && <p>Authentication failed</p>}
+
 			<div className="flex flex-wrap flex-col text-center justify-center align-middle items-center">
 				<p className="font-semibold text-darkPurple text-2xl leading-3 relative">
 					Continue the journey!
@@ -56,24 +75,28 @@ const SignInPage = (props) => {
 			</div>
 
 			<div className="pb-8">
-				<form onSubmit={(e) => submitHandler(e)} method="POST">
+				<form
+					// onSubmit={(e) => submitHandler(e)}
+					
+				>
 					<Input
 						className="text-lightPurple bg-white"
-						placeholder="Enter your full name"
-						type="text"
-						onChange={(e) => showChange(e)}
+						placeholder="Enter your email address"
+						type="email"
+						onChange={(e) => setEmail(e.target.value)}
 					>
-						Enter your full name
+						Enter your email address
 					</Input>
 					<Input
 						className="text-lightPurple bg-white"
 						type="password"
 						placeholder="Enter your password"
-						onChange={(e) => (pass.current = e.target.value)}
+						onChange={(e) => setPassword(e.target.value)}
 					/>
+
 					<Button
 						className="mb-2 mt-8"
-						type="submit"
+						type="submit" onClick={(e) => submitHandler(e)}
 					>
 						{" "}
 						Sign in
@@ -82,6 +105,11 @@ const SignInPage = (props) => {
 				<Link href="/signup">
 					<Button className="!mt-2"> Sign Up Instead</Button>
 				</Link>
+				{error && (
+					<p className="shadow-lg text-center text-red text-lg rounded-full h-8 font-semibold">
+						Authentication failed
+					</p>
+				)}
 			</div>
 		</div>
 	);

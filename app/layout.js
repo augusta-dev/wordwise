@@ -31,7 +31,6 @@ const squadaOne = localFont({
 	variable: "--font-squada-one",
 });
 
-
 export default function RootLayout({ children }) {
 	return (
 		// <React.StrictMode>
@@ -42,10 +41,9 @@ export default function RootLayout({ children }) {
 						className={`${rubik.variable} ${signikaNegative.variable} ${squadaOne.variable}`}
 					>
 						{/* <StyledEngineProvider injectFirst> */}
-						<Providers>
-							
-								<Background>{children}</Background>
-						</Providers>
+						{/* <Providers> */}
+							<Background>{children}</Background>
+						{/* </Providers> */}
 						{/* </StyledEngineProvider> */}
 					</div>
 				</main>

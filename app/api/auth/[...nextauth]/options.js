@@ -1,5 +1,6 @@
 // import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import Users from '../../../../models/userProfiles'
 
 export const options = {
 	providers: [
@@ -30,7 +31,6 @@ export const options = {
 						password: "nextauth",
 						id: "19",
 					};
-
 					if (
 						credentials.username === user.name &&
 						credentials.password === user.password
