@@ -1,3 +1,4 @@
+
 import { NextResponse } from "next/server";
 import connectMongo from "../../../libs/mongodb"
 import Word from "../../../models/words";

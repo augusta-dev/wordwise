@@ -1,12 +1,15 @@
 {
   "name": "learning-app",
   "version": "0.1.0",
+  "homepage": "https://augusta-dev.github.io/learning-app",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

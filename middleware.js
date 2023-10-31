@@ -1,2 +1,2 @@
 export { default } from 'next-auth/middleware'
-export const config = {matcher: ['/quiz']}
+export const config = {matcher: ['/quiz',]}

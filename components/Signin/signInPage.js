@@ -17,17 +17,20 @@ const SignInPage = (props) => {
 	const router = useRouter();
 	const submitHandler = async (e) => {
 		e.preventDefault();
+
 		try {
 			const res = await signIn("credentials", {
 				email, password, redirect: false
 			});
+			console.log(res)
 			if(res.error){
-				setError("Invalid Credentials");
+				console.log(res)
+				setError("errrrrrror");
 				return;
 			}
 			router.replace("dashboard");
 		} catch (err) {
-			console.error(err);
+			console.log(err);
 		}
 	};
 	// const searchParams = useSearchParams();
@@ -106,8 +109,8 @@ const SignInPage = (props) => {
 					<Button className="!mt-2"> Sign Up Instead</Button>
 				</Link>
 				{error && (
-					<p className="shadow-lg text-center text-red text-lg rounded-full h-8 font-semibold">
-						Authentication failed
+					<p className="shadow-lg text-center text-white bg-red text-lg rounded-full h-8 font-semibold">
+						Invalid Credentials
 					</p>
 				)}
 			</div>
