@@ -13,7 +13,7 @@ import { useSearchParams } from "next/navigation";
 const SignInPage = (props) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [error, setError] = useState("");
+	const [error, setError] = useState({});
 	const router = useRouter();
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -25,9 +25,10 @@ const SignInPage = (props) => {
 			console.log(res)
 			if(res.error){
 				console.log(res)
-				setError("errrrrrror");
+				setError({color: 'bg-red', message: "Invalid Credentials"});
 				return;
 			}
+			setError({color: 'bg-green-600', message: "Successful"})
 			router.replace("dashboard");
 		} catch (err) {
 			console.log(err);
@@ -86,7 +87,7 @@ const SignInPage = (props) => {
 						className="text-lightPurple bg-white"
 						placeholder="Enter your email address"
 						type="email"
-						onChange={(e) => setEmail(e.target.value)}
+						onChange={(e) => setEmail(e.target.value)} onMouseOver={(e) => setEmail(e.target.value)} onMouseOut={(e) => setEmail(e.target.value)}
 					>
 						Enter your email address
 					</Input>
@@ -94,7 +95,7 @@ const SignInPage = (props) => {
 						className="text-lightPurple bg-white"
 						type="password"
 						placeholder="Enter your password"
-						onChange={(e) => setPassword(e.target.value)}
+						onChange={(e) => setPassword(e.target.value)} onMouseOut={(e) => setPassword(e.target.value)} onMouseOver={(e) => setPassword(e.target.value)}
 					/>
 
 					<Button
@@ -109,8 +110,8 @@ const SignInPage = (props) => {
 					<Button className="!mt-2"> Sign Up Instead</Button>
 				</Link>
 				{error && (
-					<p className="shadow-lg text-center text-white bg-red text-lg rounded-full h-8 font-semibold">
-						Invalid Credentials
+					<p className={`${error.color} shadow-lg text-center text-white text-lg rounded-full h-8 font-semibold`}>
+						{error.message}
 					</p>
 				)}
 			</div>
