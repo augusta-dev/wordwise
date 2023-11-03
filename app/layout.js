@@ -41,9 +41,9 @@ export default function RootLayout({ children }) {
 						className={`${rubik.variable} ${signikaNegative.variable} ${squadaOne.variable}`}
 					>
 						{/* <StyledEngineProvider injectFirst> */}
-						{/* <Providers> */}
+						<Providers>
 							<Background>{children}</Background>
-						{/* </Providers> */}
+						</Providers>
 						{/* </StyledEngineProvider> */}
 					</div>
 				</main>

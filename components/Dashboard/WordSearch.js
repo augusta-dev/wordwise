@@ -8,8 +8,14 @@ import returnFirstFive from "../UI/ReturnFirstFive";
 import returnFirstTwo from "../UI/ReturnFirstTwo";
 import Input from "../UI/Input";
 import getServerSideProps from "./getServerProps";
+import { SessionProvider, useSession } from "next-auth/react";
+
+
 
 const WordSearch = (props) => {
+	const { data: session } = useSession();
+	console.log(session.user.email);
+
 	const [errorMessage, setErrorMessage] = useState("");
 	const word = useRef("");
 	const listCtx = useContext(ListContext);
@@ -68,7 +74,7 @@ const WordSearch = (props) => {
 								// definitions = []
 								definitions[pOS] =
 									meaning[0].definitions[0].definition;
-								for (let i = 1; i <= 3; i++) {
+								for (let i = 1; i <= Math.min(3,meaning[0].length); i++) {
 									definitions[pOS] += ". ";
 									definitions[pOS] +=
 										meaning[0].definitions[i].definition;
@@ -94,6 +100,7 @@ const WordSearch = (props) => {
 
 							wordAdded = {
 								id: Math.random().toString(),
+								owner: session.user,
 								language: language,
 								word: enteredWord,
 								meaning: definitions,
@@ -112,8 +119,6 @@ const WordSearch = (props) => {
 								if (mean.orneklerListe) {
 									let example = mean.orneklerListe[0].ornek;
 									examplesTr.push(example);
-
-									console.log(examplesTr);
 								}
 								examplesTr = returnFirstFive(examplesTr);
 
@@ -123,6 +128,7 @@ const WordSearch = (props) => {
 							definitions = returnFirstTwo(defins) || [];
 							wordAdded = {
 								id: Math.random().toString(),
+								owner: session.user.email,
 								language: language,
 								word: enteredWord,
 								meaning: definitions,
@@ -130,7 +136,6 @@ const WordSearch = (props) => {
 								translation: translations,
 								arrowUp: true,
 							};
-							console.log(definitions);
 							addWordToList(wordAdded);
 						}
 						sendWord(word);
@@ -169,7 +174,7 @@ const WordSearch = (props) => {
 	};
 
 	return (
-		<>
+		<SessionProvider>
 			<div className="mt-4 shadow-main rounded-md h-8 flex flex-wrap">
 				<input
 					className="placeholder:text-purpleBody text-purpleBody text-center text-lg inline bg-transparent w-[87%] focus:outline-none"
@@ -191,7 +196,7 @@ const WordSearch = (props) => {
 			<p className="text-base self-center text-orange pt-2 -mb-2">
 				{errorMessage}
 			</p>
-		</>
+		</SessionProvider>
 	);
 };
 export default WordSearch;

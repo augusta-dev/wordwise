@@ -6,12 +6,12 @@ import ListContext from "./ListContext";
 const listReducer = (state, action) => {
 	if (action.type === "USER") {
 		let user = action.user;
-		return { userName: user };
+		return { ...state, userName: user };
 	}
 	if (action.type === "GET") {
 		let updatedWords = action.list;
 		console.log(updatedWords);
-		return { words: updatedWords };
+		return { ...state, words: updatedWords };
 	}
 	if (action.type === "ADD") {
 		let updatedWords = [...state.words];
@@ -19,6 +19,7 @@ const listReducer = (state, action) => {
 		console.log(updatedWords);
 		console.log(state);
 		return {
+			...state,
 			words: updatedWords,
 		};
 	}
@@ -32,6 +33,7 @@ const listReducer = (state, action) => {
 			return word;
 		});
 		return {
+			...state,
 			words: updatedWords,
 		};
 	}
@@ -60,10 +62,10 @@ const ListProvider = (props) => {
 	const getUserHandler = (user) => {
 		dispatchListAction({ type: "USER", user: user });
 	};
-	console.log(listState.words);
+	console.log(listState.words, props.words);
 	const listContext = {
 		words: listState.words,
-		language:
+		language: 
 			listState.language || listState.words[0].language || "English",
 		userName: listState.user || "none",
 		getList: getListHandler,
@@ -73,11 +75,8 @@ const ListProvider = (props) => {
 		getUser: getUserHandler,
 	};
 
-	// getState();
-
 	return (
 		<ListContext.Provider value={listContext}>
-			{/* <WordList></WordList> */}
 			{props.children}
 		</ListContext.Provider>
 	);

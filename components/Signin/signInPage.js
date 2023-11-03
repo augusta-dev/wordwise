@@ -1,5 +1,5 @@
 "use client";
-import { signIn } from "next-auth/react";
+import { SessionProvider, signIn, useSession } from "next-auth/react";
 import React, { useState, useRef } from "react";
 import Logo from "../UI/Logo";
 import Button from "../UI/Button";
@@ -9,6 +9,7 @@ import Input from "../UI/Input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+
 
 const SignInPage = (props) => {
 	const [email, setEmail] = useState("");
@@ -22,9 +23,9 @@ const SignInPage = (props) => {
 			const res = await signIn("credentials", {
 				email, password, redirect: false
 			});
-			console.log(res)
+			console.log("something", res)
 			if(res.error){
-				console.log(res)
+				//console.log(res)
 				setError({color: 'bg-red', message: "Invalid Credentials"});
 				return;
 			}
@@ -34,32 +35,10 @@ const SignInPage = (props) => {
 			console.log(err);
 		}
 	};
-	// const searchParams = useSearchParams();
-	// const router = useRouter();
-	// const userName = useRef("");
-	// const pass = useRef("");
-	// const submitHandler = async (e) => {
-	// 	e.preventDefault();
-	// 	console.log(userName.current);
-	// 	const res = await signIn("credentials", {
-	// 		username: userName.current,
-	// 		password: pass.current,
-	// 		redirect: false,
-	// 	});
-	// 	if (res?.error) {
-	//         console.log(res)
-	// 		router.push("http://localhost:3000/dashboard");
-	// 	}else{
-	// 		console.log(res.error)
-	// 	}
-	//     console.log('done')
-	// };
-	// const showChange = (e) => {
-	// 	userName.current = e.target.value;
-	// 	console.log(e.target.value);
-	// };
-
+	
 	return (
+		<SessionProvider>
+		
 		<div className="flex justify-between h-screen flex-col font-rubik pb-14">
 			<Logo></Logo>
 
@@ -79,10 +58,7 @@ const SignInPage = (props) => {
 			</div>
 
 			<div className="pb-8">
-				<form
-					// onSubmit={(e) => submitHandler(e)}
-					
-				>
+				<form>
 					<Input
 						className="text-lightPurple bg-white"
 						placeholder="Enter your email address"
@@ -109,13 +85,14 @@ const SignInPage = (props) => {
 				<Link href="/signup">
 					<Button className="!mt-2"> Sign Up Instead</Button>
 				</Link>
-				{error && (
+				{error.message && (
 					<p className={`${error.color} shadow-lg text-center text-white text-lg rounded-full h-8 font-semibold`}>
 						{error.message}
 					</p>
 				)}
 			</div>
 		</div>
+		</SessionProvider>
 	);
 };
 export default SignInPage;

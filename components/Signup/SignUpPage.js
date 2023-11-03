@@ -1,36 +1,27 @@
 "use client";
+//add signup check. Check the db for that user before permitting the sign up.
 import Logo from "../UI/Logo";
 import BeginIllustration from "../../assets/BeginIllustration";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import Link from "next/link";
 import { useState } from "react";
-// import {signUp} from 'next-auth/react'
 import { useRouter } from "next/navigation";
 const SignUp = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordHolder, setPasswordHolder] = useState("");
+	const [error, setError] = useState("");
 	const router = useRouter();
-	const nameHandler = (e) => {
-		setName(e.target.value);
-	};
-	const passwordHandler = (e) => {
-		setPassword(e.target.value);
-	};
-	const passwordHolderHandler = (e) => {
-		setPasswordHolder(e.target.value);
-	};
-	const emailHandler = (e) => {
-		setEmail(e.target.value);
-	};
+	
 	const submitHandler = async (e) => {
 		e.preventDefault();
-		console.log(name);
-		console.log(email);
-		console.log(password);
-        console.log(passwordHolder)
+		if (name == "" || email == "" || password == "") {
+			console.log(name, email, password)
+			setError("Incomplete details");
+			return;
+		}
 		try {
 			const response = await fetch("/api/newuser", {
 				method: "POST",
@@ -48,11 +39,10 @@ const SignUp = () => {
 				return;
 			} else {
 				console.log(data);
-				// router.replace("dashboard");
+				router.replace("signin");
 			}
-
-			// const res = await User.create();
 		} catch (error) {
+			setError("User already exists");
 			console.error(error);
 		}
 	};
@@ -72,7 +62,8 @@ const SignUp = () => {
 					placeholder="Enter your full name"
 					onChange={(e) => setName(e.target.value)}
 					onClick={(e) => setName(e.target.value)}
-					onMouseOver={(e) => setName(e.target.value)} required
+					onMouseOver={(e) => setName(e.target.value)}
+					required
 				/>
 				<Input
 					type="email"
@@ -111,7 +102,7 @@ const SignUp = () => {
 					required
 				/>{" "}
 				<Button
-					className="mt-6 mb-3"
+					className="mt-4 mb-1"
 					type="submit"
 					onClick={(e) => submitHandler(e)}
 				>
@@ -120,6 +111,7 @@ const SignUp = () => {
 				<Link href="/signin">
 					<Button className="mt-1">Sign In Instead</Button>
 				</Link>
+				{error && <Button className="bg-red text-white mt-0">{error}</Button>}
 			</form>
 		</div>
 	);

@@ -15,19 +15,15 @@ const authOptions = {
 			},
 
 			async authorize(credentials) {
-				console.log(credentials);
 				const { email, password } = credentials;
 				console.log(email, password);
 				try {
 					await connectMongo();
-					// const user={email: "jess@jess.com", password:"jessisgreat"}
 					const person = await User.findOne({ email });
-					console.log(person);
-					// console.log(email)
+					console.log(person + "Now")
 					if (!person) {
 						return null;
 					}
-
 					if (person.email === email) {
 						if (person.password !== password) {
 							return null;
@@ -40,7 +36,6 @@ const authOptions = {
 				} catch (e) {
 					console.log(e);
 				}
-				// return user;
 			},
 		}),
 	],
