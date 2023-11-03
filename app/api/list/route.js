@@ -9,12 +9,13 @@ export async function GET(request) {
 		const query = parse(request.url, true);
 		const email = query.query.email;
 		await connectMongo();
-		const list = await Word.find({
-			$or: [
-				{ "description.owner.email": email },
-				{ "description.owner.email": { $exists: false } },
-			],
-		});
+		const list = await Word.find({ "description.owner.email": email }) || await Word.find({ "description.owner.email": { $exists: false } })
+		// const list = await Word.find({
+		// 	$or: [
+		// 		,
+		// 		{ "description.owner.email": { $exists: false } },
+		// 	],
+		// });
 		return new NextResponse(JSON.stringify(list), { status: 200 });
 	} catch (error) {
 		return new NextResponse("Error in fetching list" + error, {

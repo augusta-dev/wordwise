@@ -10,12 +10,8 @@ import Input from "../UI/Input";
 import getServerSideProps from "./getServerProps";
 import { SessionProvider, useSession } from "next-auth/react";
 
-
-
 const WordSearch = (props) => {
 	const { data: session } = useSession();
-	console.log(session.user.email);
-
 	const [errorMessage, setErrorMessage] = useState("");
 	const word = useRef("");
 	const listCtx = useContext(ListContext);
@@ -74,7 +70,11 @@ const WordSearch = (props) => {
 								// definitions = []
 								definitions[pOS] =
 									meaning[0].definitions[0].definition;
-								for (let i = 1; i <= Math.min(3,meaning[0].length); i++) {
+								for (
+									let i = 1;
+									i <= Math.min(3, meaning[0].length);
+									i++
+								) {
 									definitions[pOS] += ". ";
 									definitions[pOS] +=
 										meaning[0].definitions[i].definition;

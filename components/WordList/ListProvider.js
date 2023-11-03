@@ -10,14 +10,11 @@ const listReducer = (state, action) => {
 	}
 	if (action.type === "GET") {
 		let updatedWords = action.list;
-		console.log(updatedWords);
 		return { ...state, words: updatedWords };
 	}
 	if (action.type === "ADD") {
 		let updatedWords = [...state.words];
 		updatedWords.unshift(action.word);
-		console.log(updatedWords);
-		console.log(state);
 		return {
 			...state,
 			words: updatedWords,
@@ -29,7 +26,6 @@ const listReducer = (state, action) => {
 			if (action.id === word.id) {
 				return { ...word, arrowUp: !word.arrowUp };
 			}
-
 			return word;
 		});
 		return {
@@ -62,10 +58,9 @@ const ListProvider = (props) => {
 	const getUserHandler = (user) => {
 		dispatchListAction({ type: "USER", user: user });
 	};
-	console.log(listState.words, props.words);
 	const listContext = {
 		words: listState.words,
-		language: 
+		language:
 			listState.language || listState.words[0].language || "English",
 		userName: listState.user || "none",
 		getList: getListHandler,
