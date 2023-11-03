@@ -12,23 +12,26 @@ const DashboardPage = () => {
 	let [data, setData] = useState([]);
 	session ? (email = session.user.email) : null;
 	useEffect(() => {
-		async function getData() {
-			const text = await getServerSideProps(email);
-			const flipOrder = (list) => {
-				let list2 = [];
-				for (let i = 0; i < list.length; i++) {
-					list2.push(list[list.length - 1 - i]);
-				}
-				list2.map((item) => {
-					item.arrowUp = false;
-				});
-				//list2[0].arrowUp = true;
-				return list2;
-			};
-			const moddata = flipOrder(text);
-			setData(moddata);
+		if(email){
+			async function getData() {
+				const text = await getServerSideProps(email);
+				const flipOrder = (list) => {
+					let list2 = [];
+					for (let i = 0; i < list.length; i++) {
+						list2.push(list[list.length - 1 - i]);
+					}
+					list2.map((item) => {
+						item.arrowUp = false;
+					});
+					//list2[0].arrowUp = true;
+					return list2;
+				};
+				const moddata = flipOrder(text);
+				setData(moddata);
+			}
+			getData();
 		}
-		getData();
+		
 	}, [session, email]);
 
 	return (

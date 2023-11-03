@@ -1,13 +1,9 @@
-// import { URLSearchParams } from "url";
 const getServerSideProps = async (email) => {
 	const getDefaultState = async () => {
 		const queryParams = new URLSearchParams();
 		queryParams.append("email", email);
-		
-		const string = `/api/list?${queryParams.toString()}`
-		console.log(string)
+		const string = `/api/list?${queryParams.toString()}`;
 		const list = await fetch(string);
-		console.log(list);
 		return list.json();
 	};
 
@@ -17,8 +13,6 @@ const getServerSideProps = async (email) => {
 		wordList.map((word) => {
 			defaultList.push(word.description);
 		});
-		console.log(defaultList);
-
 		return defaultList;
 	};
 	return getState();
