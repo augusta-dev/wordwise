@@ -10,7 +10,11 @@ const IndividualWordsTr = (props) => {
 	const listCtx = useContext(ListContext);
 	let meaning = props.meaning;
 	let examples = props.examples;
-	let translations = Object.entries(props.translation);
+	let translations = [];
+	let trans = props.translation;
+	if (trans) {
+		translations = Object.entries(props.translation);
+	}
 	const clickHandler = (id) => {
 		listCtx.flipArrow(id);
 	};
@@ -29,9 +33,11 @@ const IndividualWordsTr = (props) => {
 					{capitalizeInitial(props.word)}
 				</p>
 
-				<p className="inline text-lightPurple">
-					{capitalizeInitial(translations[0][1][0])}
-				</p>
+				{translations.length > 0 && (
+					<p className="inline text-lightPurple">
+						{capitalizeInitial(translations[0][1][0])}
+					</p>
+				)}
 
 				<button
 					onClick={() => {
@@ -73,7 +79,7 @@ const IndividualWordsTr = (props) => {
 						);
 					}
 				})}
-				{translations.map((translation) => {
+				{translations.length > 0 && translations.map((translation) => {
 					if (translation[1].length !== 0) {
 						return (
 							<p

@@ -10,7 +10,11 @@ const IndividualWords = (props) => {
 	const listCtx = useContext(ListContext);
 	let meaning = Object.entries(props.meaning);
 	let synonyms = Object.entries(props.synonyms);
-	let translations = Object.entries(props.translation);
+	let translations = [];
+	let trans = props.translation;
+	if (trans) {
+		translations = Object.entries(props.translation);
+	}
 	const clickHandler = (id) => {
 		listCtx.flipArrow(id);
 	};
@@ -28,11 +32,13 @@ const IndividualWords = (props) => {
 				<p className="inline text-blue">
 					{capitalizeInitial(props.word)}
 				</p>
-				
-				<p className="inline text-lightPurple">
-					{capitalizeInitial(translations[0][1][0])}
-				</p>
-				
+
+				{translations.length > 0 && (
+					<p className="inline text-lightPurple">
+						{capitalizeInitial(translations[0][1][0])}
+					</p>
+				)}
+
 				<button
 					onClick={() => {
 						clickHandler(props.id);
@@ -69,26 +75,28 @@ const IndividualWords = (props) => {
 								id="syn"
 								className="text-purpleBody"
 							>
-								Synonyns ({syn[0]}): <ReturnText text={syn[1]} />
+								Synonyns ({syn[0]}):{" "}
+								<ReturnText text={syn[1]} />
 							</p>
 						);
 					}
 				})}
-				{translations.map((translation) => {
-					if (translation[1].length !== 0) {
-						return (
-							<p
-								key={Math.random().toString()}
-								id="tran"
-								className="text-blue"
-							>
-								Translation (
-								{translation[0].replaceAll('"', "")}):{" "}
-								<ReturnText text={translation[1]} />
-							</p>
-						);
-					}
-				})}
+				{translations.length > 0 &&
+					translations.map((translation) => {
+						if (translation[1].length !== 0) {
+							return (
+								<p
+									key={Math.random().toString()}
+									id="tran"
+									className="text-blue"
+								>
+									Translation (
+									{translation[0].replaceAll('"', "")}):{" "}
+									<ReturnText text={translation[1]} />
+								</p>
+							);
+						}
+					})}
 			</div>
 		</div>
 	);

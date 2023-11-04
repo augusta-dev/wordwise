@@ -8,8 +8,11 @@ const MostRecentWordTr = (props) => {
 	const word = wordList[0];
 	let meaning = word.meaning;
 	let examples = word.examples;
-    let translations = Object.entries(word.translation);
-
+	let translations = [];
+	let trans = word.translation;
+	if (trans && trans.length > 0) {
+	translations = Object.entries(word.translation);
+	}
 	const capitalizeInitial = (string) => {
 		return string[0].toUpperCase() + string.slice(1);
 	};
@@ -48,7 +51,7 @@ const MostRecentWordTr = (props) => {
 						);
 					}
 				})}
-				{translations.map((translation) => {
+				{translations.length > 0 && translations.map((translation) => {
 					if (translation[1].length !== 0) {
 						return (
 							<p

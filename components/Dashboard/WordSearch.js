@@ -59,6 +59,7 @@ const WordSearch = (props) => {
 								// console.log(translation);
 							});
 						} else {
+							translations = {};
 							setErrorMessage("This word has no translation");
 						}
 
@@ -97,7 +98,7 @@ const WordSearch = (props) => {
 									console.log(synonyms);
 								});
 							}
-
+							console.log(translations);
 							wordAdded = {
 								id: Math.random().toString(),
 								owner: session.user,

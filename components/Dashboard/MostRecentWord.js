@@ -8,7 +8,12 @@ const MostRecentWord = (props) => {
 	const word = wordList[0];
 	let meaning = Object.entries(word.meaning);
 	let synonyms = Object.entries(word.synonyms);
-	let translations = Object.entries(word.translation);
+	let translations = [];
+	let trans = word.translation;
+	if (trans && trans.length > 0) {
+		translations = Object.entries(word.translation);
+	}
+	//let translations = Object.entries(word.translation);
 
 	const capitalizeInitial = (string) => {
 		return string[0].toUpperCase() + string.slice(1);
@@ -48,21 +53,22 @@ const MostRecentWord = (props) => {
 							);
 						}
 					})}
-					{translations.map((translation) => {
-						if (translation[1].length !== 0) {
-							return (
-								<p
-									key={Math.random().toString()}
-									id="tran"
-									className="text-blue"
-								>
-									Translation (
-									{translation[0].replaceAll('"', "")}):{" "}
-									<ReturnText text={translation[1]} />
-								</p>
-							);
-						}
-					})}
+					{translations.length > 0 &&
+						translations.map((translation) => {
+							if (translation[1].length !== 0) {
+								return (
+									<p
+										key={Math.random().toString()}
+										id="tran"
+										className="text-blue"
+									>
+										Translation (
+										{translation[0].replaceAll('"', "")}):{" "}
+										<ReturnText text={translation[1]} />
+									</p>
+								);
+							}
+						})}
 				</div>
 			</>
 		);
