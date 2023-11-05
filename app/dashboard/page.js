@@ -23,7 +23,7 @@ const DashboardPage = () => {
 					list2.map((item) => {
 						item.arrowUp = false;
 					});
-					//list2[0].arrowUp = true;
+					list2[0].arrowUp = true;
 					return list2;
 				};
 				const moddata = flipOrder(text);
