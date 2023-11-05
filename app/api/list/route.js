@@ -13,7 +13,7 @@ export async function GET(request) {
 			$or: [
 				{ "description.owner.email": email },
 {"description.owner": email},
-				{ "description.owner.email": { $exists: false } },
+				{ "description.owner": { $exists: false } },
 			],
 		});
 		return new NextResponse(JSON.stringify(list), { status: 200 });
