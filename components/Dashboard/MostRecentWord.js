@@ -6,15 +6,15 @@ const MostRecentWord = (props) => {
 	const listCtx = useContext(ListContext);
 	const wordList = listCtx.words;
 	const word = wordList[0];
-	let meaning = Object.entries(word.meaning);
-	let synonyms = Object.entries(word.synonyms);
+	let meaning = "";
+	word.meaning ? (meaning = Object.entries(word.meaning)) : null;
+	let synonyms = "";
+	word.synonyms ? (synonyms = Object.entries(word.synonyms)) : null;
 	let translations = [];
 	let trans = word.translation;
-	if (trans && trans.length > 0) {
+	if (trans || trans.length > 0) {
 		translations = Object.entries(word.translation);
 	}
-	//let translations = Object.entries(word.translation);
-
 	const capitalizeInitial = (string) => {
 		return string[0].toUpperCase() + string.slice(1);
 	};
@@ -30,7 +30,7 @@ const MostRecentWord = (props) => {
 						</span>
 						?
 					</h2>
-					{meaning.map((mean) => (
+					{meaning && meaning.map((mean) => (
 						<p
 							key={Math.random().toString()}
 							id="meaning"
@@ -39,7 +39,7 @@ const MostRecentWord = (props) => {
 							Meaning ({mean[0]}): {capitalizeInitial(mean[1])}
 						</p>
 					))}
-					{synonyms.map((syn) => {
+					{synonyms && synonyms.map((syn) => {
 						if (syn[1].length !== 0) {
 							return (
 								<p

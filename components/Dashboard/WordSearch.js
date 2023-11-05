@@ -19,7 +19,6 @@ const WordSearch = (props) => {
 	const language = listCtx.language;
 	const addWordHandler = async () => {
 		let wordAdded = {};
-
 		let translations = {};
 		let definitions = {};
 		let synonyms = {};
@@ -38,37 +37,38 @@ const WordSearch = (props) => {
 				);
 				defs = response.def;
 				console.log(response, wordDefinition);
-
-				if (response == "error fetching") {
+				if (response === "error fetching") {
 					setErrorMessage("Please connect to the internet!");
 				} else {
 					if (response.def[0] || wordDefinition !== undefined) {
-						console.log("one");
+						let translation = [];
 						if (response.def[0]) {
 							defs.map((def) => {
-								const pOS = JSON.stringify(def.pos);
-								// obj[pOS]=[]
-								let translation = [];
+								const pOS = def.pos;
+								
 								def.tr.map((obj) => {
 									translation.push(obj.text);
 								});
+								
 								translations[pOS] =
 									returnFirstFive(translation);
-								console.log(translations);
-								setErrorMessage("");
-								// console.log(translation);
 							});
+							if(translation.length < 3){
+								let syn = defs[0].tr[0].syn;
+								console.log(syn)
+								for (let i = 0; i < Math.min(4, syn.length); i++) {
+									translation.push(syn[i].text)	
+								}
+							}
+							//setErrorMessage("");
 						} else {
-							translations = {};
 							setErrorMessage("This word has no translation");
 						}
-
 						if (wordDefinition && language === "English") {
 							let meaning = wordDefinition.meanings;
+							let synonym = [];
 							if (meaning.length === 1) {
 								let pOS = meaning[0].partOfSpeech;
-								let synonym = [];
-								// definitions = []
 								definitions[pOS] =
 									meaning[0].definitions[0].definition;
 								for (
@@ -76,10 +76,9 @@ const WordSearch = (props) => {
 									i <= Math.min(3, meaning[0].length);
 									i++
 								) {
-									definitions[pOS] += ". ";
 									definitions[pOS] +=
+										". " +
 										meaning[0].definitions[i].definition;
-									// definitions.push(definition)
 								}
 								meaning[0].synonyms.map((syn) => {
 									synonym.push(syn);
@@ -95,25 +94,12 @@ const WordSearch = (props) => {
 										synonym.push(syn);
 									});
 									synonyms[pOS] = returnFirstFive(synonym);
-									console.log(synonyms);
 								});
 							}
-							console.log(translations);
-							wordAdded = {
-								id: Math.random().toString(),
-								owner: session.user,
-								language: language,
-								word: enteredWord,
-								meaning: definitions,
-								synonyms: synonyms,
-								translation: translations,
-								arrowUp: true,
-							};
-							addWordToList(wordAdded);
 						}
 						if (wordDefinition && language === "Turkish") {
 							let meaning = wordDefinition.means;
-							// console.log(meaning);
+							console.log(meaning);
 							let defins = [];
 
 							meaning.map((mean) => {
@@ -121,25 +107,27 @@ const WordSearch = (props) => {
 									let example = mean.orneklerListe[0].ornek;
 									examplesTr.push(example);
 								}
-								examplesTr = returnFirstFive(examplesTr);
+								examplesTr = returnFirstTwo(examplesTr);
 
 								defins.push(mean.anlam);
 							});
-							// console.log(defins)
-							definitions = returnFirstTwo(defins) || [];
-							wordAdded = {
-								id: Math.random().toString(),
-								owner: session.user.email,
-								language: language,
-								word: enteredWord,
-								meaning: definitions,
-								examples: examplesTr,
-								translation: translations,
-								arrowUp: true,
-							};
-							addWordToList(wordAdded);
+							definitions = returnFirstTwo(defins) || []
 						}
-						sendWord(word);
+						setErrorMessage("")
+						wordAdded = {
+							id: Math.random().toString(),
+							owner: session.user.email,
+							language: language,
+							word: enteredWord,
+							meaning: definitions,
+							examples: examplesTr,
+							synonyms: synonyms,
+							translation: translations,
+							arrowUp: true,
+						};
+						console.log(wordAdded);
+						addWordToList(wordAdded);
+						sendWord(word)
 					} else {
 						setErrorMessage(
 							`${enteredWord} doesn't exist in this ${language} dictionary`,
@@ -164,10 +152,7 @@ const WordSearch = (props) => {
 						"Content-Type": "application/json",
 					},
 				});
-
 				const data = await response.json();
-
-				console.log(data);
 			} catch (error) {
 				console.error(error);
 			}

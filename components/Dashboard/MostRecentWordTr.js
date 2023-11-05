@@ -6,12 +6,14 @@ const MostRecentWordTr = (props) => {
 	const listCtx = useContext(ListContext);
 	const wordList = listCtx.words;
 	const word = wordList[0];
-	let meaning = word.meaning;
-	let examples = word.examples;
+	let meaning = "";
+	word.meaning ? (meaning = word.meaning) : null;
+	let examples = "";
+	word.examples ? (examples = word.examples) : null;
 	let translations = [];
 	let trans = word.translation;
-	if (trans && trans.length > 0) {
-	translations = Object.entries(word.translation);
+	if (trans || trans.length > 0) {
+		translations = Object.entries(word.translation);
 	}
 	const capitalizeInitial = (string) => {
 		return string[0].toUpperCase() + string.slice(1);
@@ -29,45 +31,48 @@ const MostRecentWordTr = (props) => {
 					</span>
 					?
 				</h2>
-				{meaning.map((mean) => (
-					<p
-						key={Math.random().toString()}
-						id="meaning"
-						className="pb-1"
-					>
-						Meaning: {mean}
-					</p>
-				))}
-				{examples.map((example) => {
-					if (example[1].length !== 0) {
-						return (
-							<p
-								key={Math.random().toString()}
-								id="syn"
-								className="text-purpleBody pb-1"
-							>
-								Examples: {example}
-							</p>
-						);
-					}
-				})}
-				{translations.length > 0 && translations.map((translation) => {
-					if (translation[1].length !== 0) {
-						return (
-							<p
-								key={Math.random().toString()}
-								id="syn"
-								className="text-blue"
-							>
-								Translation (
-								{translation[0]
-									.replaceAll('"\"', "")
-									.replaceAll('"', "")}
-								): <ReturnText text={translation[1]} />
-							</p>
-						);
-					}
-				})}
+				{meaning &&
+					meaning.map((mean) => (
+						<p
+							key={Math.random().toString()}
+							id="meaning"
+							className="pb-1"
+						>
+							Meaning: {mean}
+						</p>
+					))}
+				{examples &&
+					examples.map((example) => {
+						if (example[1].length !== 0) {
+							return (
+								<p
+									key={Math.random().toString()}
+									id="syn"
+									className="text-purpleBody pb-1"
+								>
+									Examples: {example}
+								</p>
+							);
+						}
+					})}
+				{translations.length > 0 &&
+					translations.map((translation) => {
+						if (translation[1].length !== 0) {
+							return (
+								<p
+									key={Math.random().toString()}
+									id="syn"
+									className="text-blue"
+								>
+									Translation (
+									{translation[0]
+										.replaceAll('""', "")
+										.replaceAll('"', "")}
+									): <ReturnText text={translation[1]} />
+								</p>
+							);
+						}
+					})}
 			</div>
 		);
 	} else {

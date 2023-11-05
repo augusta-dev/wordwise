@@ -8,8 +8,10 @@ import ReturnText from "../UI/ReturnText";
 
 const IndividualWords = (props) => {
 	const listCtx = useContext(ListContext);
-	let meaning = Object.entries(props.meaning);
-	let synonyms = Object.entries(props.synonyms);
+	let meaning = "";
+	props.meaning ? (meaning = Object.entries(props.meaning)) : null;
+	let synonyms = "";
+	props.synonyms ? (synonyms = Object.entries(props.synonyms)) : null;
 	let translations = [];
 	let trans = props.translation;
 	if (trans) {
@@ -58,7 +60,7 @@ const IndividualWords = (props) => {
 					props.arrowUp ? "ease-in " : "ease-out hidden"
 				} flex flex-col w-full text-sm font-rubik first-letter:uppercase`}
 			>
-				{meaning.map((mean) => (
+				{meaning && meaning.map((mean) => (
 					<p
 						key={Math.random().toString()}
 						id="meaning"
@@ -67,7 +69,7 @@ const IndividualWords = (props) => {
 						Meaning ({mean[0]}): {capitalizeInitial(mean[1])}
 					</p>
 				))}
-				{synonyms.map((syn) => {
+				{synonyms && synonyms.map((syn) => {
 					if (syn[1].length !== 0) {
 						return (
 							<p

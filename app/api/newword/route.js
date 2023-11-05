@@ -5,12 +5,14 @@ import Word from "../../../models/words";
 export async function POST(request) {
 	try {
 		const { title, description } = await request.json();
+		const desc = Object.entries(description)
+		console.log(title, description.length);
+		if (title === "" || desc.length === 0 ){return NextResponse.json({ message: "Word not valid" }, { status: 501})}
 		await connectMongo();
-		console.log(title, description);
+		
 		await Word.create({title, description});
 		return NextResponse.json({ message: "Word created" }, { status: 201 });
 	} catch (err) {
-    console.log(err)
 		return NextResponse.json({ message: err.message }, { status: 501});
 	}
 }

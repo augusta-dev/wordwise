@@ -8,8 +8,10 @@ import ReturnText from "../UI/ReturnText";
 
 const IndividualWordsTr = (props) => {
 	const listCtx = useContext(ListContext);
-	let meaning = props.meaning;
-	let examples = props.examples;
+	let meaning = "";
+	props.meaning ? (meaning = props.meaning) : null;
+	let examples = [];
+	props.examples ? (examples = props.examples) : null;
 	let translations = [];
 	let trans = props.translation;
 	if (trans) {
@@ -18,7 +20,6 @@ const IndividualWordsTr = (props) => {
 	const clickHandler = (id) => {
 		listCtx.flipArrow(id);
 	};
-
 	const capitalizeInitial = (string) => {
 		return string[0].toUpperCase() + string.slice(1);
 	};
@@ -58,44 +59,43 @@ const IndividualWordsTr = (props) => {
 					props.arrowUp ? "ease-in " : "ease-out hidden"
 				} flex flex-col w-full text-sm font-rubik first-letter:uppercase`}
 			>
-				{meaning.map((mean) => (
-					<p
-						key={Math.random().toString()}
-						id="meaning"
-					>
-						Meaning: {mean}
-					</p>
-				))}
-				{examples.map((example) => {
-					if (example[1].length !== 0) {
-						return (
-							<p
-								key={Math.random().toString()}
-								id="syn"
-								className="text-purpleBody"
-							>
-								Examples: {example}
-							</p>
-						);
-					}
-				})}
-				{translations.length > 0 && translations.map((translation) => {
-					if (translation[1].length !== 0) {
-						return (
-							<p
-								key={Math.random().toString()}
-								id="syn"
-								className="text-blue"
-							>
-								Translation (
-								{translation[0]
-									.replaceAll('"\"', "")
-									.replaceAll('"', "")}
-								): <ReturnText text={translation[1]} />
-							</p>
-						);
-					}
-				})}
+				{meaning &&
+					meaning.map((mean) => (
+						<p
+							key={Math.random().toString()}
+							id="meaning"
+						>
+							Meaning: {mean}
+						</p>
+					))}
+				{examples &&
+					examples.map((example) => (
+						<p
+							key={Math.random().toString()}
+							id="examples"
+							className="text-purpleBody"
+						>
+							Examples: {example}
+						</p>
+					))}
+				{translations.length > 0 &&
+					translations.map((translation) => {
+						if (translation[1].length !== 0) {
+							return (
+								<p
+									key={Math.random().toString()}
+									id="syn"
+									className="text-blue"
+								>
+									Translation (
+									{translation[0]
+										.replaceAll('""', "")
+										.replaceAll('"', "")}
+									): <ReturnText text={translation[1]} />
+								</p>
+							);
+						}
+					})}
 			</div>
 		</div>
 	);
