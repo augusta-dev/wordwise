@@ -29,7 +29,8 @@ const DashboardPage = () => {
 				const moddata = flipOrder(text);
 				setData(moddata);
 			}
-			setTimeout(getData, 2000);
+//Add page animation before this renders
+			setTimeout(getData, 5000);
 	//	}
 		
 	}, [session, email]);
