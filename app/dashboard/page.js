@@ -12,7 +12,7 @@ const DashboardPage = () => {
 	let [data, setData] = useState([]);
 	session ? (email = session.user.email) : null;
 	useEffect(() => {
-		if(email){
+		//if(email){
 			async function getData() {
 				const text = await getServerSideProps(email);
 				const flipOrder = (list) => {
@@ -29,8 +29,8 @@ const DashboardPage = () => {
 				const moddata = flipOrder(text);
 				setData(moddata);
 			}
-			getData();
-		}
+			setTimeout(getData, 2000);
+	//	}
 		
 	}, [session, email]);
 
