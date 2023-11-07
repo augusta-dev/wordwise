@@ -45,21 +45,48 @@ const WordSearch = (props) => {
 						if (response.def[0]) {
 							defs.map((def) => {
 								const pOS = def.pos;
-								
+								translation = [];
 								def.tr.map((obj) => {
 									translation.push(obj.text);
 								});
-								
+								console.log(translation);
+								if (translation.length < 3 && def.tr[0].syn){
+									let syn = def.tr[0].syn;
+									console.log(syn);
+									for (
+										let i = 0;
+										i < Math.min(4, syn.length);
+										i++
+									) {
+										translation.push(syn[i].text);
+									}
+								}
+
 								translations[pOS] =
 									returnFirstFive(translation);
 							});
-							if(translation.length < 3){
-								let syn = defs[0].tr[0].syn;
-								console.log(syn)
-								for (let i = 0; i < Math.min(4, syn.length); i++) {
-									translation.push(syn[i].text)	
-								}
-							}
+							 //const transLations = Object.values(translations)
+							// console.log(translations, transLations);
+							// for(let i = 0; i < translations.length; i++){
+
+								
+							// }
+
+							// if (transLations.length < 3) {
+							// 	if(defs[0].tr[0].syn){
+							// 		let syn = defs[0].tr[0].syn;
+							// 		console.log(syn);
+							// 		for (
+							// 			let i = 0;
+							// 			i < Math.min(4, syn.length);
+							// 			i++
+							// 		) {
+							// 			translation.push(syn[i].text);
+							// 		}
+							// 	}
+								
+							// }
+							console.log(translations);
 							//setErrorMessage("");
 						} else {
 							setErrorMessage("This word has no translation");
@@ -80,11 +107,14 @@ const WordSearch = (props) => {
 										". " +
 										meaning[0].definitions[i].definition;
 								}
-								meaning[0].synonyms.map((syn) => {
-									synonym.push(syn);
-								});
-								synonyms[pOS] = returnFirstFive(synonym);
-							} else {
+								if (meaning[0].synonyms) {
+									meaning[0].synonyms.map((syn) => {
+										synonym.push(syn);
+									});
+									synonyms[pOS] = returnFirstFive(synonym);
+								}
+							} 
+							else {
 								meaning.map((mean) => {
 									let pOS = mean.partOfSpeech;
 									let synonym = [];
@@ -111,9 +141,9 @@ const WordSearch = (props) => {
 
 								defins.push(mean.anlam);
 							});
-							definitions = returnFirstTwo(defins) || []
+							definitions = returnFirstTwo(defins) || [];
 						}
-						setErrorMessage("")
+						setErrorMessage("");
 						wordAdded = {
 							id: Math.random().toString(),
 							owner: session.user.email,
@@ -127,7 +157,7 @@ const WordSearch = (props) => {
 						};
 						console.log(wordAdded);
 						addWordToList(wordAdded);
-						sendWord(word)
+						sendWord(word);
 					} else {
 						setErrorMessage(
 							`${enteredWord} doesn't exist in this ${language} dictionary`,
