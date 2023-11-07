@@ -12,7 +12,7 @@ export async function GET(request) {
 		const list = await Word.find({
 			$or: [
 				{ "description.owner.email": email },
-{"description.owner": email},
+				{ "description.owner": email },
 				{ "description.owner": { $exists: false } },
 			],
 		});

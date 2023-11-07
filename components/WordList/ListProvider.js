@@ -5,8 +5,9 @@ import ListContext from "./ListContext";
 
 const listReducer = (state, action) => {
 	if (action.type === "USER") {
-		let user = action.user;
-		return { ...state, userName: user };
+		//let user = action.user;
+		console.log(action.user + "newww");
+		return { ...state, userName: action.user };
 	}
 	if (action.type === "GET") {
 		let updatedWords = action.list;
@@ -40,6 +41,7 @@ const listReducer = (state, action) => {
 };
 
 const ListProvider = (props) => {
+	console.log(props.words);
 	const [listState, dispatchListAction] = useReducer(listReducer, {
 		words: props.words,
 	});
@@ -62,7 +64,7 @@ const ListProvider = (props) => {
 		words: listState.words,
 		language:
 			listState.language || listState.words[0].language || "English",
-		userName: listState.user || "none",
+		userName: listState.userName || "",
 		getList: getListHandler,
 		addWord: addWordHandler,
 		flipArrow: toggleArrowState,
