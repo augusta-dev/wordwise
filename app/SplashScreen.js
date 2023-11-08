@@ -5,8 +5,10 @@ import Button from "../components/UI/Button";
 import Logo from "../components/UI/Logo";
 import React from 'react';
 import { SessionProvider, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 const SplashScreen = () => {
         const { data: session } = useSession();
+        const router = useRouter();
 session ? router.replace("dashboard"): null
 	return (
 		<>
