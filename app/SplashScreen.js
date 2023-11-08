@@ -6,12 +6,19 @@ import Logo from "../components/UI/Logo";
 import React from 'react';
 import { SessionProvider, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import {useState} from 'react'
 const SplashScreen = () => {
         const { data: session } = useSession();
         const router = useRouter();
-session ? router.replace("dashboard"): null
+const [isLoading, setIsLoading] = useState(false)
+if (session) { 
+setIsLoading(true)
+setTimeout(router.replace("dashboard"), 2000)
+
+}
 	return (
 		<>
+{isLoading && <div>Loading Animation</div>}
 			<SplashIllustration />
 			<Logo />
 			<div className="font-rubik font-semibold text-darkPurple text-justify leading-5 pb-4">
