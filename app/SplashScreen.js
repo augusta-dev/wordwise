@@ -28,7 +28,7 @@ const SplashScreen = () => {
 			</div>
 			<div className="w-full flex flex-col">
 <Link href="/dashboard">
-  <Button variant="contained" className="bg-blue">Dashboard</Button> 
+  <Button variant="contained" className="bg-bgBlue">Dashboard</Button> 
 </Link>
 			<Link href='/signin'>
 				<Button
