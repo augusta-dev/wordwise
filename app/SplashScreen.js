@@ -11,9 +11,10 @@ const SplashScreen = () => {
         const { data: session } = useSession();
         const router = useRouter();
 const [isLoading, setIsLoading] = useState(false)
+const replaceRouter = router.replace("dashboard");
 if (session) { 
 setIsLoading(true)
-setTimeout(router.replace("dashboard"), 2000)
+setTimeout(replaceRouter, 2000)
 
 }
 	return (
