@@ -3,9 +3,11 @@ import SplashIllustration from "../assets/SplashIllustration";
 import Link from 'next/link';
 import Button from "../components/UI/Button";
 import Logo from "../components/UI/Logo";
-import { signIn } from 'next-auth/react';
-import React from 'react'
+import React from 'react;
+import { SessionProvider, useSession } from "next-auth/react";
 const SplashScreen = () => {
+        const { data: session } = useSession();
+session ? router.replace("dashboard"): null
 	return (
 		<>
 			<SplashIllustration />
@@ -27,9 +29,9 @@ const SplashScreen = () => {
 				</p>
 			</div>
 			<div className="w-full flex flex-col">
-<Link href="/dashboard">
+{* <Link href="/dashboard">
   <Button variant="contained" className="bg-bgBlue">Dashboard</Button> 
-</Link>
+</Link> *}
 			<Link href='/signin'>
 				<Button
 					variant="contained"
