@@ -31,9 +31,9 @@ session ? router.replace("dashboard"): null
 				</p>
 			</div>
 			<div className="w-full flex flex-col">
-{* <Link href="/dashboard">
+{/* <Link href="/dashboard">
   <Button variant="contained" className="bg-bgBlue">Dashboard</Button> 
-</Link> *}
+</Link> */}
 			<Link href='/signin'>
 				<Button
 					variant="contained"
