@@ -3,7 +3,7 @@ import SplashIllustration from "../assets/SplashIllustration";
 import Link from 'next/link';
 import Button from "../components/UI/Button";
 import Logo from "../components/UI/Logo";
-import React from 'react;
+import React from 'react';
 import { SessionProvider, useSession } from "next-auth/react";
 const SplashScreen = () => {
         const { data: session } = useSession();
