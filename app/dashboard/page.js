@@ -32,7 +32,7 @@ const DashboardPage = () => {
 	}
 	useEffect(() => {
 		if (userEmail !== "") {
-			let email = userEmail;
+			let email = session.user.email;
 			setTimeout(
 				(email) => {
 					getData(email);
@@ -41,7 +41,6 @@ const DashboardPage = () => {
 				2000,
 				email,
 			);
-			setIsLoading(false);
 		}
 		if (session) {
 			let email = session.user.email;
@@ -54,7 +53,7 @@ const DashboardPage = () => {
 				email,
 			);
 		}
-	}, [session]);
+	}, [session, userEmail]);
 
 	return (
 		<EmailProvider>
