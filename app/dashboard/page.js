@@ -6,10 +6,13 @@ import getServerSideProps from "../../components/WordList/listProps";
 import EmailProvider from "../../components/EmailContext/EmailProvider";
 import EmailContext from "../../components/EmailContext/EmailContext";
 import ListProvider from "../../components/WordList/ListProvider";
+import animation from "../../assets/animation.json";
+import { Player, Controls } from "@lottiefiles/react-lottie-player";
 const DashboardPage = () => {
 	const { data: session } = useSession();
+	const [isLoading, setIsLoading] = useState(true);
 	const emailCtx = useContext(EmailContext);
-	let userEmail =  emailCtx.email;
+	let userEmail = emailCtx.email;
 	let [data, setData] = useState([]);
 	async function getData(email) {
 		const text = await getServerSideProps(email);
@@ -27,33 +30,48 @@ const DashboardPage = () => {
 		const moddata = flipOrder(text);
 		setData(moddata);
 	}
-	useEffect(()=>{
-		if(userEmail !== ""){
+	useEffect(() => {
+		if (userEmail !== "") {
 			let email = userEmail;
-			getData(email);
+			setTimeout(
+				(email) => {
+					getData(email);
+					setIsLoading(false);
+				},
+				2000,
+				email,
+			);
+			setIsLoading(false);
 		}
 		if (session) {
 			let email = session.user.email;
-			getData(email);
+			setTimeout(
+				(email) => {
+					getData(email);
+					setIsLoading(false);
+				},
+				2000,
+				email,
+			);
 		}
-	}, [session])
-	
-	
-
-	// useEffect(() => {
-	// 	console.log(email);
-	// 	//let email = session.user.email;
-	// 	//if(email){
-
-	// 	getData();
-	// 	//Add page animation before this renders
-	// 	//setTimeout(getData, 2000);
-	// 	//	}
-	// }, []);
+	}, [session]);
 
 	return (
 		<EmailProvider>
-			{data.length > 0 && (
+			{isLoading && (
+				<>
+					<Player
+						autoplay
+						loop
+						src={animation}
+						style={{ height: "300px", width: "300px" }}
+					></Player>
+					<p className="text-purpleBody text-xl font-semibold text-center font-signika">
+						Dashboard Loading...
+					</p>
+				</>
+			)}
+			{data.length > 0 && !isLoading && (
 				<ListProvider words={data}>
 					<Dashboard />
 				</ListProvider>

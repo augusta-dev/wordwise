@@ -1,32 +1,29 @@
-'use client'
+"use client";
 import SplashIllustration from "../assets/SplashIllustration";
-import Link from 'next/link';
+import Link from "next/link";
 import Button from "../components/UI/Button";
 import Logo from "../components/UI/Logo";
-import React from 'react';
+import React from "react";
 import { SessionProvider, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import {useState} from 'react'
-const SplashScreen = () => {
-        const { data: session } = useSession();
-        const router = useRouter();
-const [isLoading, setIsLoading] = useState(false)
-const replaceRouter = router.replace("dashboard");
-if (session) { 
-setIsLoading(true)
-setTimeout(replaceRouter, 2000)
+import { useState, useEffect } from "react";
 
-}
+const SplashScreen = () => {
+	const { data: session } = useSession();
+	const router = useRouter();
+	useEffect(() => {
+		session ? router.replace("dashboard") : null;
+	}, [session]);
+
 	return (
 		<>
-{isLoading && <div>Loading Animation</div>}
 			<SplashIllustration />
 			<Logo />
 			<div className="font-rubik font-semibold text-darkPurple text-justify leading-5 pb-4">
 				<p>
-				&quot;The crux is in absorbing, not just accessing, the
-					information at hand&quot; is the motivation for and motto of this
-					app.
+					&quot;The crux is in absorbing, not just accessing, the
+					information at hand&quot; is the motivation for and motto of
+					this app.
 				</p>
 				<p className="font-signika text-lg leading-4 pt-2">
 					How It Works:
@@ -39,26 +36,26 @@ setTimeout(replaceRouter, 2000)
 				</p>
 			</div>
 			<div className="w-full flex flex-col">
-{/* <Link href="/dashboard">
+				{/* <Link href="/dashboard">
   <Button variant="contained" className="bg-bgBlue">Dashboard</Button> 
 </Link> */}
-			<Link href='/signin'>
-				<Button
-					variant="contained"
-					className="!mt-4 mb-2"
-				>
-					Sign in
-				</Button>
-			</Link>
-			<Link href="/signup">
-				<Button
-					variant="contained"
-					className="mt-2"
-				>
-					Sign up
-				</Button>
-			</Link>
-		</div>
+				<Link href="/signin">
+					<Button
+						variant="contained"
+						className="!mt-4 mb-2"
+					>
+						Sign in
+					</Button>
+				</Link>
+				<Link href="/signup">
+					<Button
+						variant="contained"
+						className="mt-2"
+					>
+						Sign up
+					</Button>
+				</Link>
+			</div>
 		</>
 	);
 };
