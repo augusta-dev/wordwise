@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import EmailProvider from "../EmailContext/EmailProvider";
 import EmailContext from "../EmailContext/EmailContext";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 const SignInPage = (props) => {
 	const [email, setEmail] = useState("");
@@ -33,10 +34,10 @@ const SignInPage = (props) => {
 			console.log("something", res);
 			if (res.error) {
 				//console.log(res)
-				setError({ color: "bg-red", message: "Invalid Credentials" });
+				setError({ color: "red", message: "Invalid Credentials",image: "", title:"Login Unsuccessful", });
 				return;
 			}
-			setError({ color: "bg-green-600", message: "Successful" });
+			setError({ color: "green", message: "Successful" });
 			//console.log(email)
 			
 			console.log(emailCtx, email)
@@ -100,11 +101,22 @@ const SignInPage = (props) => {
 							<Button className="!mt-2"> Sign Up Instead</Button>
 						</Link>
 						{error.message && (
-							<p
+<>
+							/*<p
 								className={`${error.color} shadow-lg text-center text-white text-lg rounded-full h-8 font-semibold`}
 							>
 								{error.message}
-							</p>
+							</p>*/
+<div className="flex flex-row w-full ">
+<div className=" w-1/6"> <Image src={} /> </div>
+<div className=`w-2/3 h-16 bg-${error.color}-200 flex flex-col`>
+<h2 className=`bg-${error.color}-500 text-lg font-semibold`>{error.title}</h2>
+<p className=`bg-${error.color}-700 text-base`>{error.message}</p>
+</div>
+<div className="w-1/6"> <Image src={error.image} /></div>
+</div>
+ 
+</>
 						)}
 					</div>
 				</div>
