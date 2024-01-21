@@ -21,18 +21,13 @@ const SplashScreen = () => {
 			<Logo />
 			<div className="font-rubik font-semibold text-darkPurple text-justify leading-5 pb-4">
 				<p>
-					&quot;The crux is in absorbing, not just accessing, the
-					information at hand&quot; is the motivation for and motto of
-					this app.
+					Unlock language treasures, one word at a time. Here, dictionary meets mastery. We turn knowledge into lasting wisdom.
 				</p>
 				<p className="font-signika text-lg leading-4 pt-2">
 					How It Works:
 				</p>
 				<p className="text-lightPurple ">
-					You add words to your vocabulary and the app returns its
-					meaning, translation and synonyms. It also quizes you on
-					those words to help you remember them. You take one
-					everytime you open the app
+					Ready to unlock your language potential? Start by adding any word that sparks your curiosity. Your chosen word becomes your portal, and the app unlocks its depths: meaning, translation, vibrant synonyms, examples and adds it to your vocabulary list.
 				</p>
 			</div>
 			<div className="w-full flex flex-col">
