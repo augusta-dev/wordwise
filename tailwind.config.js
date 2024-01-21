@@ -23,7 +23,7 @@ module.exports = {
         red100: "rgb(254 242 242)",
         red200: "rgb(254 202 202)",
         red700: "rgb(185 28 28)",
-        green500: '00EE00',
+        green500: '#00EE00',
       },
       fontFamily: {
         "rubik": "var(--font-rubik)",
