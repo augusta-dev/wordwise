@@ -27,13 +27,10 @@ const SplashScreen = () => {
 					How It Works:
 				</p>
 				<p className="text-lightPurple ">
-					Ready to unlock your language potential? Start by adding any word that sparks your curiosity. Your chosen word becomes your portal, and the app unlocks its depths: meaning, translation, vibrant synonyms, examples and adds it to your vocabulary list.
+					Ready to unlock your language potential? Start by adding any word that sparks your curiosity. Your chosen word becomes your portal, and the app unlocks its depths: meaning, translation, vibrant synonyms, examples and, adds it to your vocabulary list.
 				</p>
 			</div>
 			<div className="w-full flex flex-col">
-				{/* <Link href="/dashboard">
-  <Button variant="contained" className="bg-bgBlue">Dashboard</Button> 
-</Link> */}
 				<Link href="/signin">
 					<Button
 						variant="contained"

@@ -4,10 +4,8 @@ import User from "../../../models/userProfiles";
 
 export async function POST(request) {
 	try {
-		console.log(request);
 		const { userName, email, password } = await request.json();
 		await connectMongo();
-		console.log(userName, email, password);
 		const check = await User.findOne({ email });
 		if (check) return;
 		await User.create({ userName, email, password });

@@ -48,10 +48,6 @@ const getServerSideProps = async (word, language) => {
 			console.error(err);
 			return [error];
 		}
-		// console.log(res, definition);
-
-		// console.log(result, def);
-		// return ([result, def]);
 	}
 };
 export default getServerSideProps;

@@ -36,7 +36,6 @@ const WordSearch = (props) => {
 					language,
 				);
 				defs = response.def;
-				console.log(response, wordDefinition);
 				if (response === "error fetching") {
 					setErrorMessage("Please connect to the internet!");
 				} else {
@@ -49,10 +48,8 @@ const WordSearch = (props) => {
 								def.tr.map((obj) => {
 									translation.push(obj.text);
 								});
-								console.log(translation);
 								if (translation.length < 3 && def.tr[0].syn){
 									let syn = def.tr[0].syn;
-									console.log(syn);
 									for (
 										let i = 0;
 										i < Math.min(4, syn.length);
@@ -65,29 +62,6 @@ const WordSearch = (props) => {
 								translations[pOS] =
 									returnFirstFive(translation);
 							});
-							 //const transLations = Object.values(translations)
-							// console.log(translations, transLations);
-							// for(let i = 0; i < translations.length; i++){
-
-								
-							// }
-
-							// if (transLations.length < 3) {
-							// 	if(defs[0].tr[0].syn){
-							// 		let syn = defs[0].tr[0].syn;
-							// 		console.log(syn);
-							// 		for (
-							// 			let i = 0;
-							// 			i < Math.min(4, syn.length);
-							// 			i++
-							// 		) {
-							// 			translation.push(syn[i].text);
-							// 		}
-							// 	}
-								
-							// }
-							console.log(translations);
-							//setErrorMessage("");
 						} else {
 							setErrorMessage("This word has no translation");
 						}
@@ -129,7 +103,6 @@ const WordSearch = (props) => {
 						}
 						if (wordDefinition && language === "Turkish") {
 							let meaning = wordDefinition.means;
-							console.log(meaning);
 							let defins = [];
 
 							meaning.map((mean) => {
@@ -155,7 +128,6 @@ const WordSearch = (props) => {
 							translation: translations,
 							arrowUp: true,
 						};
-						console.log(wordAdded);
 						addWordToList(wordAdded);
 						sendWord(word);
 					} else {

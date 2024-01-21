@@ -53,9 +53,7 @@ const ArrayDissectioning = () => {
 			arrowUp: true,
 		},
 	];
-
 	const word = listCtx[0];
-	console.log(word);
 	let meaning = word.meaning;
 	let examples = word.examples;
     let translations = Object.entries(word.translation);

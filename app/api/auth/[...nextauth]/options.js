@@ -51,4 +51,3 @@ export const options = {
 		signOut: "/auth/signout",
 	},
 };
-// console.log(authOptions);

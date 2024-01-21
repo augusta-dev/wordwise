@@ -18,7 +18,6 @@ const SignUp = () => {
 	const submitHandler = async (e) => {
 		e.preventDefault();
 		if (name == "" || email == "" || password == "") {
-			console.log(name, email, password)
 			setError("Incomplete details");
 			return;
 		}
@@ -33,12 +32,10 @@ const SignUp = () => {
 				headers: { "Content-Type": "application/json" },
 			});
 			const data = await response.json();
-			console.log(data);
 			if (response.error) {
 				console.log(response.error);
 				return;
 			} else {
-				console.log(data);
 				router.replace("signin");
 			}
 		} catch (error) {

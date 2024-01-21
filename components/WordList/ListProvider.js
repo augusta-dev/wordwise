@@ -5,8 +5,6 @@ import ListContext from "./ListContext";
 
 const listReducer = (state, action) => {
 	if (action.type === "USER") {
-		//let user = action.user;
-		console.log(action.user + "newww");
 		return { ...state, userName: action.user };
 	}
 	if (action.type === "GET") {
@@ -41,7 +39,6 @@ const listReducer = (state, action) => {
 };
 
 const ListProvider = (props) => {
-	console.log(props.words);
 	const [listState, dispatchListAction] = useReducer(listReducer, {
 		words: props.words,
 	});
