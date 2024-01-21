@@ -4,7 +4,7 @@ import EmailProvider from "../../components/EmailContext/EmailProvider";
 const SignIn = () => {
 	return (
 		<EmailProvider>
-			<SignInPage />;
+			<SignInPage />
 		</EmailProvider>
 	);
 };

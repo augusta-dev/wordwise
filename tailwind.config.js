@@ -19,6 +19,11 @@ module.exports = {
         bgOrange: "#FF632E",
         textOrange: "#00010C", 
         red: "#FF0000",
+        red500: 'rgb(239 68 68)',
+        red100: "rgb(254 242 242)",
+        red200: "rgb(254 202 202)",
+        red700: "rgb(185 28 28)",
+        green500: '00EE00',
       },
       fontFamily: {
         "rubik": "var(--font-rubik)",

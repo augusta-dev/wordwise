@@ -12,7 +12,11 @@ import EmailProvider from "../EmailContext/EmailProvider";
 import EmailContext from "../EmailContext/EmailContext";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-import Delete from '../../assets/delete.svg';
+import Delete from "../../assets/delete.svg";
+import crossImg from "../../assets/crossImg.svg";
+import crossDel from "../../assets/crossDelete.svg";
+import crossGreen from "../../assets/crossGreen.svg";
+import tickImg from "../../assets/tickImg.svg";
 
 const SignInPage = (props) => {
 	const [email, setEmail] = useState("");
@@ -35,15 +39,28 @@ const SignInPage = (props) => {
 			if (res.error) {
 				//console.log(res)
 				setError({
-					color: "red",
+					color: "text-red",
+					subtext: "text-red700",
+					bg: "bg-red100",
 					message: "Invalid Credentials",
-					image: "",
+					image: crossImg,
 					title: "Login Unsuccessful",
+					delete: crossDel,
+					line: 'bg-red200',
 				});
 				return;
 			}
-			setError({ color: "green", message: "Successful" });
-			//console.log(email)
+			setError({ 
+				color: "text-green500",
+			subtext: "text-green-700",
+			bg: "bg-green-50",
+			message: "Login Successful",
+			image: tickImg,
+			title: "Success",
+			delete: crossGreen,
+			line: 'bg-green-200',
+		 });
+			
 
 			console.log(emailCtx, email);
 			router.replace("dashboard");
@@ -56,7 +73,7 @@ const SignInPage = (props) => {
 		<SessionProvider>
 			<div className="flex justify-between h-screen flex-col font-rubik pb-14">
 				<Logo></Logo>
-
+				
 				<div className="flex flex-wrap flex-col text-center justify-center align-middle items-center">
 					<p className="font-semibold text-darkPurple text-2xl leading-3 relative">
 						Continue the journey!
@@ -92,6 +109,48 @@ const SignInPage = (props) => {
 							onMouseOut={(e) => setPassword(e.target.value)}
 							onMouseOver={(e) => setPassword(e.target.value)}
 						/>
+						{error.message && (
+						<>
+							<div
+								className={` ${error.bg}  rounded-md flex flex-col w-full justify-between`}
+							>
+								<div className="flex flex-row w-full justify-between py-2 px-4">
+									<div className={`w-1/8 flex align-middle`}>
+										<Image
+											src={error.image}
+											className="w-7"
+											alt=""
+										/>
+									</div>
+									<div
+										className={`w-3/4 h-fit flex flex-col `}
+									>
+										<h2
+											className={` ${error.color} text-base font-semibold leading-6`}
+										>
+											{error.title}
+										</h2>
+										<p
+											className={`${error.subtext} text-sm`}
+										>
+											{error.message}
+										</p>
+									</div>
+									<button className="w-1/8 right self-start" onClick={() => setError({})}>
+										<Image
+											src={error.delete}
+											className="w-4 pt-1"
+											alt="de"
+										/>
+									</button>
+								</div>
+
+								<div
+									className={`w-full rounded-b-md h-1 ${error.line}`}
+								></div>
+							</div>
+						</>
+					)}
 
 						<Button
 							className="mb-2 mt-8"
@@ -105,39 +164,7 @@ const SignInPage = (props) => {
 					<Link href="/signup">
 						<Button className="!mt-2"> Sign Up Instead</Button>
 					</Link>
-					{error.message && (
-						<>
-							{/*<p
-								className={`${error.color} shadow-lg text-center text-white text-lg rounded-full h-8 font-semibold`}
-							>
-								{error.message}
-							</p>*/}
-							<div className="flex flex-row w-full ">
-								<div className=" w-1/6">
-									{" "}
-									<Image src={error.image} />{" "}
-								</div>
-								<div
-									className={`w-2/3 h-16 bg-${error.color}-200 flex flex-col`}
-								>
-									<h2
-										className={`bg-${error.color}-500 text-lg font-semibold`}
-									>
-										{error.title}
-									</h2>
-									<p
-										className={`bg-${error.color}-700 text-base`}
-									>
-										{error.message}
-									</p>
-								</div>
-								<div className="w-1/6">
-									{" "}
-									<Image src={Delete}  />
-								</div>
-							</div>
-						</>
-					)}
+					
 				</div>
 			</div>
 		</SessionProvider>
