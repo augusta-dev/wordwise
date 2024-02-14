@@ -1,9 +1,5 @@
-// import "./Background.css";
 const Background = (props) => {
 	return (
-		// <div id="background">
-		//     Yesno
-		// </div>
 		<div className="flex flex-col flex-wrap">
 			<div className="w-80 h-96 fixed">
 				<div className="w-36 h-36 left-0 top-0 fixed blur-[60px]">
@@ -28,7 +24,7 @@ const Background = (props) => {
 				</div>
 			</div>
 			<div className="w-[100vw] h-[100vh] flex justify-center items-center align-middle z-10 blur-0">
-				<div className="flex flex-col h-fit px-9 w-[430px] text-darkPurple">
+				<div className="flex flex-col h-fit px-9 w-full text-darkPurple">
 					{props.children}
 				</div>
 			</div>
