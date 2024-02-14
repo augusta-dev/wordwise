@@ -7,8 +7,12 @@ import React from "react";
 import { SessionProvider, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-
+import { useMediaQuery } from "react-responsive";
 const SplashScreen = () => {
+	const isMobile = useMediaQuery({query: `(max-width: 767px)`})
+	const isTablet = useMediaQuery({query: `(max-width: 1024px)`})
+	//the desktop version renders first and the rest are based on the constants
+	//console.log(isMobile)
 	const { data: session } = useSession();
 	const router = useRouter();
 	useEffect(() => {
