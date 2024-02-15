@@ -12,7 +12,6 @@ import { SessionProvider, useSession } from "next-auth/react";
 
 const WordSearch = (props) => {
 	const { data: session } = useSession();
-	const [errorMessage, setErrorMessage] = useState("");
 	const word = useRef("");
 	const listCtx = useContext(ListContext);
 	const addWordToList = listCtx.addWord;
@@ -25,9 +24,9 @@ const WordSearch = (props) => {
 		let defs = [];
 		let examplesTr = [];
 		if (!word.current) {
-			setErrorMessage("Please rewrite the word");
+			props.setErrorMessage("Please rewrite the word");
 		} else {
-			setErrorMessage("");
+			props.setErrorMessage("");
 		}
 		const getTrans = async (enteredWord, language) => {
 			try {
@@ -37,7 +36,7 @@ const WordSearch = (props) => {
 				);
 				defs = response.def;
 				if (response === "error fetching") {
-					setErrorMessage("Please connect to the internet!");
+					props.setErrorMessage("Please connect to the internet!");
 				} else {
 					if (response.def[0] || wordDefinition !== undefined) {
 						let translation = [];
@@ -63,7 +62,7 @@ const WordSearch = (props) => {
 									returnFirstFive(translation);
 							});
 						} else {
-							setErrorMessage("This word has no translation");
+							props.setErrorMessage("This word has no translation");
 						}
 						if (wordDefinition && language === "English") {
 							let meaning = wordDefinition.meanings;
@@ -116,7 +115,7 @@ const WordSearch = (props) => {
 							});
 							definitions = returnFirstTwo(defins) || [];
 						}
-						setErrorMessage("");
+						props.setErrorMessage("");
 						wordAdded = {
 							id: Math.random().toString(),
 							owner: session.user.email,
@@ -131,7 +130,7 @@ const WordSearch = (props) => {
 						addWordToList(wordAdded);
 						sendWord(word);
 					} else {
-						setErrorMessage(
+						props.setErrorMessage(
 							`${enteredWord} doesn't exist in this ${language} dictionary`,
 						);
 					}
@@ -163,7 +162,7 @@ const WordSearch = (props) => {
 
 	return (
 		<SessionProvider>
-			<div className="mt-4 shadow-main rounded-md h-8 flex flex-wrap">
+			<div className={`${props.className}  shadow-main rounded-md  flex flex-wrap" ${props.desktop && 'h-12 ml-4'} ${!props.desktop && 'h-8 mt-4'}`}>
 				<input
 					className="placeholder:text-purpleBody text-purpleBody text-center text-lg inline bg-transparent w-[87%] focus:outline-none"
 					placeholder="+ Add Word"
@@ -171,19 +170,16 @@ const WordSearch = (props) => {
 					onChange={(e) => (word.current = e.target.value)}
 				/>
 				<button
-					className="bg-lightPurple h-full w-[13%] align-middle flex px-3 rounded-md rounded-l-none"
+					className="bg-lightPurple h-full w-[13%] align-middle flex px-3 rounded-md rounded-l-none justify-center"
 					onClick={addWordHandler}
 				>
 					<Image
 						src={search}
-						className="flex-end self-center px-auto"
+						className={`${props.desktop && 'w-7'} flex-end self-center px-auto`}
 						alt="search icon"
 					/>
 				</button>
 			</div>
-			<p className="text-base self-center text-orange pt-2 -mb-2">
-				{errorMessage}
-			</p>
 		</SessionProvider>
 	);
 };

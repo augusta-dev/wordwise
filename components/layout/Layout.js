@@ -88,7 +88,7 @@ export default function Layout(props) {
 					/>
 				</div>
 			</div>
-			<div className="w-[100vw] h-[100vh] flex justify-center items-center align-middle z-10 blur-0">
+			<div className={`${mobile && 'h-[100vh]'}"w-[100vw] min-h-[100vh] flex justify-center items-center align-middle z-10 blur-0"`}>
 				<div className="flex flex-col h-fit px-9 w-full text-darkPurple font-rubik">
 					{props.children}
 				</div>

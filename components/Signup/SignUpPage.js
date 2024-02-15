@@ -1,24 +1,48 @@
 "use client";
-//add signup check. Check the db for that user before permitting the sign up.
-import Logo from "../UI/Logo";
-import BeginIllustration from "../../assets/BeginIllustration";
-import Input from "../UI/Input";
-import Button from "../UI/Button";
-import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import MobileSignUp from "../responsive/MobileSignUp";
+import { signIn } from "next-auth/react";
+import DesktopSignUp from "../responsive/DesktopSignUp";
+import { useMediaQuery } from "react-responsive";
+
 const SignUp = () => {
+	const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
+	const [mobile, setMobile] = useState(false);
+
+	const isTablet = useMediaQuery({ query: `(max-width: 1024px)` });
+	const [tablet, setTablet] = useState(false);
+
+	const [isDesktop, setIsDesktop] = useState(false);
+
+	useEffect(() => {
+		!isMobile && !isTablet ? setIsDesktop(true) : setIsDesktop(false);
+	}, [isMobile, isTablet]);
+
+	useEffect(() => {
+		isMobile ? setMobile(true) : setMobile(false);
+	}, [isMobile]);
+
+	useEffect(() => {
+		isTablet ? setTablet(true) : setTablet(false);
+	}, [isTablet]);
+
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordHolder, setPasswordHolder] = useState("");
 	const [error, setError] = useState("");
 	const router = useRouter();
-	
+
 	const submitHandler = async (e) => {
 		e.preventDefault();
+		console.log("in");
 		if (name == "" || email == "" || password == "") {
+			console.log(name, email, password);
 			setError("Incomplete details");
+			if (password == "") {
+				setError("Invalid password");
+			}
 			return;
 		}
 		try {
@@ -36,7 +60,16 @@ const SignUp = () => {
 				console.log(response.error);
 				return;
 			} else {
-				router.replace("signin");
+				const res = await signIn("credentials", {
+					email,
+					password,
+					redirect: false,
+				});
+				if (res.error) {
+					console.log(res.error);
+				} else {
+					router.replace("dashboard");
+				}
 			}
 		} catch (error) {
 			setError("User already exists");
@@ -44,73 +77,41 @@ const SignUp = () => {
 		}
 	};
 	return (
-		<div className="flex justify-between h-screen flex-col font-rubik pb-14">
-			<Logo></Logo>
-			<div className="flex flex-wrap flex-col text-center justify-center align-middle items-center mb-6">
-				<p className="font-semibold text-darkPurple text-2xl leading-3 pb-8">
-					Begin the journey!
-				</p>
-
-				<BeginIllustration />
-			</div>
-			<form>
-				<Input
-					type="text"
-					placeholder="Enter your full name"
-					onChange={(e) => setName(e.target.value)}
-					onClick={(e) => setName(e.target.value)}
-					onMouseOver={(e) => setName(e.target.value)}
-					required
+		<>
+			{mobile && (
+				<MobileSignUp
+					setName={setName}
+					setEmail={setEmail}
+					setPasswordHolder={setPasswordHolder}
+					passwordHolder={passwordHolder}
+					setPassword={setPassword}
+					submitHandler={submitHandler}
+					error={error}
 				/>
-				<Input
-					type="email"
-					placeholder="Enter your email address"
-					onChange={(e) => setEmail(e.target.value)}
-					onClick={(e) => setEmail(e.target.value)}
-					onMouseOver={(e) => setEmail(e.target.value)}
-					required
+			)}
+			{tablet && (
+				<DesktopSignUp
+					setName={setName}
+					setEmail={setEmail}
+					setPasswordHolder={setPasswordHolder}
+					passwordHolder={passwordHolder}
+					setPassword={setPassword}
+					submitHandler={submitHandler}
+					error={error}
 				/>
-				<Input
-					type="password"
-					placeholder="Enter your password"
-					onChange={(e) => setPasswordHolder(e.target.value)}
-					onClick={(e) => setPasswordHolder(e.target.value)}
-					onMouseOver={(e) => setPasswordHolder(e.target.value)}
-					required
+			)}
+			{isDesktop && (
+				<DesktopSignUp
+					setName={setName}
+					setEmail={setEmail}
+					setPasswordHolder={setPasswordHolder}
+					passwordHolder={passwordHolder}
+					setPassword={setPassword}
+					submitHandler={submitHandler}
+					error={error}
 				/>
-				<Input
-					type="password"
-					placeholder="Confirm your password"
-					onChange={(e) => {
-						if (passwordHolder == e.target.value) {
-							setPassword(e.target.value);
-						}
-					}}
-					onClick={(e) => {
-						if (passwordHolder == e.target.value) {
-							setPassword(e.target.value);
-						}
-					}}
-					onMouseOver={(e) => {
-						if (passwordHolder == e.target.value) {
-							setPassword(e.target.value);
-						}
-					}}
-					required
-				/>{" "}
-				<Button
-					className="mt-4 mb-1"
-					type="submit"
-					onClick={(e) => submitHandler(e)}
-				>
-					Sign Up
-				</Button>
-				<Link href="/signin">
-					<Button className="mt-1">Sign In Instead</Button>
-				</Link>
-				{error && <Button className="bg-red text-white mt-0">{error}</Button>}
-			</form>
-		</div>
+			)}
+		</>
 	);
 };
 export default SignUp;

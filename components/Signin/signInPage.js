@@ -1,9 +1,7 @@
 "use client";
 import { SessionProvider, signIn, useSession } from "next-auth/react";
 import React, { useState, useEffect, useContext } from "react";
-import Button from "../UI/Button";
 import "./Raindrops.css";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import EmailContext from "../EmailContext/EmailContext";
 import crossImg from "../../assets/crossImg.svg";
@@ -19,10 +17,20 @@ const SignInPage = (props) => {
 	const [mobile, setMobile] = useState(false);
 
 	const isTablet = useMediaQuery({ query: `(max-width: 1024px)` });
+	const [tablet, setTablet] = useState(false);
+
 	const [isDesktop, setIsDesktop] = useState(false);
 	useEffect(() => {
 		!isMobile && !isTablet ? setIsDesktop(true) : setIsDesktop(false);
 	}, [isMobile, isTablet]);
+
+	useEffect(() => {
+		isMobile ? setMobile(true) : setMobile(false);
+	}, [isMobile]);
+
+	useEffect(() => {
+		isTablet ? setTablet(true) : setTablet(false);
+	}, [isTablet]);
 
 	const [error, setError] = useState({});
 	const router = useRouter();
@@ -67,14 +75,17 @@ const SignInPage = (props) => {
 		}
 	};
 
-	useEffect(() => {
-		isMobile ? setMobile(true) : setMobile(false);
-	}, [isMobile]);
-
 	return (
 		<SessionProvider>
 			{mobile && (
 				<SigninForm
+					error={error}
+					setError={setError}
+					submitHandler={submitHandler}
+				/>
+			)}
+			{tablet && (
+				<DesktopSignin
 					error={error}
 					setError={setError}
 					submitHandler={submitHandler}

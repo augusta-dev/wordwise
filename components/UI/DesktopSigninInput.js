@@ -12,6 +12,7 @@ export default function DesktopSigninInput(props) {
 			required={true}
 			onMouseOver={props.onMouseOver}
 			onMouseOut={props.onMouseOut}
+			onClick={props.onClick}
 		/>
 	);
 }

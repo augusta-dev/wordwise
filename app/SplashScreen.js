@@ -13,10 +13,20 @@ const SplashScreen = () => {
 	const [mobile, setMobile] = useState(false);
 
 	const isTablet = useMediaQuery({ query: `(max-width: 1024px)` });
+	const [tablet, setTablet] = useState(false);
+
 	const [isDesktop, setIsDesktop] = useState(false);
 	useEffect(() => {
 		!isMobile && !isTablet ? setIsDesktop(true) : setIsDesktop(false);
 	}, [isMobile, isTablet]);
+
+	useEffect(() => {
+		isMobile ? setMobile(true) : setMobile(false);
+	}, [isMobile]);
+
+	useEffect(() => {
+		isTablet ? setTablet(true) : setTablet(false);
+	}, [isTablet]);
 	//if the value of a variable is going to change after rendering, use  a react hook to execute that change
 
 	const { data: session } = useSession();
@@ -25,13 +35,10 @@ const SplashScreen = () => {
 		session ? router.replace("dashboard") : null;
 	}, [session]);
 
-	useEffect(() => {
-		isMobile ? setMobile(true) : setMobile(false);
-	}, [isMobile]);
-
 	return (
 		<>
 			{mobile && <Mobilesplash />}
+			{tablet && <Mobilesplash />}
 			{isDesktop && (
 				<div className="w-full px-[3vw]">
 					<Navbar about={true} />

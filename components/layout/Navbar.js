@@ -25,7 +25,7 @@ export default function Navbar(props) {
 				<p>|</p>
 				<Link
 					href="/dashboard"
-					className={`${props.splashscreen && "text-blue"}`}
+					className={`${props.dashboard && "text-blue"}`}
 				>
 					DASHBOARD
 				</Link>

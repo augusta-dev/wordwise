@@ -23,27 +23,32 @@ const DashBoardButtons = (props) => {
 	};
 
 	return (
-		<div className="flex flex-wrap justify-between text-left">
+		<div
+			className={`${props.className} flex flex-wrap justify-between text-left`}
+		>
 			<DashBoardButton
-				className="w-[32%] bg-bgOrange text-darkPurple"
+				className={`${props.font} w-[32%] bg-bgOrange text-darkPurple`}
 				icon={word}
 				text={`First Word Learned: ${capitalizeInitial(first)}`}
+				desktop={props.desktop}
 			/>
 			<DashBoardButton
-				className="w-[32%] bg-bgBlue text-darkPurple"
+				className={`${props.font} w-[32%] bg-bgBlue text-darkPurple`}
 				icon={dictionary}
 				text={`Total Words Learned: ${length}`}
+				desktop={props.desktop}
 			/>
 			<div className="flex flex-col h-48- w-[32%] bg-purpleBody rounded-lg">
 				<DashBoardButton
-					className="bg-purpleBody text-textPurple"
+					className={`${props.font} bg-purpleBody text-textPurple`}
 					icon={day}
 					text={`Language: ${language}`}
 					onClick={() => setListVisibility(!listVisibility)}
+					desktop={props.desktop}
 				/>
 				{listVisibility && (
 					<select
-						className="bg-purpleBody float-right self-end w-full text-[12px] text-textPurple outline-none border-none hover:bg-none focus:outline-none pl-2 -mt-1  pb-1 rounded-b-lg text-left"
+						className={`${props.font} bg-purpleBody float-right self-end w-full text-[12px] text-textPurple outline-none border-none hover:bg-none focus:outline-none pl-2 -mt-1  pb-1 rounded-b-lg text-left`}
 						onChange={(event) =>
 							changeDisplayLanguage(event.target.value)
 						}
