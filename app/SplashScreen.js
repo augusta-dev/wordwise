@@ -34,7 +34,7 @@ const SplashScreen = () => {
 			{mobile && <Mobilesplash />}
 			{isDesktop && (
 				<div className="w-full px-[3vw]">
-					<Navbar splashscreen={true} />
+					<Navbar about={true} />
 					<Desktopsplash />
 				</div>
 			)}

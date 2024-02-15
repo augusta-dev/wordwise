@@ -11,7 +11,7 @@ export default function Navbar(props) {
 					src={logo}
 					width={300}
 					height={300}
-					className="w-8"
+					className="w-8" alt='logo'
 				/>
 				<h2 className="font-squada text-2xl ml-4">WordWise</h2>
 			</div>

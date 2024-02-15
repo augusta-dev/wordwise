@@ -80,7 +80,13 @@ const SignInPage = (props) => {
 					submitHandler={submitHandler}
 				/>
 			)}
-			{isDesktop && <DesktopSignin />}
+			{isDesktop && (
+				<DesktopSignin
+					error={error}
+					setError={setError}
+					submitHandler={submitHandler}
+				/>
+			)}
 		</SessionProvider>
 	);
 };
