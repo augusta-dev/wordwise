@@ -2,9 +2,10 @@ import React from "react";
 import Image from "next/image";
 export default function ErrorDisplay(props) {
 	const error = props.error;
+
 	return (
 		<div
-			className={` ${error.bg}  rounded-md flex flex-col w-full justify-between`}
+			className={` ${error.bg} mt-12 mb-6  rounded-md flex flex-col w-full justify-between`}
 		>
 			<div className="flex flex-row w-full justify-between py-2 px-4">
 				<div className={`w-1/8 flex align-middle`}>
@@ -26,7 +27,7 @@ export default function ErrorDisplay(props) {
 				</div>
 				<button
 					className="w-1/8 right self-start"
-					onClick={() => setError({})}
+					onClick={() => props.setError({})}
 				>
 					<Image
 						src={error.delete}

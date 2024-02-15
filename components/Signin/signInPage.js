@@ -11,12 +11,13 @@ import crossDel from "../../assets/crossDelete.svg";
 import crossGreen from "../../assets/crossGreen.svg";
 import tickImg from "../../assets/tickImg.svg";
 import SigninForm from "./SigninForm";
-import SigninDesign from "./SignInDesign";
 import { useMediaQuery } from "react-responsive";
 import DesktopSignin from "../responsive/DesktopSignin";
 
 const SignInPage = (props) => {
 	const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
+	const [mobile, setMobile] = useState(false);
+
 	const isTablet = useMediaQuery({ query: `(max-width: 1024px)` });
 	const [isDesktop, setIsDesktop] = useState(false);
 	useEffect(() => {
@@ -27,7 +28,7 @@ const SignInPage = (props) => {
 	const router = useRouter();
 	const emailCtx = useContext(EmailContext);
 	const getEmail = emailCtx.setEmail;
-	
+
 	const submitHandler = async (e, email, password) => {
 		e.preventDefault();
 		getEmail(email);
@@ -66,17 +67,20 @@ const SignInPage = (props) => {
 		}
 	};
 
+	useEffect(() => {
+		isMobile ? setMobile(true) : setMobile(false);
+	}, [isMobile]);
+
 	return (
 		<SessionProvider>
-			{isMobile && (
+			{mobile && (
 				<SigninForm
-					// setEmail={setEmail}
-					// setPassword={setPassword}
 					error={error}
+					setError={setError}
 					submitHandler={submitHandler}
 				/>
 			)}
-			{/* {isDesktop && <DesktopSignin></DesktopSignin>} */}
+			{isDesktop && <DesktopSignin />}
 		</SessionProvider>
 	);
 };

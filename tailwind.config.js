@@ -24,6 +24,7 @@ module.exports = {
         red200: "rgb(254 202 202)",
         red700: "rgb(185 28 28)",
         green500: '#00EE00',
+        transparentWhite: 'rgba(255, 255, 255, 0.15)',
       },
       fontFamily: {
         "rubik": "var(--font-rubik)",
