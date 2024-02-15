@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import ErrorDisplay from "./ErrorDisplay";
-import SigninDesign from "./SignInDesign";
+import SigninDesign from "./SigninDesign";
 import Link from "next/link";
 
 export default function SigninForm(props) {
