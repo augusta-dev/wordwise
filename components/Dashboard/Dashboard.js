@@ -37,7 +37,7 @@ const Dashboard = (props) => {
 	return (
 		<div
 			className={`${
-				isDesktop && "px-6"
+				isDesktop && "px-5"
 			} flex justify-between h-screen flex-col font-signika pb-14 pt-10 text-justify`}
 		>
 			{mobile && (
