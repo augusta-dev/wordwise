@@ -6,29 +6,14 @@ import WordDisplay from "./WordDisplay";
 import WordSearch from "./WordSearch";
 import ListContext from "../WordList/ListContext";
 import MostRecentWordTr from "./MostRecentWordTr";
-import { useMediaQuery } from "react-responsive";
 import Navbar from "../layout/Navbar";
-import DesktopButtons from "./DesktopButtons";
+import SizeContext from "../responsive/SizeContext";
 
 const Dashboard = (props) => {
-	const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
-	const [mobile, setMobile] = useState(false);
-
-	const isTablet = useMediaQuery({ query: `(max-width: 1024px)` });
-	const [tablet, setTablet] = useState(false);
-
-	const [isDesktop, setIsDesktop] = useState(false);
-	useEffect(() => {
-		!isMobile && !isTablet ? setIsDesktop(true) : setIsDesktop(false);
-	}, [isMobile, isTablet]);
-
-	useEffect(() => {
-		isMobile ? setMobile(true) : setMobile(false);
-	}, [isMobile]);
-
-	useEffect(() => {
-		isTablet ? setTablet(true) : setTablet(false);
-	}, [isTablet]);
+	const sizeCtx = React.useContext(SizeContext);
+	const mobile = sizeCtx.mobile;
+	const tablet = sizeCtx.tablet;
+	const desktop = sizeCtx.desktop;
 
 	const [errorMessage, setErrorMessage] = useState("");
 
@@ -37,7 +22,7 @@ const Dashboard = (props) => {
 	return (
 		<div
 			className={`${
-				isDesktop && "px-6"
+				desktop && "px-6"
 			} flex justify-between h-screen flex-col font-signika pb-14 pt-10 text-justify`}
 		>
 			{mobile && (
@@ -63,7 +48,7 @@ const Dashboard = (props) => {
 					</div>
 				</>
 			)}
-			{isDesktop && (
+			{desktop && (
 				<>
 					<Navbar dashboard={true}></Navbar>
 					<div className="flex flex-row w-full mt-5">

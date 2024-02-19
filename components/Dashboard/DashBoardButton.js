@@ -15,7 +15,7 @@ const DashBoardButton = (props) => {
 				alt=""
 				className={`${
 					props.desktop && "h-6 w-4 mr-2"
-				} "inline h-4 relative -top-[3px]"`}
+				} inline h-4 relative -top-[3px]`}
 			/>
 			<p className={`${props.desktop && 'leading-4'} inline relative pl-[2px] -top-[2px]`}>{props.text}</p>
 		</button>

@@ -7,26 +7,14 @@ import { useMediaQuery } from "react-responsive";
 import Navbar from "../components/layout/Navbar";
 import Desktopsplash from "../components/responsive/Desktopsplash";
 import Mobilesplash from "../components/responsive/Mobilesplash";
+import SizeContext from "../components/responsive/SizeContext";
+
 
 const SplashScreen = () => {
-	const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
-	const [mobile, setMobile] = useState(false);
-
-	const isTablet = useMediaQuery({ query: `(max-width: 1024px)` });
-	const [tablet, setTablet] = useState(false);
-
-	const [isDesktop, setIsDesktop] = useState(false);
-	useEffect(() => {
-		!isMobile && !isTablet ? setIsDesktop(true) : setIsDesktop(false);
-	}, [isMobile, isTablet]);
-
-	useEffect(() => {
-		isMobile ? setMobile(true) : setMobile(false);
-	}, [isMobile]);
-
-	useEffect(() => {
-		isTablet ? setTablet(true) : setTablet(false);
-	}, [isTablet]);
+	const sizeCtx = React.useContext(SizeContext);
+	const mobile = sizeCtx.mobile;
+	const tablet = sizeCtx.tablet;
+	const desktop = sizeCtx.desktop;
 	//if the value of a variable is going to change after rendering, use  a react hook to execute that change
 
 	const { data: session } = useSession();
@@ -39,7 +27,7 @@ const SplashScreen = () => {
 		<>
 			{mobile && <Mobilesplash />}
 			{tablet && <Mobilesplash />}
-			{isDesktop && (
+			{desktop && (
 				<div className="w-full px-[3vw]">
 					<Navbar about={true} />
 					<Desktopsplash />

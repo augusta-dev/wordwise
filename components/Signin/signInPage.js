@@ -1,36 +1,22 @@
 "use client";
 import { SessionProvider, signIn, useSession } from "next-auth/react";
-import React, { useState, useEffect, useContext } from "react";
-import "./Raindrops.css";
+import React, { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
+import "./Raindrops.css";
 import EmailContext from "../EmailContext/EmailContext";
 import crossImg from "../../assets/crossImg.svg";
 import crossDel from "../../assets/crossDelete.svg";
 import crossGreen from "../../assets/crossGreen.svg";
 import tickImg from "../../assets/tickImg.svg";
 import SigninForm from "./SigninForm";
-import { useMediaQuery } from "react-responsive";
 import DesktopSignin from "../responsive/DesktopSignin";
+import SizeContext from "../responsive/SizeContext";
 
 const SignInPage = (props) => {
-	const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
-	const [mobile, setMobile] = useState(false);
-
-	const isTablet = useMediaQuery({ query: `(max-width: 1024px)` });
-	const [tablet, setTablet] = useState(false);
-
-	const [isDesktop, setIsDesktop] = useState(false);
-	useEffect(() => {
-		!isMobile && !isTablet ? setIsDesktop(true) : setIsDesktop(false);
-	}, [isMobile, isTablet]);
-
-	useEffect(() => {
-		isMobile ? setMobile(true) : setMobile(false);
-	}, [isMobile]);
-
-	useEffect(() => {
-		isTablet ? setTablet(true) : setTablet(false);
-	}, [isTablet]);
+	const sizeCtx = React.useContext(SizeContext);
+	const mobile = sizeCtx.mobile;
+	const tablet = sizeCtx.tablet;
+	const desktop = sizeCtx.desktop;
 
 	const [error, setError] = useState({});
 	const router = useRouter();
@@ -84,14 +70,7 @@ const SignInPage = (props) => {
 					submitHandler={submitHandler}
 				/>
 			)}
-			{tablet && (
-				<DesktopSignin
-					error={error}
-					setError={setError}
-					submitHandler={submitHandler}
-				/>
-			)}
-			{isDesktop && (
+			{(desktop || tablet) && (
 				<DesktopSignin
 					error={error}
 					setError={setError}

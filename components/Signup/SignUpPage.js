@@ -1,31 +1,16 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import MobileSignUp from "../responsive/MobileSignUp";
 import { signIn } from "next-auth/react";
 import DesktopSignUp from "../responsive/DesktopSignUp";
-import { useMediaQuery } from "react-responsive";
+import SizeContext from "../responsive/SizeContext";
 
 const SignUp = () => {
-	const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
-	const [mobile, setMobile] = useState(false);
-
-	const isTablet = useMediaQuery({ query: `(max-width: 1024px)` });
-	const [tablet, setTablet] = useState(false);
-
-	const [isDesktop, setIsDesktop] = useState(false);
-
-	useEffect(() => {
-		!isMobile && !isTablet ? setIsDesktop(true) : setIsDesktop(false);
-	}, [isMobile, isTablet]);
-
-	useEffect(() => {
-		isMobile ? setMobile(true) : setMobile(false);
-	}, [isMobile]);
-
-	useEffect(() => {
-		isTablet ? setTablet(true) : setTablet(false);
-	}, [isTablet]);
+	const sizeCtx = useContext(SizeContext);
+	const mobile = sizeCtx.mobile;
+	const tablet = sizeCtx.tablet;
+	const desktop = sizeCtx.desktop;
 
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
@@ -89,18 +74,7 @@ const SignUp = () => {
 					error={error}
 				/>
 			)}
-			{tablet && (
-				<DesktopSignUp
-					setName={setName}
-					setEmail={setEmail}
-					setPasswordHolder={setPasswordHolder}
-					passwordHolder={passwordHolder}
-					setPassword={setPassword}
-					submitHandler={submitHandler}
-					error={error}
-				/>
-			)}
-			{isDesktop && (
+			{(desktop || tablet) && (
 				<DesktopSignUp
 					setName={setName}
 					setEmail={setEmail}
