@@ -8,7 +8,7 @@ import Navbar from "../components/layout/Navbar";
 import Desktopsplash from "../components/responsive/Desktopsplash";
 import Mobilesplash from "../components/responsive/Mobilesplash";
 import SizeContext from "../components/responsive/SizeContext";
-import Responsive from "../components/responsive/Responsive";
+// import Responsive from "../components/responsive/Responsive";
 const SplashScreen = () => {
 	const sizeCtx = React.useContext(SizeContext);
 	const mobile = sizeCtx.mobile;
@@ -23,7 +23,7 @@ const SplashScreen = () => {
 	}, [session]);
 
 	return (
-		<Responsive>
+		<>
 			{mobile && <Mobilesplash />}
 			{tablet && <Mobilesplash />}
 			{desktop && (
@@ -32,7 +32,7 @@ const SplashScreen = () => {
 					<Desktopsplash />
 				</div>
 			)}
-		</Responsive>
+		</>
 	);
 };
 export default SplashScreen;
