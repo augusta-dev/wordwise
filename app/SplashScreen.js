@@ -9,7 +9,6 @@ import Desktopsplash from "../components/responsive/Desktopsplash";
 import Mobilesplash from "../components/responsive/Mobilesplash";
 import SizeContext from "../components/responsive/SizeContext";
 
-
 const SplashScreen = () => {
 	const sizeCtx = React.useContext(SizeContext);
 	const mobile = sizeCtx.mobile;
