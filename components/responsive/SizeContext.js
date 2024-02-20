@@ -1,9 +1,9 @@
 'use client'
 import React from "react";
 const SizeContext = React.createContext({
-	mobile: true,
-	tablet: true,
-	desktop: true,
+	mobile: false,
+	tablet: false,
+	desktop: false,
 	setMobile: () => {},
 	setTablet: () => {},
 	setDesktop: () => {},
