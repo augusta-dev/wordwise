@@ -6,19 +6,34 @@ import SizeContext from "../responsive/SizeContext";
 
 const Background = (props) => {
 	const sizeCtx = useContext(SizeContext);
-	const mobile = sizeCtx.mobile;
-	const tablet = sizeCtx.tablet;
-	const desktop = sizeCtx.desktop;
+	const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
+	const isTablet = useMediaQuery({
+		query: `(max-width: 1024px; min-width: 768px)`,
+	});
+
+	useEffect(() => {
+		!isMobile && !isTablet
+			? sizeCtx.setDesktop(true)
+			: sizeCtx.setDesktop(false);
+	}, [isMobile, isTablet]);
+
+	useEffect(() => {
+		isMobile ? sizeCtx.setMobile(true) : sizeCtx.setMobile(false);
+	}, [isMobile]);
+
+	useEffect(() => {
+		isTablet ? sizeCtx.setTablet(true) : sizeCtx.setTablet(false);
+	}, [isTablet]);
 
 	return (
 		<>
 			{/* <Responsive> */}
-				<Layout
-					mobile={mobile}
-					isDesktop={desktop}
-				>
-					{props.children}
-				</Layout>
+			<Layout
+				mobile={isMobile}
+				isDesktop={sizeCtx.desktop}
+			>
+				{props.children}
+			</Layout>
 			{/* </Responsive> */}
 		</>
 	);
