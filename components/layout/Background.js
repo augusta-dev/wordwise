@@ -1,7 +1,7 @@
 "use client";
 import { useContext } from "react";
 import Layout from "./Layout";
-import Responsive from "../responsive/Responsive";
+// import Responsive from "../responsive/Responsive";
 import SizeContext from "../responsive/SizeContext";
 
 const Background = (props) => {
@@ -12,14 +12,14 @@ const Background = (props) => {
 
 	return (
 		<>
-			<Responsive>
+			{/* <Responsive> */}
 				<Layout
 					mobile={mobile}
 					isDesktop={desktop}
 				>
 					{props.children}
 				</Layout>
-			</Responsive>
+			{/* </Responsive> */}
 		</>
 	);
 };
