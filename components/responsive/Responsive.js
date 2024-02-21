@@ -7,7 +7,7 @@ import { useEffect, useContext, useState } from "react";
 export default function Responsive(props) {
 	const sizeCtx = useContext(SizeContext);
 	const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
-	
+	//vercel doesnt support having multiple arguments in the same query string
 	const [isTablet, setTablet] = useState(false)
 
 	const isBelowLaptop = useMediaQuery({ query: `(max-width: 1024px)` });
