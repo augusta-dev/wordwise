@@ -16,11 +16,11 @@ const SplashScreen = () => {
 	const desktop = sizeCtx.desktop;
 	//if the value of a variable is going to change after rendering, use  a react hook to execute that change
 
-	const { data: session } = useSession();
-	const router = useRouter();
-	useEffect(() => {
-		session ? router.replace("dashboard") : null;
-	}, [session]);
+	// const { data: session } = useSession();
+	// const router = useRouter();
+	// useEffect(() => {
+	// 	session ? router.replace("dashboard") : null;
+	// }, [session]);
 
 	return (
 		<>

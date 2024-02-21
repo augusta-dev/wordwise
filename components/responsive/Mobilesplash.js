@@ -1,11 +1,25 @@
+'use client'
 import React from "react";
 import SplashIllustration from "../../assets/SplashIllustration";
 import Link from "next/link";
 import Button from "../UI/Button";
 import Logo from "../UI/Logo";
+import Image from "next/image";
+import arrow from "../../assets/arrow_legs.svg";
+
 export default function Mobilesplash() {
 	return (
 		<>
+			<div className="flex pb-2 flex-col items-end w-full">
+				<Link className="flex" href='/dashboard'>
+					<p>Continue to dashboard</p>
+					<Image
+						src={arrow} 
+						className="ml-2 mt-1 h-4 w-auto animate-bounce"
+						alt="arrow"
+					/>
+				</Link>
+			</div>
 			<SplashIllustration />
 			<Logo />
 			<div className="font-rubik font-semibold text-darkPurple text-justify leading-5 pb-4">

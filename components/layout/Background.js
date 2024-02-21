@@ -1,7 +1,6 @@
 "use client";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import Layout from "./Layout";
-import { useMediaQuery } from "react-responsive";
 import Responsive from "../responsive/Responsive";
 import SizeContext from "../responsive/SizeContext";
 
