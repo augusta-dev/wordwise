@@ -13,7 +13,7 @@ const sizeReducer = (state, action) => {
 	}
 };
 export default function SizeProvider(props) {
-	const [state, dispatch] = React.useReducer(sizeReducer, {mobile: true, tablet: true, desktop: true});
+	const [state, dispatch] = React.useReducer(sizeReducer, {});
 	const setMobile = (bool) => {
 		dispatch({ type: "MOBILE", payload: bool });
 	};
