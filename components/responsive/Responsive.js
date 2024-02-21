@@ -7,10 +7,16 @@ import { useEffect, useContext } from "react";
 export default function Responsive(props) {
 	const sizeCtx = useContext(SizeContext);
 	const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
-	const isTablet = useMediaQuery({
-		query: `(max-width: 1024px; min-width: 768px)`,
-	});
+	
+	const [isTablet, setTablet] = useState(false)
 
+	const isBelowLaptop = useMediaQuery({ query: `(max-width: 1024px)` });
+	const isAboveMobile = useMediaQuery({ query: `(min-width: 768px)` });
+
+	useEffect(()=> {
+		(isBelowLaptop && isAboveMobile) ? setTablet(true) : setTablet(false);
+	}, [isBelowLaptop, isAboveMobile])
+	
 	useEffect(() => {
 		!isMobile && !isTablet
 			? sizeCtx.setDesktop(true)
