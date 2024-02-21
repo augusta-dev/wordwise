@@ -2,7 +2,7 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 import SizeContext from "./SizeContext";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 
 export default function Responsive(props) {
 	const sizeCtx = useContext(SizeContext);
@@ -16,7 +16,7 @@ export default function Responsive(props) {
 	useEffect(()=> {
 		(isBelowLaptop && isAboveMobile) ? setTablet(true) : setTablet(false);
 	}, [isBelowLaptop, isAboveMobile])
-	
+
 	useEffect(() => {
 		!isMobile && !isTablet
 			? sizeCtx.setDesktop(true)
