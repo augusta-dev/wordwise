@@ -5,7 +5,7 @@ import Responsive from '../responsive/Responsive';
 import SizeContext from "../responsive/SizeContext";
 const Background = (props) => {
 	const sizeCtx = useContext(SizeContext);
-	const mobsile = sizeCtx.mobile;
+	const mobile = sizeCtx.mobile;
 	const tablet = sizeCtx.tablet;
 	const desktop = sizeCtx.desktop;
 
