@@ -16,6 +16,7 @@ const Background = (props) => {
 			<Layout
 				mobile={mobile}
 				isDesktop={desktop}
+				tablet={tablet}
 			>
 				{props.children}
 			</Layout>

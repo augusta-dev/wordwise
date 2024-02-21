@@ -6,13 +6,18 @@ import Button from "../UI/Button";
 import Logo from "../UI/Logo";
 import Image from "next/image";
 import arrow from "../../assets/arrow_legs.svg";
+import SizeContext from "./SizeContext";
+import splash from "../../assets/splash tablet.svg";
 
 export default function Mobilesplash() {
+	const sizeCtx = React.useContext(SizeContext);
+	const tablet = sizeCtx.tablet;
+	
 	return (
 		<>
 			<div className="flex pb-2 flex-col items-end w-full">
 				<Link className="flex" href='/dashboard'>
-					<p>Continue to dashboard</p>
+					<p className={`${tablet && 'font-medium'}`}>Continue to dashboard</p>
 					<Image
 						src={arrow} 
 						className="ml-2 mt-1 h-4 w-auto animate-bounce"
@@ -20,15 +25,16 @@ export default function Mobilesplash() {
 					/>
 				</Link>
 			</div>
-			<SplashIllustration />
+			{!tablet && <SplashIllustration />}
+			{tablet && <Image src={splash} className="w-full px-4 -ml-2 -mb-4"></Image>}
 			<Logo />
-			<div className="font-rubik font-semibold text-darkPurple text-justify leading-5 pb-4">
+			<div className={`${tablet && 'font-medium text-[17px]'}  font-rubik font-semibold text-darkPurple text-justify leading-5 pb-4`}>
 				<p>
 					Unlock language treasures, one word at a time. Here,
 					dictionary meets mastery. We turn knowledge into lasting
 					wisdom.
 				</p>
-				<p className="font-signika text-lg leading-4 pt-2">
+				<p className={`${tablet && 'text-xl pb-2'} font-signika text-lg leading-4 pt-2`}>
 					How It Works:
 				</p>
 				<p className="text-lightPurple ">
@@ -43,7 +49,7 @@ export default function Mobilesplash() {
 				<Link href="/signin">
 					<Button
 						variant="contained"
-						className="!mt-4 mb-2"
+						className={`${tablet && 'py-2 mb-1'} !mt-4 mb-2`}
 					>
 						Sign in
 					</Button>
@@ -51,7 +57,7 @@ export default function Mobilesplash() {
 				<Link href="/signup">
 					<Button
 						variant="contained"
-						className="mt-2"
+						className={`${tablet && 'py-2 !mt-1'}  mb-2`}
 					>
 						Sign up
 					</Button>

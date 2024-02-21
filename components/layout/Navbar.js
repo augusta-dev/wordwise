@@ -2,10 +2,14 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from '../../assets/Logo.svg'
+import SizeContext from "../responsive/SizeContext"
+
 export default function Navbar(props) {
-    
+    const sizeCtx = React.useContext(SizeContext);
+	const tablet = sizeCtx.tablet;
+
 	return (
-		<nav className="flex flex-row">
+		<nav className={`${tablet & 'pt-3'} flex  flex-row`}>
 			<div className="w-2/5 flex">
 				<Image
 					src={logo}
@@ -16,7 +20,7 @@ export default function Navbar(props) {
 				<h2 className="font-squada text-2xl ml-4">WordWise</h2>
 			</div>
 
-			<div className="flex font-rubik font-semibold  w-full px-[8%] justify-between mr-[20%]">
+			<div className={`${tablet && 'px-1 mr-0'} flex font-rubik font-semibold  w-full px-[8%] justify-between mr-[20%]`}>
 				<Link href="/" className={`${props.about && "text-blue"}`}>ABOUT</Link>
 				<p>|</p>
 				<Link href="/signin" className={`${props.signin && "text-blue"}`}>SIGNIN</Link>

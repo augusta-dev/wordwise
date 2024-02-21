@@ -5,21 +5,25 @@ import signinillustration from "../../assets/SigninIllustration.svg";
 import DesktopSigninInput from "../UI/DesktopSigninInput";
 import Link from "next/link";
 import ErrorDisplay from "../Signin/ErrorDisplay";
+import SizeContext from "./SizeContext"
 
 export default function DesktopSignin(props) {
+	const sizeCtx = React.useContext(SizeContext);
+	const tablet = sizeCtx.tablet;
+
 	const error = props.error;
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
 	return (
-		<div className="w-full px-[3vw]">
+		<div className={`${tablet && 'py-6'} w-full px-[3vw]`}>
 			<Navbar signin={true}></Navbar>
-			<div className="flex align-middle flex-row">
-				<section className="w-2/5 pr-[4vw] flex flex-col align-middle justify-center">
-					<h1 className="text-[3.2vw] font-signika font-semibold shadow-textBlue">
+			<div className={`${tablet && 'flex-col'} flex align-middle flex-row"`}>
+				<section className={`${tablet && 'w-full'} w-2/5 pr-[4vw] flex flex-col align-middle justify-center`}>
+					<h1 className={`${tablet && 'w-2/5 pt-4'} text-[3.2vw] font-signika font-semibold shadow-textBlue`}>
 						Continue The Journey!
 					</h1>
-					<h5 className="font-semibold font-signika text-lg leading-5 -mt-3">
+					<h5 className={`${tablet && 'w-2/3 pr-6 pt-2'} font-semibold font-signika text-lg leading-5 -mt-3`}>
 						Remember, it’s about absorption, not just access to
 						information
 					</h5>
@@ -29,6 +33,10 @@ export default function DesktopSignin(props) {
 							setError={props.setError}
 						/>
 					)}
+					{tablet && <Image
+						src={signinillustration}
+						className="h-auto w-full -mt-20 pl-32"
+					></Image>}
 					<form className="flex flex-col ">
 						<DesktopSigninInput
 							placeholder="Enter your email address"
@@ -61,12 +69,12 @@ export default function DesktopSignin(props) {
 						</button>
 					</Link>
 				</section>
-				<section className="w-3/5  py-[2vw] -mr-40">
+				{!tablet && <section className="w-3/5  py-[2vw] -mr-40">
 					<Image
 						src={signinillustration}
 						className="h-[90%]"
 					></Image>
-				</section>
+				</section>}
 			</div>
 		</div>
 	);
