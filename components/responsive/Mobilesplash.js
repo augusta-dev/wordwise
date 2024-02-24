@@ -1,6 +1,5 @@
 'use client'
 import React from "react";
-import SplashIllustration from "../../assets/SplashIllustration";
 import Link from "next/link";
 import Button from "../UI/Button";
 import Logo from "../UI/Logo";
@@ -8,6 +7,7 @@ import Image from "next/image";
 import arrow from "../../assets/arrow_legs.svg";
 import SizeContext from "./SizeContext";
 import splash from "../../assets/splash tablet.svg";
+import splashMobile from '../../assets/splashmobile.svg'
 
 export default function Mobilesplash() {
 	const sizeCtx = React.useContext(SizeContext);
@@ -25,7 +25,8 @@ export default function Mobilesplash() {
 					/>
 				</Link>
 			</div>
-			{!tablet && <SplashIllustration />}
+			{!tablet && <Image src={splashMobile} className='w-full h-auto' 
+			 />}
 			{tablet && <Image src={splash} className="w-full px-4 -ml-2 -mb-4"></Image>}
 			<Logo />
 			<div className={`${tablet && 'font-medium text-[17px]'}  font-rubik font-semibold text-darkPurple text-justify leading-5 pb-4`}>

@@ -115,10 +115,10 @@ export default function Layout(props) {
 			</div>
 			<div
 				className={`${
-					mobile && "h-[100vh]"
+					mobile && "h-auto"
 				} w-[100vw] min-h-[100vh] flex justify-center items-center align-middle z-10 blur-0`}
 			>
-				<div className={`${(isDesktop | tablet) ? 'py-5 px-12': 'px-9 py-2'} flex flex-col h-fit w-full text-darkPurple font-rubik`}>
+				<div className={`${(isDesktop | tablet) ? 'py-5 px-12': 'px-9 py-3'} flex flex-col h-fit w-full text-darkPurple font-rubik`}>
 					{props.children}
 				</div>
 			</div>
