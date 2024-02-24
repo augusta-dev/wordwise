@@ -21,9 +21,8 @@ const SignUp = () => {
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
-		console.log("in");
+		
 		if (name == "" || email == "" || password == "") {
-			console.log(name, email, password);
 			setError("Incomplete details");
 			if (password == "") {
 				setError("Invalid password");
