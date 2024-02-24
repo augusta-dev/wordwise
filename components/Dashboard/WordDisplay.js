@@ -12,7 +12,7 @@ const WordDisplay = (props) => {
 
 	return (
 		<>
-			<div className="bg-darkerGray rounded-xl py-2 px-4 text-base font-rubik hover:shadow-inner hover:bg-evenDarkerGray mt-4 shadow-main">
+			<div className="bg-darkerGray rounded-xl py-2 px-4 text-base font-rubik hover:shadow-inner hover:bg-evenDarkerGray my-4 shadow-main ">
 				<h2 className="text-3xl font-signika pb-3 text-center pt-3">
 					All Words Learned
 				</h2>
