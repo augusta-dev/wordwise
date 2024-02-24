@@ -3,38 +3,55 @@ import Navbar from "../layout/Navbar";
 import Image from "next/image";
 import begin from "../../assets/begin.svg";
 import DesktopForm from "../Signup/DesktopForm";
+import SizeContext from "./SizeContext";
 
 export default function DesktopSignUp(props) {
+	const sizeCtx = React.useContext(SizeContext);
+	const tablet = sizeCtx.tablet;
 	return (
-		<div className="flex flex-col px-12 py-6">
+		<div className={`grid grid-cols-1 ${tablet ? "" : "px-12 "} `}>
 			<Navbar signup={true} />
-			<section className="mt-8  font-signika font-semibold ">
-				<h1 className="text-5xl ">Begin Your Journey!</h1>
-				<h4 className="ml-72 text-lg text-purpleBody -mt-1">
+			<section
+				className={`${
+					tablet ? "mt-2 order-1" : "mt-4"
+				} font-signika font-semibold col-start-1`}
+			>
+				<h1 className={`${tablet ? "text-[4vw]" : "text-[3vw]"} `}>
+					Begin Your Journey!
+				</h1>
+				<h4
+					className={`${
+						tablet ? "-mt-3 text-lg" : "-mt-1 text-2xl"
+					} ml-72 text-purpleBody`}
+				>
 					Unlock language treasures, one word at a time.
 				</h4>
 			</section>
-            {props.error && (
+			{props.error && (
 				<p className="bg-red text-white mt-0">{props.error}</p>
 			)}
-			<DesktopForm
-				setName={props.setName}
-				setEmail={props.setEmail}
-				setPasswordHolder={props.setPasswordHolder}
-				passwordHolder={props.passwordHolder}
-				setPassword={props.setPassword}
-				submitHandler={props.submitHandler}
-				error={props.error}
-			/>
+			<div className={`${tablet ? "order-3 w-full" : "order-4 "}`}>
+				<DesktopForm
+					setName={props.setName}
+					setEmail={props.setEmail}
+					setPasswordHolder={props.setPasswordHolder}
+					passwordHolder={props.passwordHolder}
+					setPassword={props.setPassword}
+					submitHandler={props.submitHandler}
+					error={props.error}
+					tablet={tablet}
+				/>
 
-			<button className="h-[4vw] w-[61%] bg-lightPurple rounded-full mt-4 text-white font-semibold ml-[7%]">
-				Sign In Instead
-			</button>
-
+				<button className={`${tablet ? 'h-12 my-2 rounded-xl w-full ' : 'h-[4vw] w-[61%] rounded-full ml-[7%] '} bg-lightPurple text-white font-semibold `}>
+					Sign In Instead
+				</button>
+			</div>
 
 			<Image
 				src={begin}
-				className="-mt-[21%] w-[84%] h-auto self-end z-10"
+				className={`${
+					tablet ? "order-2 mb-4" : "order-4 -mt-[21%] w-[84%] ml-auto"
+				}  h-auto  z-10`}
 				alt="begin"
 			></Image>
 		</div>

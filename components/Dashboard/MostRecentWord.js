@@ -12,9 +12,12 @@ const MostRecentWord = (props) => {
 	word.synonyms ? (synonyms = Object.entries(word.synonyms)) : null;
 	let translations = [];
 	let trans = word.translation;
-	if (trans || trans.length > 0) {
-		translations = Object.entries(word.translation);
+	if (trans) {
+		if (trans.length > 0) {
+			translations = Object.entries(word.translation);
+		}
 	}
+
 	const capitalizeInitial = (string) => {
 		return string[0].toUpperCase() + string.slice(1);
 	};
@@ -30,29 +33,32 @@ const MostRecentWord = (props) => {
 						</span>
 						?
 					</h2>
-					{meaning && meaning.map((mean) => (
-						<p
-							key={Math.random().toString()}
-							id="meaning"
-							className="pb-1"
-						>
-							Meaning ({mean[0]}): {capitalizeInitial(mean[1])}
-						</p>
-					))}
-					{synonyms && synonyms.map((syn) => {
-						if (syn[1].length !== 0) {
-							return (
-								<p
-									key={Math.random().toString()}
-									id="syn"
-									className="text-purpleBody pb-1"
-								>
-									Synonyns ({syn[0]}):{" "}
-									<ReturnText text={syn[1]} />
-								</p>
-							);
-						}
-					})}
+					{meaning &&
+						meaning.map((mean) => (
+							<p
+								key={Math.random().toString()}
+								id="meaning"
+								className="pb-1"
+							>
+								Meaning ({mean[0]}):{" "}
+								{capitalizeInitial(mean[1])}
+							</p>
+						))}
+					{synonyms &&
+						synonyms.map((syn) => {
+							if (syn[1].length !== 0) {
+								return (
+									<p
+										key={Math.random().toString()}
+										id="syn"
+										className="text-purpleBody pb-1"
+									>
+										Synonyns ({syn[0]}):{" "}
+										<ReturnText text={syn[1]} />
+									</p>
+								);
+							}
+						})}
 					{translations.length > 0 &&
 						translations.map((translation) => {
 							if (translation[1].length !== 0) {

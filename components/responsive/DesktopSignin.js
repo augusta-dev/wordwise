@@ -16,11 +16,11 @@ export default function DesktopSignin(props) {
 	const [password, setPassword] = useState("");
 
 	return (
-		<div className={`${tablet && 'py-6'} w-full px-[3vw]`}>
+		<div className={`${!tablet && "px-[3vw]"} w-full`}>
 			<Navbar signin={true}></Navbar>
-			<div className={`${tablet && 'flex-col'} flex align-middle flex-row"`}>
+			<div className={`${tablet && 'flex-col'} flex align-middle flex-row`}>
 				<section className={`${tablet && 'w-full'} w-2/5 pr-[4vw] flex flex-col align-middle justify-center`}>
-					<h1 className={`${tablet && 'w-2/5 pt-4'} text-[3.2vw] font-signika font-semibold shadow-textBlue`}>
+					<h1 className={`${tablet ? 'w-3/5 pt-4 text-[4vw]' : 'text-[3.2vw]'}  font-signika font-semibold shadow-textBlue`}>
 						Continue The Journey!
 					</h1>
 					<h5 className={`${tablet && 'w-2/3 pr-6 pt-2'} font-semibold font-signika text-lg leading-5 -mt-3`}>

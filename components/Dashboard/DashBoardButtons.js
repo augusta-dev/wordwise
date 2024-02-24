@@ -38,7 +38,7 @@ const DashBoardButtons = (props) => {
 				text={`Total Words Learned: ${length}`}
 				desktop={props.desktop}
 			/>
-			<div className="flex flex-col h-48- w-[32%] bg-purpleBody rounded-lg">
+			<div className="flex flex-col w-[32%] bg-purpleBody rounded-lg">
 				<DashBoardButton
 					className={`${props.font} bg-purpleBody text-textPurple`}
 					icon={day}

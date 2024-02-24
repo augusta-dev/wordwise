@@ -22,27 +22,26 @@ const Dashboard = (props) => {
 	return (
 		<div
 			className={`${
-				desktop && "px-6"
-			} flex justify-between h-screen flex-col font-signika pb-14 pt-10 text-justify`}
+				desktop && "px-2 py-2 mb-4"
+			} ${tablet && 'py-1' } ${mobile && 'pb-14 pt-10'} flex justify-between h-screen flex-col font-signika  text-justify`}
 		>
 			{mobile && (
 				<>
-					<DashBoardButtons />
+					<DashBoardButtons font='leading-[8px]' />
 					<WordSearch setErrorMessage={setErrorMessage} />
 				</>
 			)}
 			{tablet && (
 				<>
 					<Navbar dashboard={true}></Navbar>
-					<div className="flex flex-row w-full mt-5">
+					<div className={`flex flex-row w-full mt-2`}>
 						<DashBoardButtons
-							className="w-[55%]"
-							font="text-[15px] px-6 h-12"
-							desktop={true}
+							className="w-[58%]"
+							font="text-[11px] px-1 h-10 !leading-3"
 						/>
 						<WordSearch
 							className="w-[45%]"
-							desktop={true}
+							tablet={true}
 							setErrorMessage={setErrorMessage}
 						/>
 					</div>
@@ -54,7 +53,7 @@ const Dashboard = (props) => {
 					<div className="flex flex-row w-full mt-5">
 						<DashBoardButtons
 							className="w-[55%]"
-							font="text-[15px] px-6 h-12"
+							font="text-[12px] px-6 h-10 !leading-3"
 							desktop={true}
 						/>
 						<WordSearch

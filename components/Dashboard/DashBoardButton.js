@@ -5,7 +5,7 @@ const DashBoardButton = (props) => {
 		<button
 			className={`${
 				props.className
-			}  h-fit rounded-lg px-3 py-2 text-[12px] leading-[8px] text-left ${
+			}  h-fit rounded-lg px-3 py-2 text-[12px] text-left ${
 				props.desktop && "flex items-center leading-5"
 			}`}
 			onClick={props.onClick}
@@ -17,7 +17,7 @@ const DashBoardButton = (props) => {
 					props.desktop && "h-6 w-4 mr-2"
 				} inline h-4 relative -top-[3px]`}
 			/>
-			<p className={`${props.desktop && 'leading-4'} inline relative pl-[2px] -top-[2px]`}>{props.text}</p>
+			<p className={`${props.desktop && 'leading-[13px] px-auto '} inline relative pl-[2px] -top-[2px]`}>{props.text}</p>
 		</button>
 	);
 };

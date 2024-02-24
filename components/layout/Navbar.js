@@ -20,7 +20,7 @@ export default function Navbar(props) {
 				<h2 className="font-squada text-2xl ml-4">WordWise</h2>
 			</div>
 
-			<div className={`${tablet && 'px-1 mr-0'} flex font-rubik font-semibold  w-full px-[8%] justify-between mr-[20%]`}>
+			<div className={`${tablet ? 'px-1 mr-0 w-2/3 ': 'mr-[20%] px-[8%] w-full '} flex font-rubik font-semibold  justify-between `}>
 				<Link href="/" className={`${props.about && "text-blue"}`}>ABOUT</Link>
 				<p>|</p>
 				<Link href="/signin" className={`${props.signin && "text-blue"}`}>SIGNIN</Link>

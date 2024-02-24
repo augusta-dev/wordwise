@@ -52,7 +52,7 @@ export default function DesktopForm(props) {
 				required
 			/>
 			<button
-				className="h-[4vw] w-[61%] bg-purpleBody rounded-full mt-3 text-white font-semibold"
+				className={`${props.tablet ? 'h-12 my-2 rounded-xl w-full' : 'h-[4vw]  my-3 rounded-full w-[61%] '}   bg-purpleBody text-white font-semibold`}
 				type="submit"
 				onClick={(e) => props.submitHandler(e)}
 			>

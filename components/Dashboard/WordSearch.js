@@ -12,10 +12,20 @@ import { SessionProvider, useSession } from "next-auth/react";
 
 const WordSearch = (props) => {
 	const { data: session } = useSession();
-	const word = useRef("");
+
 	const listCtx = useContext(ListContext);
 	const addWordToList = listCtx.addWord;
 	const language = listCtx.language;
+
+	const word = useRef("");
+
+	const checkKey = (e) => {
+
+		if(e.key == "Enter"){
+			addWordHandler()
+		}
+	}
+
 	const addWordHandler = async () => {
 		let wordAdded = {};
 		let translations = {};
@@ -47,7 +57,7 @@ const WordSearch = (props) => {
 								def.tr.map((obj) => {
 									translation.push(obj.text);
 								});
-								if (translation.length < 3 && def.tr[0].syn){
+								if (translation.length < 3 && def.tr[0].syn) {
 									let syn = def.tr[0].syn;
 									for (
 										let i = 0;
@@ -62,7 +72,9 @@ const WordSearch = (props) => {
 									returnFirstFive(translation);
 							});
 						} else {
-							props.setErrorMessage("This word has no translation");
+							props.setErrorMessage(
+								"This word has no translation",
+							);
 						}
 						if (wordDefinition && language === "English") {
 							let meaning = wordDefinition.meanings;
@@ -86,8 +98,7 @@ const WordSearch = (props) => {
 									});
 									synonyms[pOS] = returnFirstFive(synonym);
 								}
-							} 
-							else {
+							} else {
 								meaning.map((mean) => {
 									let pOS = mean.partOfSpeech;
 									let synonym = [];
@@ -162,12 +173,26 @@ const WordSearch = (props) => {
 
 	return (
 		<SessionProvider>
-			<div className={`${props.className}  shadow-main rounded-md  flex flex-wrap" ${props.desktop && 'h-12 ml-4'} ${!props.desktop && 'h-8 mt-4'}`}>
+			<div
+				className={`${
+					props.className
+				}  shadow-main rounded-md  flex flex-wrap" ${
+					(props.desktop || props.tablet) && "h-10 ml-4"
+				} ${!props.desktop && !props.tablet && "h-8 mt-4"}`}
+			>
 				<input
 					className="placeholder:text-purpleBody text-purpleBody text-center text-lg inline bg-transparent w-[87%] focus:outline-none"
 					placeholder="+ Add Word"
 					type="text"
-					onChange={(e) => (word.current = e.target.value)}
+					onChange={(e) => {
+						word.current = e.target.value;
+					}}
+					onKeyUp={(e) => {
+						checkKey(e);
+					}}
+					onKeyDown={(e) => {
+						checkKey(e);
+					}}
 				/>
 				<button
 					className="bg-lightPurple h-full w-[13%] align-middle flex px-3 rounded-md rounded-l-none justify-center"
@@ -175,7 +200,9 @@ const WordSearch = (props) => {
 				>
 					<Image
 						src={search}
-						className={`${props.desktop && 'w-7'} flex-end self-center px-auto`}
+						className={`${
+							props.desktop && "w-7"
+						} flex-end self-center px-auto`}
 						alt="search icon"
 					/>
 				</button>
