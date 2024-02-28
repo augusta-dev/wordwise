@@ -12,7 +12,8 @@ const MostRecentWordTr = (props) => {
 	word.examples ? (examples = word.examples) : null;
 	let translations = [];
 	let trans = word.translation;
-	if (trans || trans.length > 0) {
+
+	if (trans) {
 		translations = Object.entries(word.translation);
 	}
 	const capitalizeInitial = (string) => {
@@ -20,7 +21,6 @@ const MostRecentWordTr = (props) => {
 	};
 
 	if (word && Object.keys(word).length > 0) {
-		// const word = props.word;
 
 		return (
 			<div className="bg-lightGray rounded-xl py-3 px-5 text-sm leading-[18px] font-rubik hover:shadow-inner hover:bg-darkerGray mt-4 shadow-main mb-2">

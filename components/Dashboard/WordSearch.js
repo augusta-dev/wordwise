@@ -20,7 +20,6 @@ const WordSearch = (props) => {
 	const word = useRef("");
 
 	const checkKey = (e) => {
-
 		if(e.key == "Enter"){
 			addWordHandler()
 		}
@@ -36,7 +35,7 @@ const WordSearch = (props) => {
 		if (!word.current) {
 			props.setErrorMessage("Please rewrite the word");
 		} else {
-			props.setErrorMessage("");
+			props.setErrorMessage("Adding word...");
 		}
 		const getTrans = async (enteredWord, language) => {
 			try {
@@ -165,6 +164,7 @@ const WordSearch = (props) => {
 					},
 				});
 				const data = await response.json();
+				props.setErrorMessage("")
 			} catch (error) {
 				console.error(error);
 			}
@@ -188,9 +188,6 @@ const WordSearch = (props) => {
 						word.current = e.target.value;
 					}}
 					onKeyUp={(e) => {
-						checkKey(e);
-					}}
-					onKeyDown={(e) => {
 						checkKey(e);
 					}}
 				/>

@@ -1,5 +1,5 @@
 "use client";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import ListContext from "../WordList/ListContext";
 import ReturnText from "../UI/ReturnText";
 const MostRecentWord = (props) => {
@@ -10,13 +10,16 @@ const MostRecentWord = (props) => {
 	word.meaning ? (meaning = Object.entries(word.meaning)) : null;
 	let synonyms = "";
 	word.synonyms ? (synonyms = Object.entries(word.synonyms)) : null;
-	let translations = [];
+
 	let trans = word.translation;
-	if (trans) {
-		if (trans.length > 0) {
-			translations = Object.entries(word.translation);
+
+	const [translations, setTranslations] = useState([]);
+
+	useEffect(() => {
+		if (trans) {
+			setTranslations(Object.entries(trans));
 		}
-	}
+	}, [trans]);
 
 	const capitalizeInitial = (string) => {
 		return string[0].toUpperCase() + string.slice(1);
