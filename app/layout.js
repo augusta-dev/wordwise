@@ -39,7 +39,9 @@ export default function RootLayout({ children }) {
 						className={`${rubik.variable} ${signikaNegative.variable} ${squadaOne.variable}`}
 					>
 						<Providers>
-							<Background>{children}</Background>
+							<Background>
+								{children}
+							</Background>
 						</Providers>
 					</div>
 				</main>

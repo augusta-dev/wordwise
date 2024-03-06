@@ -10,11 +10,11 @@ const SplashScreen = () => {
 	const mobile = sizeCtx.mobile;
 	const tablet = sizeCtx.tablet;
 	const desktop = sizeCtx.desktop;
-	//if the value of a variable is going to change after rendering, use  a react hook to execute that change
 
 	return (
 		<>
-			{mobile | tablet && <Mobilesplash />}
+			{(mobile ) && <Mobilesplash />}
+			{ tablet && <Mobilesplash />}
 			{desktop && (
 				<div className="w-full px-[3vw]">
 					<Navbar about={true} />

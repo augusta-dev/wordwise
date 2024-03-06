@@ -64,7 +64,7 @@ export default function DesktopSignin(props) {
 						</button>
 					</form>
 					<Link href="/signup">
-						<button className="h-[52px] bg-lightPurple text-center w-full mt-10 text-white rounded-xl">
+						<button className="h-[52px] bg-bgBlue text-center w-full mt-10 text-white rounded-xl">
 							Sign Up Instead
 						</button>
 					</Link>

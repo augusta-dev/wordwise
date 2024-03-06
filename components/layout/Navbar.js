@@ -21,7 +21,7 @@ export default function Navbar(props) {
 			</div>
 
 			<div className={`${tablet ? 'px-1 mr-0 w-2/3 ': 'mr-[20%] px-[8%] w-full '} flex font-rubik font-semibold  justify-between `}>
-				<Link href="/" className={`${props.about && "text-blue"}`}>ABOUT</Link>
+				<Link href="/" className={`${props.about && "text-blue"}`}>HOME</Link>
 				<p>|</p>
 				<Link href="/signin" className={`${props.signin && "text-blue"}`}>SIGNIN</Link>
 				<p>|</p>
