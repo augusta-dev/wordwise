@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import Link from "next/link";
 import Button from "../UI/Button";
@@ -7,35 +7,57 @@ import Image from "next/image";
 import arrow from "../../assets/arrow_legs.svg";
 import SizeContext from "./SizeContext";
 import splash from "../../assets/splash tablet.svg";
-import splashMobile from '../../assets/splashmobile.svg'
+import splashMobile from "../../assets/splashmobile.png";
 
 export default function Mobilesplash() {
 	const sizeCtx = React.useContext(SizeContext);
 	const tablet = sizeCtx.tablet;
-	
+
 	return (
 		<>
 			<div className="flex pb-2 flex-col items-end w-full">
-				<Link className="flex" href='/dashboard'>
-					<p className={`${tablet && 'font-medium'}`}>Continue to dashboard</p>
+				<Link
+					className="flex"
+					href="/dashboard"
+				>
+					<p className={`${tablet && "font-medium"}`}>
+						Continue to dashboard
+					</p>
 					<Image
-						src={arrow} 
+						src={arrow}
 						className="ml-2 mt-1 h-4 w-auto animate-bounce"
 						alt="arrow"
 					/>
 				</Link>
 			</div>
-			{!tablet && <Image src={splashMobile} className='w-full h-auto' 
-			 />}
-			{tablet && <Image src={splash} className="w-full px-4 -ml-2 -mb-4"></Image>}
+			{!tablet && (
+				<Image
+					src={splashMobile}
+					className="w-full h-auto"
+				/>
+			)}
+			{tablet && (
+				<Image
+					src={splash}
+					className="w-full px-4 -ml-2 -mb-4"
+				></Image>
+			)}
 			<Logo />
-			<div className={`${tablet && 'font-medium text-[17px]'}  font-rubik font-semibold text-darkPurple text-justify leading-5 pb-4`}>
+			<div
+				className={`${
+					tablet && "font-medium text-[17px]"
+				}  font-rubik font-semibold text-darkPurple text-justify leading-5 pb-4`}
+			>
 				<p>
 					Unlock language treasures, one word at a time. Here,
 					dictionary meets mastery. We turn knowledge into lasting
 					wisdom.
 				</p>
-				<p className={`${tablet && 'text-xl pb-2'} font-signika text-lg leading-4 pt-2`}>
+				<p
+					className={`${
+						tablet && "text-xl pb-2"
+					} font-signika text-lg leading-4 pt-2`}
+				>
 					How It Works:
 				</p>
 				<p className="text-lightPurple ">
@@ -50,7 +72,7 @@ export default function Mobilesplash() {
 				<Link href="/signin">
 					<Button
 						variant="contained"
-						className={`${tablet && 'py-2 mb-1'} !mt-4 mb-2`}
+						className={`${tablet && "py-2 mb-1"} !mt-4 mb-2`}
 					>
 						Sign in
 					</Button>
@@ -58,7 +80,7 @@ export default function Mobilesplash() {
 				<Link href="/signup">
 					<Button
 						variant="contained"
-						className={`${tablet && 'py-2 !mt-1'}  mb-2`}
+						className={`${tablet && "py-2 !mt-1"}  mb-2`}
 					>
 						Sign up
 					</Button>
